@@ -21,4 +21,7 @@ exec DBMS_UTILITY.compile_schema(schema => 'AFW_040200');
 --Contient le minimum pour faire fonctionner AFW (AFW_ADMIN + droit)
 @@install_admin.sql;
 
+--Ajout trg pour tri alternatif
+@@install_tri_alter.sql;
+
 spool off;
