@@ -119,3 +119,13 @@ grant select on apex_040200.wwv_flow_worksheet_conditions to afw_040200;
 grant select on apex_040200.wwv_flow_worksheet_rpts to afw_040200;
   prompt privs on package apex_040200.wwv_flow_worksheet_standard to afw_040200;
 grant execute on apex_040200.wwv_flow_worksheet_standard to afw_040200;
+
+grant insert on apex_040200.wwv_flow_plugin_events to afw_040200;
+
+grant insert on apex_040200.wwv_flow_plugin_attributes to afw_040200;
+
+grant insert on apex_040200.wwv_flow_plugin_attr_values to afw_040200;
+
+grant insert on apex_040200.wwv_flow_plugin_files to afw_040200;
+
+grant insert on apex_040200.wwv_flow_plugin_settings to afw_040200;
