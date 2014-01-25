@@ -12,9 +12,8 @@
     <meta name="revisit-after" content="1 month">
 
     <!-- Le styles -->
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
-          rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
     <link href="assets/css/main.css" rel="stylesheet">
 
@@ -32,27 +31,37 @@
 <!-- Navbar
 ================================================== -->
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="./index.html">APEXFramework</a>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li>
-                        <a href="https://github.com/SIE-Solutions/APEXFramework/blob/master/README.md">Getting
-                            started</a>
-                    </li>
-                    <li>
-                        <a href="./components.html">Components</a>
-                    </li>
-                </ul>
-            </div>
+            <img class="navbar-brand-logo" src="assets/img/apexframework_logo.png"/>
+            <a class="navbar-brand" href="#">APEXFramework</a>
+
         </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li>
+                    <a href="./components.html">Components</a>
+                </li>
+                <li>
+                    <a href="https://github.com/SIE-Solutions/APEXFramework/blob/master/README.md">Getting
+                        started</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="form">
+                <a class="btn btn-warning" href="https://github.com/SIE-Solutions/APEXFramework/archive/master.zip">
+                    <i class="fa fa-download icon-large"></i>&nbsp;&nbsp;
+                    get a free copy
+                </a>
+            </form>
+        </div>
+        <!--/.navbar-collapse -->
     </div>
 </div>
 
@@ -60,13 +69,91 @@
     <div class="container">
         <h1>APEXFramework</h1>
 
-        <p>Stop reinventing the wheel.</p>
-        <a class="btn btn-success btn-large" href="https://github.com/SIE-Solutions/APEXFramework/archive/master.zip">
-            <i class="icon-download-alt icon-large"></i>&nbsp;&nbsp;
-            Download
-        </a>
+        <p>an open source framework for Oracle APEX</p>
     </div>
 </header>
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item">
+            <img data-src="assets/js/holder.js/900x500/auto/#666:#6a6a6a">
+
+            <div class="carousel-caption">
+                <h3>Automated user management</h3>
+
+                <p>Account activation, forgotten password, and credentials retrieval.</p>
+            </div>
+        </div>
+
+        <div class="item active">
+            <img data-src="assets/js/holder.js/900x500/auto/#666:#6a6a6a">
+
+            <div class="carousel-caption">
+                <h3>Dynamic and flexible breadcrumb</h3>
+
+                <p><strike>Push values</strike> Pull values between pages. Stack contextual data based on your
+                    navigation.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img data-src="assets/js/holder.js/900x500/auto/#666:#6a6a6a">
+
+            <div class="carousel-caption">
+                <h3>Security</h3>
+
+                <p>1) Define domains 2) Create security groups 3) Add users</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img data-src="assets/js/holder.js/900x500/auto/#666:#6a6a6a">
+
+            <div class="carousel-caption">
+                <h3>Access rights</h3>
+
+                <p>A GUI lets you define the granular access to pages and components for the security groups.</p>
+            </div>
+        </div>
+        <div class="item">
+            <img data-src="assets/js/holder.js/900x500/auto/#666:#6a6a6a">
+
+            <div class="carousel-caption">
+                <h3>DTAP migration cycle</h3>
+
+                <p>Development, testing, acceptance and production.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+<div class="container marketing">
+    <div class="row introduction">
+        <div class="col-lg-12">
+            <h1>Time is precious do not waste it.</h1>
+
+            <p class="marketing-byline">You don't need to reinvent the wheel. Build up on what others have done.</p>
+        </div>
+    </div>
+</div>
 
 <div id="social-buttons" class="hidden-print">
     <div class="container">
@@ -87,103 +174,71 @@
                         class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button"
                         data-twttr-rendered="true" style="width: 242px; height: 20px;"></iframe>
             </li>
-            <li class="tweet-btn hidden-phone">
-                <iframe allowtransparency="true" frameborder="0" scrolling="no"
-                        src="http://platform.twitter.com/widgets/tweet_button.1375828408.html#_=1377556052254&amp;count=horizontal&amp;counturl=APEXFramework&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fsie-solutions.github.io%2FAPEXFramework%2F&amp;size=m&amp;text=APEXFramework%2C%20designed%20for%20Oracle%20APEX&amp;url=http%3A%2F%2Fsie-solutions.github.io%2FAPEXFramework%2F&amp;via=apexframework"
-                        class="twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button"
-                        data-twttr-rendered="true" style="width: 110px; height: 20px;"></iframe>
-            </li>
         </ul>
     </div>
 </div>
 
-<div class="container">
-    <div class="marketing">
-        <h1>Introducing APEXFramework.</h1>
+<div class="container marketing">
+    <div class="row featurette">
+        <div class="col-lg-6 col-md-12">
+            <i class="featurette-image fa fa-gears"></i>
 
-        <p class="marketing-byline">What's in it for me? Look no further.</p>
+            <h2 class="featurette-heading">Components</h2>
 
-        <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider">
-
-        <!-- Components
-        ================================================== -->
-        <div class="featurette">
-            <i class="featurette-image pull-right icon-code"></i>
-
-            <h2 class="featurette-heading">Packed with many components.</h2>
-
-            <h3 class="featurette-heading muted">Designed to facilitate the implementation of Oracle APEX.</h3>
-
-            <p class="lead"></p>
-            <ul>
-                <li>60+ Plug-ins</li>
-                <li>140+ Packages</li>
-                <li>8 Applications (150+ Pages)</li>
-                <li>180+ Tables</li>
-                <li>170+ Views</li>
-            </ul>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <!-- More components
-        ================================================== -->
-        <div class="featurette">
-            <i class="featurette-image pull-left icon-gears"></i>
-
-            <h2 class="featurette-heading">Features</h2>
-
-            <h3 class="featurette-heading muted">For we must all develop similar components to meet different
+            <h3 class="featurette-heading muted">For we must all develop similar features to meet different
                 needs.</h3>
 
             <ul>
-                <li>Dynamic breadcrumb</li>
-                <li>LDAP integration</li>
-                <li>Declarative security</li>
-                <li>Single entry point</li>
                 <li>Declarative binding of error messages</li>
                 <li>Sessions and users notifications</li>
-                <li>Stacked navigation variables</li>
-                <li>Reportable events</li>
-                <li>Session variables</li>
                 <li>Logs and debug traces</li>
                 <li>CLOB and BLOB utilities</li>
                 <li>Semaphore</li>
                 <li>Stacks for triggers manipulations</li>
-                <li>Emails, SMS, Fax</li>
                 <li>Paypal payments</li>
                 <li>Quality assurance</li>
             </ul>
         </div>
 
-        <hr class="featurette-divider">
+        <div class="col-lg-6 col-md-12">
+            <i class="featurette-image fa fa-code"></i>
 
-        <!-- Free
-        ================================================== -->
-        <div class="featurette">
-            <i class="featurette-image pull-left icon-dollar"></i>
+            <h2 class="featurette-heading">Lots of features</h2>
+
+            <h3 class="featurette-heading muted">Expend your capabilities.</h3>
+
+            <ul>
+                <li>60+ Plug-ins</li>
+                <li>140+ PL/SQL Packages</li>
+                <li>180+ Tables</li>
+                <li>170+ Views</li>
+                <li>8 Packaged Applications</li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="row featurette">
+        <div class="col-lg-6 col-md-12">
+            <i class="featurette-image fa fa-usd"></i>
 
             <h2 class="featurette-heading">Free as in free Speech</h2>
 
-            <h3 class="featurette-heading muted">Money should not be an excuse for poor development practices.</h3>
+            <h3 class="featurette-heading muted">Price should not be an excuse.</h3>
 
             <ul>
-                <li>The foundation that will ensure a hassle-free development.</li>
-                <li>The fuel that will take off your projects.</li>
-                <li>A community that is strong by its members.</li>
+                <li>Hosted on Github</li>
+                <li>Licensed under the <a href="http://choosealicense.com/licenses/mit/"
+                                          target="_blank">MIT
+                    License (MIT)</a></li>
+                <li>Documentation available for all major aspects of the framework</li>
             </ul>
+
         </div>
 
-        <hr class="featurette-divider">
+        <div class="col-lg-6 col-md-12">
+            <img class="featurette-image pull-left icon-sie-solutions" src="assets/img/sie-solutions_logo.png">
 
-        <!-- SIE-Solutions
-        ================================================== -->
-        <div class="featurette">
-            <img class="featurette-image pull-right icon-sie-solutions" src="assets/img/logo_SIE_300px.jpg">
-
-            <h2 class="featurette-heading">SIE-Solutions</h2>
+            <h2 class="featurette-heading">An open source project backed by a company</h2>
 
             <h3 class="featurette-heading muted">Sharing is a value that makes us shine.</h3>
 
@@ -191,24 +246,55 @@
                 Built at <strong>SIE-Solutions</strong> a Quebec company whose mission is providing specialized
                 consulting services based on Oracle APEX. The founders of the company have an enviable record in IT
                 consulting. They have worked in many
-                organizations in both the private and public sectors. The values that guide SIE are those of sharing,
+                organizations in both the private and public sectors. The values that guide SIE-Solutions are those of
+                sharing,
                 integrity
                 and professionalism.
             </p>
+
+            <ul>
+                <li>Adopted by large organizations from private and public sectors</li>
+            </ul>
+
         </div>
-
-        <!-- /END THE FEATURETTES -->
-
     </div>
-
 </div>
 
+<hr class="featurette-divider">
 
 <!-- Footer
 ================================================== -->
-<footer class="footer">
-    <div class="container">
-        <p><img src="assets/img/apex_framework_logo.png" style="width:150px;"/></p>
+<footer class="footer hidden-print">
+    <div class="container text-center">
+        <div>
+            <i class="icon-flag"></i> APEXFramework<span class="inline visible-md visible-lg">·</span><br
+                class="visible-xs visible-sm">Created and Maintained by <a href="http://www.sie-solutions.ca"
+                                                                           target="_blank">SIE-Solutions</a>
+        </div>
+        <div>
+            APEXFramework<span class="inline visible-md visible-lg">·</span><br
+                class="visible-xs visible-sm">Licensed under the <a href="http://choosealicense.com/licenses/mit/"
+                                                                    target="_blank">MIT
+            License (MIT)</a>
+
+        </div>
+        <div>
+            APEXFramework
+            <span class="inline visible-md visible-lg">·</span>
+            <br class="visible-xs visible-sm"/>
+            <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Documentation</span> by <a
+                xmlns:cc="http://creativecommons.org/ns#" href="http://www.sie-solutions.ca"
+                property="cc:attributionName" rel="cc:attributionURL" target="_blank">SIE-Solutions</a> is licensed
+            under a <a
+                rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons
+            Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </div>
+
+
+        <div class="project">
+            <a href="https://github.com/SIE-Solutions/APEXFramework/">GitHub Project</a> ·
+            <a href="https://github.com/SIE-Solutions/APEXFramework/issues">Issues</a>
+        </div>
     </div>
 </footer>
 
@@ -217,7 +303,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
     var _gaq = _gaq || [];

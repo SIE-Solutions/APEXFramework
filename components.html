@@ -12,9 +12,8 @@
     <meta name="revisit-after" content="1 month">
 
     <!-- Le styles -->
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
-          rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
     <link href="assets/css/main.css" rel="stylesheet">
 
@@ -28,43 +27,44 @@
 </head>
 
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-
 <!-- Navbar
 ================================================== -->
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="./index.html">APEXFramework</a>
-
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li>
-                        <a href="https://github.com/SIE-Solutions/APEXFramework/blob/master/README.md">Getting
-                            started</a>
-                    </li>
-                    <li class="active">
-                        <a href="./components.html">Components</a>
-                    </li>
-                </ul>
-            </div>
+            <img class="navbar-brand-logo" src="assets/img/apexframework_logo.png" />
+            <a class="navbar-brand" href="#">APEXFramework</a>
         </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="./index.html#">Home</a></li>
+                <li class="active">
+                    <a href="#">Components</a>
+                </li>
+                <li>
+                    <a href="https://github.com/SIE-Solutions/APEXFramework/blob/master/README.md">Getting
+                        started</a>
+                </li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
     </div>
 </div>
 
-<header class="jumbotron subhead">
-    <div class="container">
-        <h1>APEXFramework</h1>
 
-        <p>Stop reinventing the wheel.</p>
-        <a class="btn btn-success btn-large" href="https://github.com/SIE-Solutions/APEXFramework/archive/master.zip">
-            <i class="icon-download-alt icon-large"></i>&nbsp;&nbsp;
-            Download
-        </a>
+<header class="jumbotron masthead">
+    <div class="container">
+        <h1>Code reuse</h1>
+
+        <blockquote>
+            <p>Save time and energy by reducing redundant work</p>
+            <small>Someone who enjoys the good things in life</small>
+        </blockquote>
     </div>
 </header>
 
@@ -75,10 +75,8 @@
 <div class="row">
 <div class="span3 bs-docs-sidebar">
     <ul class="nav nav-list bs-docs-sidenav">
+        <li><a href="#security"><i class="icon-chevron-right"></i> Security</a></li>
         <li><a href="#dynamic_breadcrumb"><i class="icon-chevron-right"></i> Dynamic breadcrumb</a></li>
-        <li><a href="#ldap_integration"><i class="icon-chevron-right"></i> LDAP integration</a></li>
-        <li><a href="#declarative_security"><i class="icon-chevron-right"></i> Declarative security</a></li>
-        <li><a href="#single_entry_point"><i class="icon-chevron-right"></i> Single entry point</a></li>
         <li><a href="#message_binding"><i class="icon-chevron-right"></i> Declarative binding of error messages</a></li>
         <li><a href="#sessions_users_notifications"><i class="icon-chevron-right"></i> Sessions and users notifications</a>
         </li>
@@ -98,47 +96,108 @@
 </div>
 <div class="span9">
 
+<!--  Single entry point
+================================================== -->
+<section id="security">
+    <div class="page-header">
+        <h1> Security</h1>
+
+        <blockquote>
+
+        </blockquote>
+    </div>
+    <div class="row-fluid">
+        <ul class="thumbnails">
+            <li class="span4">
+                <div class="thumbnail">
+                    <img src="assets/img/mon_image.jpg" style="width: 300px; height: 200px;">
+
+                    <div class="caption">
+                        <h3>Single entry point</h3>
+
+                        <p class="muted">You can define a single entry point for a group of applications. You can use
+                            <strong>domain</strong> in multi-tenant SaaS context.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="span4">
+                <div class="thumbnail">
+                    <img src="assets/img/mon_image.jpg" style="width: 300px; height: 200px;">
+
+                    <div class="caption">
+                        <h3>Password management</h3>
+
+                        <p class="muted">Everything you need to automate this process using email instructions. <strong>No
+                            more clear text password in email !!!</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="span4">
+                <div class="thumbnail">
+                    <img src="assets/img/mon_image.jpg" style="width: 300px; height: 200px;">
+
+                    <div class="caption">
+                        <h3>Log in as another user</h3>
+
+                        <p class="muted">For support, you can log in as another user <strong>while leaving your own
+                            mark</strong> in the
+                            audits.</p>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="row-fluid">
+        <ul class="thumbnails">
+            <li class="span4">
+                <div class="thumbnail">
+                    <img src="assets/img/mon_image.jpg" style="width: 300px; height: 200px;">
+
+                    <div class="caption">
+                        <h3>Declarative security</h3>
+
+                        <p class="muted">Link every APEX pages to an "applicative structure" to use 5 rights level: no
+                            access, read-only, modify, create, delete.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="span4">
+                <div class="thumbnail">
+                    <img src="assets/img/mon_image.jpg" style="width: 300px; height: 200px;">
+
+                    <div class="caption">
+                        <h3>LDAP integration</h3>
+
+                        <p class="muted">Users can authenticate against external or internal security schemes. You can
+                            use an hybrid mode to manage internal staff and public users. </p>
+                    </div>
+                </div>
+            </li>
+            <li class="span4">
+                <div class="thumbnail">
+                    <img src="assets/img/mon_image.jpg" style="width: 300px; height: 200px;">
+
+                    <div class="caption">
+                        <h3>Domains</h3>
+
+                        <p class="muted">You can easily build multi-tenant SaaS using domains. Depending on the
+                            settings, users in the same user-group but in different domains could have access or not to
+                            the same functionality.</p>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</section>
+
 <!-- Dynamic breadcrumb
 ================================================== -->
 <section id="dynamic_breadcrumb">
     <div class="page-header">
         <h1>Dynamic breadcrumb</h1>
-
-        <blockquote>
-            blah blah
-        </blockquote>
-    </div>
-</section>
-
-<!-- LDAP integration
-================================================== -->
-<section id="ldap_integration">
-    <div class="page-header">
-        <h1>LDAP integration</h1>
-
-        <blockquote>
-            blah blah
-        </blockquote>
-    </div>
-</section>
-
-<!--  Declarative security
-================================================== -->
-<section id="declarative_security">
-    <div class="page-header">
-        <h1> Declarative security</h1>
-
-        <blockquote>
-            blah blah
-        </blockquote>
-    </div>
-</section>
-
-<!--  Single entry point
-================================================== -->
-<section id="single_entry_point">
-    <div class="page-header">
-        <h1> Single entry point</h1>
 
         <blockquote>
             blah blah
@@ -316,14 +375,13 @@
     </div>
 </footer>
 
-
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="assets/js/application.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
     var _gaq = _gaq || [];
     var pluginUrl =
             '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
