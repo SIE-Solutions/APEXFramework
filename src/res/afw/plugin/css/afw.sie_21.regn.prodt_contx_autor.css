@@ -1,0 +1,13 @@
+div.afw_sie_21_regn_prodt_contx_autor.liste_prodt_autor ul {
+  margin: 0px;
+}
+
+div.afw_sie_21_regn_prodt_contx_autor.liste_prodt_autor ul li {
+  margin: 5px 0px 5px 0px;
+  list-style-type: none;
+}
+
+div.afw_sie_21_regn_prodt_contx_autor.liste_prodt_autor ul li .ui-button {
+  text-align: left;
+  width: 100%;
+}

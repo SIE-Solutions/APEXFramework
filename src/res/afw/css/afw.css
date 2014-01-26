@@ -1,0 +1,562 @@
+fieldset.lov, fieldset.datepicker {
+  height: auto;
+  /* line-height: auto; */
+}
+
+.sie_itf_desct {
+  background-color: #c0c0c0;
+}
+
+/***********  rapport interactif ***********/
+#apexir_REPORT_TABS {
+  border-bottom: 1px solid rgb(146, 162, 179);
+  padding: 0 0 1px 0;
+  margin: 10px 0 5px 0;
+  clear: both;
+  display: block;
+}
+
+#apexir_REPORT_TABS span {
+  color: #586073;
+  display: inline-block;
+  cursor: pointer;
+  background: #e8e9e9;
+  background-image: url(/res/sie/theme/topDimTabBg.gif);
+  font-weight: bold;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 3px;
+  cursor: pointer;
+  border: 1px solid #92a2b3;
+  border-top: none;
+  padding: 2px 5px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+#apexir_REPORT_TABS span.current {
+  background: #c8d9eb;
+  background-image: url(/res/sie/theme/topTabBg.gif);
+  color: #2B7C92 !important;
+  border: 1px solid #b6cbe0;
+  border-top: none;
+}
+
+#apexir_REPORT_TABS span a {
+  display: none;
+}
+
+.apexir_SEARCHICON {
+  /*background-image:url("../images/raprt_inter/rechr.png");*/
+  display: block;
+  float: left;
+  height: 24px;
+  width: 24px;
+}
+
+/***********  menu ***********/
+li.sie_pull_down_menu_actif, li.sie_pull_down_menu_actif a {
+  font-weight: bold !important;
+  text-decoration: underline;
+}
+
+/***********  etc ***********/
+
+td.nombr, input.nombr {
+  text-align: right;
+}
+
+.saf_prodt {
+  float: right;
+}
+
+/*SIE_PIED_PAGE.CSS*/
+.pied_page {
+  background-color: #EAEFF5;
+  color: #3E4650;
+  height: 20px;
+  padding: 2px 5px;
+  width: 100%;
+  /*font-weight: bold;*/
+}
+
+.pied_page_gauch {
+  text-align: left;
+  color: #3E4650;
+  vertical-align: middle;
+  text-align: left;
+  width: 34%;
+}
+
+.pied_page_centr {
+  color: #3E4650;
+  vertical-align: middle;
+  text-align: center;
+  width: 32%;
+}
+
+.pied_page_droit {
+  text-align: right;
+  color: #3E4650;
+  vertical-align: middle;
+  text-align: right;
+  width: 34%;
+}
+
+.pied_page_usagr {
+  color: #3E4650;
+}
+
+.envir_dev {
+  color: #3E4650;
+}
+
+.envir_prod {
+  color: #7FFF00;
+}
+
+/*SIE_TOOLBAR.CSS*/
+/* toolbar */
+#sie_toolbar {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 71px;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+  background-color: white;
+  background-repeat: repeat-x;
+  vertical-align: middle;
+  background-attachment: scroll;
+  z-index: 10000;
+}
+
+/* rang�e du haut */
+#sie_toolbar_haut {
+}
+
+#sie_toolbar_haut table.toolbar {
+  border: 0;
+  width: 100%;
+}
+
+#sie_toolbar_haut table.toolbar img {
+  vertical-align: middle
+}
+
+#sie_toolbar_haut  td.toolbar_gauch {
+  text-align: left;
+  vertical-align: middle;
+  width: 35%;
+}
+
+#sie_toolbar_haut  td.toolbar_centr {
+  text-align: center;
+  vertical-align: middle;
+  width: 30%;
+}
+
+#sie_toolbar_haut  td.toolbar_centr img {
+  /*padding-top:2px;*/
+}
+
+#sie_toolbar_haut  td.toolbar_droit {
+  text-align: right;
+  vertical-align: middle;
+  width: 35%;
+}
+
+#sie_toolbar_haut a:link, #sie_toolbar_haut a:visited {
+  text-decoration: none;
+}
+
+/* rang�e du milieu */
+#sie_toolbar_centr {
+  padding: 2px 0px 2px 0px;
+}
+
+#sie_toolbar_centr a:link, #sie_toolbar_centr a:visited {
+  text-decoration: none;
+}
+
+/* rang�e du bas */
+#sie_toolbar_bas {
+  padding: 2px;
+}
+
+#sie_toolbar_bas #htmldbDevToolbar {
+  -moz-box-shadow: none;
+  border-style: none;
+  position: static;
+  background: none repeat scroll 0 0 transparent;
+  padding: 0px;
+}
+
+.sie_toolbar_break {
+  line-height: 71px;
+}
+
+/*SIE_19.css*/
+#aide_cle_fonct {
+  overflow: auto;
+  width: 635px;
+  height: 300px;
+}
+
+table.aide_cle_fonct {
+  width: 100%;
+}
+
+table.aide_cle_fonct th {
+  background-color: #CFE0F1 !important;
+  background-image: none !important;
+  color: #2B7C92 !important;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+table.aide_cle_fonct tr {
+  font-family: Arial, Tahoma, Helvetica, Geneva, sans-serif;
+  font-size: 9pt;
+}
+
+/* Couleurs des bo�tes d'information */
+.boite_infor * {
+  background-color: #FFFFAA;
+  border-color: #FFD47F;
+}
+.boite_infor .sie_boite_ronde_0 {
+  background-color: #FFD47F;
+}
+.boite_infor .sie_boite_ronde_contenu {
+  color: #000000;
+}
+
+/* Couleurs des bo�tes d'information */
+.boite_sucs * {
+  background-color: #D9E5EF;
+  border-color: #B2C8DC;
+}
+.boite_sucs .sie_boite_ronde_0 {
+  background-color: #B2C8DC;
+}
+.boite_sucs .sie_boite_ronde_contenu {
+  color: #000000;
+}
+
+/* Couleurs des bo�tes de notification */
+.boite_notfc * {
+  background-color: #F7F2E2;
+  border-color: #82837D;
+}
+.boite_notfc .sie_boite_ronde_0 {
+  background-color: #82837D;
+}
+.boite_notfc .sie_boite_ronde_contenu {
+  color: #000000;
+}
+
+/* Couleurs des bo�tes d'erreur */
+.boite_ereur * {
+  background-color: #FFDDDD;
+  border-color: #990000;
+}
+.boite_ereur .sie_boite_ronde_0 {
+  background-color: #990000;
+}
+.boite_ereur .sie_boite_ronde_contenu {
+  color: #000000;
+}
+
+/* D�finition g�n�rales */
+.sie_boite_ronde {
+  display: block;
+  margin: 10px;
+}
+.sie_boite_ronde * {
+  display: block;
+  height: 1px;
+  overflow: hidden;
+}
+.sie_boite_ronde_0 {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.sie_boite_ronde_1 {
+  border-left-width: 2px;
+  border-right-width: 2px;
+  border-left-style: solid;
+  border-right-style: solid;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.sie_boite_ronde_2 {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-left-style: solid;
+  border-right-style: solid;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.sie_boite_ronde_3 {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-left-style: solid;
+  border-right-style: solid;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.sie_boite_ronde_contenu {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-left-style: solid;
+  border-right-style: solid;
+  display: block;
+  height: auto;
+  padding: 4px;
+  padding-left: 8px;
+  padding-left: 8px;
+}
+.sie_boite_ronde_contenu * {
+  height: auto;
+}
+
+.sie_boite_ronde a {
+  display: inline;
+}
+
+/*SIE_13.css*/
+.sie_13_item_rechr {
+  background-color: #EAEFF5;
+  color: #000000;
+}
+
+.sie_13_rechr_desct {
+  /*background-color: #D4D0C8;
+   color: #000000;*/
+}
+
+.sie_regn_field {
+  margin-top: 10px;
+  border: 1px solid #A3BED8;
+  background-color: #FFFFFF;
+  -moz-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
+}
+
+.sie_entet_regn_field {
+  line-height: 1px;
+  height: 1px;
+}
+
+.sie_titre_regn_field {
+  left: 6px;
+  line-height: 10px;
+  position: relative;
+  top: -7px;
+  text-align: left;
+}
+
+.sie_titre_regn_field span {
+  background-color: #F8F8F9;
+  color: #3A5A87;
+  padding: 0 3px;
+}
+
+table.apexir_WORKSHEET_CUSTOM {
+  border: none !important;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+table.apexir_WORKSHEET_CUSTOM td {
+  background-color: #FFFFFF !important;
+}
+
+.apexir_WORKSHEET_DATA td {
+  border-bottom: none !important;
+}
+
+table.reportDetail td {
+  border: none !important;
+  font: 11px/16px Arial, sans-serif;
+}
+
+table.reportDetail td.separator {
+  background: #CCC !important;
+  height: 2px !important;
+  padding: 0;
+  line-height: 2px !important;
+  overflow: hidden;
+}
+
+table.reportDetail td h1 {
+  margin: 8px 0 !important;
+}
+
+table.reportDetail td h1 a {
+  font-weight: bold;
+  font-size: 12pt;
+  text-decoration: underline;
+}
+
+table.reportDetail td h1 a:active, table.reportDetail td h1 a:hover {
+  color: #2B7C92;
+}
+
+table.reportDetail td h1 a:link, table.reportDetail td h1 a:visited {
+  color: #000000;
+  text-decoration: underline;
+}
+
+table.reportDetail td img {
+  margin-top: 8px;
+  /*border: 4px solid #C8DBED;
+   -moz-border-radius: 4px;
+   -webkit-border-radius: 4px;*/
+}
+
+.sie_13_cadre_menu {
+  margin: 0 0 0 10px;
+  width: 90%;
+}
+
+.sie_13_cadre_menu_entet {
+  background-color: #D5E4F6;
+  color: #2779AA;
+  font-size: 9pt;
+  font-weight: bold;
+  height: 21px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sie_13_menu {
+  text-align: left;
+}
+
+div.sie_13_menu_sectn {
+  display: block;
+  border: 1px solid #EAEFF5;
+  margin-bottom: 5px;
+  padding: 5px;
+  vertical-align: top;
+  background-color: #FFFFFF;
+}
+
+div.sie_13_menu_infor {
+  width: 48px;
+  float: left;
+}
+
+div.sie_13_menu_detls {
+  margin-left: 48px;
+  text-align: left;
+}
+
+.sie_13_menu_detls .titre {
+  font-weight: bold;
+  font-size: 8pt;
+  text-decoration: none;
+  color: #2779AA;
+}
+
+.sie_13_menu_detls ul {
+  text-align: left;
+  text-decoration: none;
+  list-style-image: url("../images/menu/bullet_01.gif");
+}
+
+.sie_13_menu_detls ul  a {
+  text-decoration: none;
+  font-size: 9pt;
+  color: #2779AA;
+}
+
+.sie_13_menu_detls ul  a:active, .sie_13_menu_detls ul  a:hover {
+  text-decoration: underline;
+}
+
+div.clear {
+  height: 0;
+  font-size: 1px;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  clear: both;
+}
+
+/*SIE_25_ENTET_VERTC.css*/
+.entet_vertc {
+  width: 10px;
+  overflow: visible;
+  vertical-align: baseline;
+  transform: rotate(-90deg);
+  transform-origin: 45% 88%;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -ms-transform-origin: 45% 88%; /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Safari and Chrome */
+  -webkit-transform-origin: 45% 88%; /* Safari and Chrome */
+  -moz-transform: rotate(-90deg); /* Firefox */
+  -moz-transform-origin: 45% 88%; /* Firefox */
+  -o-transform: rotate(-90deg); /* Opera */
+  -o-transform-origin: 45% 88%; /* Opera */
+}
+
+/*sie_12_favr.css*/
+img.ajout_suprm_favr {
+  cursor: pointer;
+}
+
+.ui-datepicker {
+  z-index: 10001 !important;
+}
+
+.ui-afw .ui-widget.reprt_regn {
+  margin-bottom: 3px;
+}
+
+.ui-afw .ui-widget.reprt_regn .reprt_regn_headr {
+
+}
+
+.ui-afw .ui-widget.reprt_regn .reprt_regn_butn {
+  height: 27px;
+}
+
+.ui-afw .ui-widget.reprt_regn .reprt_regn_body {
+  background: none repeat scroll 0 0 transparent;
+  border: medium none;
+  margin-top: 3px;
+  padding: 3px;
+}
+
+.ui-afw .ir_matrc_surlg_tous {
+  background-color: #F3F3D8 !important;
+}
+
+.ui-afw #echo-logo img {
+  width: 44px;
+  height: 33px;
+  top: 6px;
+  left: 5px;
+}
+
+.ui-afw.echo-page-login #echo-logo img {
+  width: 44px;
+  height: 33px;
+  top: -2px;
+  left: 5px;
+}
+
+.ui-afw .filtr_rechr_globl {
+  top: 8px;
+}
+
+.ui-afw .sie_21_champ_rechr {
+
+}

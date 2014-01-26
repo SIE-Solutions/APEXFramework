@@ -1,0 +1,17 @@
+.ui-afw .ui-widget.sie_21_regn_drop {
+  border-style: dashed;
+  margin-bottom: 3px;
+  padding: 0 0.7em;
+}
+
+.ui-afw .ui-widget.sie_21_regn_drop p{
+  color: #939393;
+}
+
+.ui-afw .ui-widget.sie_21_regn_drop.ui-state-hover.ui-state-active{
+  border-color: white;
+}
+
+.ui-afw .ui-widget.sie_21_regn_drop.ui-state-hover{
+  border-color: red;
+}

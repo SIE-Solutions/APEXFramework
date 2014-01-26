@@ -1,0 +1,52 @@
+.fc-header-title {
+  font-size: 1.5em;
+}
+
+.fc-event-skin.agend_1,
+.fc-event-skin.agend_1 .fc-event-skin {
+  background-color: #3366CC;
+  border-color: #3366CC;
+  color: #FFFFFF;
+}
+
+.fc-event-skin.agend_2,
+.fc-event-skin.agend_2 .fc-event-skin {
+  background-color: #D96666;
+  border-color: #D96666;
+  color: #FFFFFF;
+}
+
+.fc-event-skin.agend_3,
+.fc-event-skin.agend_3 .fc-event-skin {
+  background-color: #65AD89;
+  border-color: #65AD89;
+  color: #FFFFFF;
+}
+
+.fc-event-skin.agend_4,
+.fc-event-skin.agend_4 .fc-event-skin {
+  background-color: #BE9494;
+  border-color: #BE9494;
+  color: #FFFFFF;
+}
+
+.fc-event-skin.agend_5,
+.fc-event-skin.agend_5 .fc-event-skin {
+  background-color: #C7561E;
+  border-color: #C7561E;
+  color: #FFFFFF;
+}
+
+.fc-event-skin.agend_6,
+.fc-event-skin.agend_6 .fc-event-skin {
+  background-color: #5CA632;
+  border-color: #5CA632;
+  color: #FFFFFF;
+}
+
+.fc-event-skin.agend_7,
+.fc-event-skin.agend_7 .fc-event-skin {
+  background-color: #AB2171;
+  border-color: #AB2171;
+  color: #FFFFFF;
+}

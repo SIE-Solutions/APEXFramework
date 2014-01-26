@@ -1,0 +1,47 @@
+div.sie_21_telvr_fichr output.liste_fichr ul {
+    font-size: 14px;
+    line-height: 1.6;
+    list-style: square;
+    margin-left: 1.75em;
+    padding-left: 0;
+}
+
+div.sie_21_telvr_fichr div.drop_zone {
+    border: 2px dashed #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold 'Vollkorn';
+    color: #bbb;
+    margin: 20px 0px 20px 0px;
+}
+
+output.liste_fichr .barre_progr {
+    width: 500px;
+}
+
+/*
+.barre_progr {
+  margin: 10px 0;
+  padding: 3px;
+  border: 1px solid #000;
+  font-size: 14px;
+  clear: both;
+  opacity: 0;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -webkit-transition: opacity 1s linear;
+}
+
+.barre_progr.loading {
+  opacity: 1.0;
+}
+
+.barre_progr .percent {
+  background-color: #99ccff;
+  height: auto;
+  width: 0;
+}
+*/

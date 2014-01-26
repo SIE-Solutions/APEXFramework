@@ -1,0 +1,37 @@
+.sie_21_navgt_enreg.gauch, 
+.sie_21_navgt_enreg.droit {
+  position: fixed;
+  height: 100%;
+  width: 30px;
+}
+
+.sie_21_navgt_enreg.gauch {
+  bottom: 0;
+  left: 0;
+}
+
+.sie_21_navgt_enreg.droit {
+  bottom: 0;
+  right: 0;
+}
+
+.sie_21_navgt_enreg .navgt_enreg_precd,
+.sie_21_navgt_enreg .navgt_enreg_suivn {
+  position: relative;
+  top: 50%;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.sie_21_navgt_enreg .navgt_enreg_precd,
+.sie_21_navgt_enreg .navgt_enreg_suivn {
+  opacity: 0.3;
+}
+
+.sie_21_navgt_enreg .navgt_enreg_precd:hover,
+.sie_21_navgt_enreg .navgt_enreg_precd:focus,
+.sie_21_navgt_enreg .navgt_enreg_suivn:hover,
+.sie_21_navgt_enreg .navgt_enreg_suivn:focus
+{
+  opacity: 1;
+}

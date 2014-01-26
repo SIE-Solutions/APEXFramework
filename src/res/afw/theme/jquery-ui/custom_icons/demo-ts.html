@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <title>jQuery Buttons Using Custom Icons</title>        
+        <link rel="stylesheet" href="http://ajax.microsoft.com/ajax/jquery.ui/1.8.9/themes/base/jquery.ui.base.css" type="text/css" media="screen" charset="utf-8" />
+        <link type="text/css" href="assets/css/demo.css" rel="stylesheet"/>
+        <link type="text/css" href="assets/css/fff.icon.core.css" rel="stylesheet"/>
+        <link type="text/css" href="assets/css/fff.icon.icons.css" rel="stylesheet"/>        
+        
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.min.js"></script>        
+        <script type="text/javascript" src="assets/themeswitcher/themeswitchertool.js"></script>
+        <script type="text/javascript" src="assets/js/fff.icon.demo.js?20110120"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                initInterface(true);
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <h1>jQuery Buttons Using FamFamFam Icons</h1>
+            <span id="loadMsg">Loading interface - please wait...</span>
+        </div>
+        <div id="demoContainer" style="display: none;">            
+            <ul id="actions">
+                <li><a class="fff-icon" href="javascript:void(0);">Available FamFamFam Icons</a></li>
+            </ul>
+            
+            <div id="switcher"></div>
+            
+            <div class="ui-widget">
+                <div class="ui-state-highlight" style="margin-top: 20px; padding: 0 .7em;"> 
+                    <p>
+                        <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                        Sometimes the jQuery ThemeSwitcher produces strange results (e.g. invalid icon rendering).  If 
+                        this is the case here, switch to the non-ThemeSwitcher version <a href="demo.html">here</a>.
+                    </p>
+                </div>
+            </div>
+            
+            <div id="dialog" style="display:none; padding: 0;" title="View Available FamFamFam Icons">            
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#fffIcon1">Icons A - B</a></li>
+                        <li><a href="#fffIcon2">Icons C - E</a></li>
+                        <li><a href="#fffIcon3">Icons F - O</a></li>
+                        <li><a href="#fffIcon4">Icons P - S</a></li>
+                        <li><a href="#fffIcon5">Icons T - Z</a></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                    <div id="fffIcon1"><div class="loader-01"></div></div>
+                    <div id="fffIcon2"><div class="loader-01"></div></div>
+                    <div id="fffIcon3"><div class="loader-01"></div></div>
+                    <div id="fffIcon4"><div class="loader-01"></div></div>
+                    <div id="fffIcon5"><div class="loader-01"></div></div>
+                    <div id="references">                        
+                        <ul id="ref">                            
+                            <li><a class="fff-icon" href="http://code.msdn.microsoft.com/tdryan/Release/ProjectReleases.aspx?ReleaseId=5352" target="_blank">Source</a></li>
+                            <li><a class="fff-icon" href="http://tdanryan.com/demo/jqcustomicons/demo.html" target="_blank">Demo</a></li>
+                            <li><a class="fff-icon" href="http://www.famfamfam.com/" target="_blank">FamFamFam Icons</a></li>                            
+                            <li><a class="fff-icon" href="http://jquery.com/" target="_blank">jQuery</a></li>
+                            <li><a class="fff-icon" href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+            </div>
+            <ul id="icons" class="ui-widget ui-helper-clearfix"></ul>
+            
+            <div class="demo-pane">
+                <h1>HTML Button Elements - &lt;button/&gt;</h1>
+                <div class="demo">
+                    <h2>jQuery Out-Of-The-Box Icons</h2>
+                    <button>Button with icon only</button>
+                    <button>Button with icon on the left</button>
+                    <button>Button with two icons</button>
+                    <button>Button with icon on the right</button>
+                    <button>Button with two icons and no text</button>            
+                </div>
+                <div class="demo">
+                    <h2>FamFamFam Custom Icons</h2>
+                    <button class="fff-icon">Button with icon only</button>
+                    <button class="fff-icon">Button with icon on the left</button>
+                    <button class="fff-icon">Button with two icons</button>
+                    <button class="fff-icon">Button with icon on the right</button>
+                    <button class="fff-icon">Button with two icons and no text</button>
+                </div>
+            </div>
+            
+            <div class="demo-pane">
+                <h1>HTML Anchor Elements - &lt;a/&gt;</h1>
+                <div class="demo">
+                    <h2>jQuery Out-Of-The-Box Icons</h2>
+                    <a href="#">Button with icon only</a>
+                    <a href="#">Button with icon on the left</a>
+                    <a href="#">Button with two icons</a>
+                    <a href="#">Button with icon on the right</a>
+                    <a href="#">Button with two icons and no text</a>
+                </div>
+                
+                <div class="demo">
+                    <h2>FamFamFam Custom Icons</h2>
+                    <a class="fff-icon" href="#">Button with icon only</a>
+                    <a class="fff-icon" href="#">Button with icon on the left</a>
+                    <a class="fff-icon" href="#">Button with two icons</a>
+                    <a class="fff-icon" href="#">Button with icon on the right</a>
+                    <a class="fff-icon" href="#">Button with two icons and no text</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

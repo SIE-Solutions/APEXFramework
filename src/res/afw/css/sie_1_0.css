@@ -1,0 +1,18 @@
+.td_texture {
+  background-image: url(textr_droit.jpg);
+  background-position: right;
+  background-repeat: no-repeat;
+  min-width: 790px;
+  vertical-align: top;
+  max-height: 79px;
+  height:79px;
+}
+
+.td_barre_navig { padding: 5px 10px 0 5px;
+ }
+
+/*.ErrorPageMessage
+ {
+  display: none
+}*/
+

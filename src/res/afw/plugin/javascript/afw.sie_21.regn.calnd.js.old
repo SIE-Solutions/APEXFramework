@@ -1,0 +1,744 @@
+/**
+ * @namespace afw.sie_21.regn.calnd
+ */
+afw.sie_21.regn.calnd = {
+  insta: [],
+  obten: function(pnu_id) {
+    for (i=0; i<afw.sie_21.regn.calnd.insta.length; i++) {
+      if (afw.sie_21.regn.calnd.insta[i].id == pnu_id) {
+        return afw.sie_21.regn.calnd.insta[i];
+      }
+    }
+  },
+  suprm: function(pnu_id) {
+    for (i=0; i<afw.sie_21.regn.calnd.insta.length; i++) {
+      if (afw.sie_21.regn.calnd.insta[i].id == pnu_id) {
+        afw.sie_21.regn.calnd.insta.splice(i,1);
+      }
+    }
+  },
+  /**
+  * @constructor
+  */
+  calnd : function (pjs_optio, pjs_calbc){
+    this.jQuery                     = afw.jQuery;
+    var that                        = this;
+    this.node                       = false;
+    this.id                         = false;
+    this.evenm_sourc                = {};
+    this.evenm                      = [];
+    this.vjs_evenm                  = {};
+    this.vva_popup_creat_evenm      = "";
+    this.initl                      = initl;
+    this._gestn_json_evenm_calnd    = _gestn_json_evenm_calnd;
+    this._afich_dialg_creat_evenm   = _afich_dialg_creat_evenm;
+    this._afich_dialg_modfr_evenm   = _afich_dialg_modfr_evenm;
+    this._defnr_evenm               = _defnr_evenm;
+    this._afich_evenm_cree          = _afich_evenm_cree;
+    this._afich_evenm_modf          = _afich_evenm_modf;
+    this._afich_aide_insta          = _afich_aide_insta;
+    this.ajout_evenm_agend          = ajout_evenm_agend;
+    this.suprm_evenm_agend          = suprm_evenm_agend;
+    this.afich_evenm_agend          = afich_evenm_agend;
+    
+    this.optio = {
+      vva_mode_calnd:   "agendaWeek",
+      vjs_date_calnd: {
+        vva_an:     undefined,
+        vva_mois:   undefined,
+        vva_jour:   undefined
+      },
+      vbo_theme_jquer_ui: true,
+      vjs_entet: {
+        gauch:  "prev,next today", /* prevYear nextYear */
+        centr:  "title",
+        droit:  "month,basicWeek,basicDay" /* agendaWeek agendaDay */
+      },
+      vnu_premr_jour_semn: 0,
+      vbo_afich_fin_semn: true,
+      vva_afich_nombr_semn: "fixed", /* liquid variable */
+      vjs_libl: {
+        vjs_boutn: {
+          vva_precd:      "&nbsp;&#9668;&nbsp;",       // left triangle
+          vva_suivn:      "&nbsp;&#9658;&nbsp;",       // right triangle
+          vva_an_precd:   "&nbsp;&lt;&lt;&nbsp;",   // <<
+          vva_an_suivn:   "&nbsp;&gt;&gt;&nbsp;",   // >>
+          vva_aujrd:      "Aujourd'hui",
+          vva_mois:       "Mois",
+          vva_semn:       "Semaine",
+          vva_jour:       "Jour"
+        },
+        vjs_titre: {
+          var_mois:         ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
+          var_abrev_mois:   ["Jan", "Fev", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Dec"],
+          var_jour:         ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+          var_abrev_jour:   ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+          vva_journ_compl:  "Journée"
+        }
+      },
+      vjs_formt: {
+        vjs_agend: {
+          vva_formt_axe_y:  "H:mm",
+          vnu_nombr_mints:  15,
+          vnu_premr_heure:  8,
+          vnu_heure_debut:  8,
+          vnu_heure_fin:    17
+        },
+        vjs_coln: {
+          vva_mois:   "dddd",       // Lundi
+          vva_semn:   "dddd, d",    // Lundi 8 Sep
+          vva_jour:   ""            // ne pas afficher d'entête de colonne (on sauve ainsi une ligne qui répétait de l'information
+        },
+        vjs_titre: {
+          vva_mois:   "MMMM yyyy",                          // Septembre 2011
+          vva_semn:   "d MMMM yyyy {'au' d MMMM yyyy}",     // 6 février au 12 février 2011
+          vva_jour:   "dddd, d MMMM, yyyy"                  // Lundi, 7 Février, 2011
+        }
+      },
+      vbo_modfb: true,
+      vva_id_regn:      "",
+      vnu_id_regn_dialg: "",
+      vjs_item_dialg_maj_evenm: {
+        vva_id_item_ident:                "",
+        vva_id_item_agend:                "",
+        vva_id_item_indic_journ_compl:    "",
+        vva_id_item_date_journ_compl:     "",
+        vva_id_item_date_debut:           "",
+        vva_id_item_date_fin:             "",
+        vva_id_item_titre:                "",
+        vva_id_item_descr:                "",
+        vva_id_item_type:                 "",
+        vva_id_item_titre_aide_insta:     "",
+        vva_id_item_aide_insta:           "",
+        vva_id_item_lien:                 "",
+        vva_libl_item_atrib_suplm1:       "",
+        vva_libl_item_atrib_suplm2:       "",
+        vva_libl_item_atrib_suplm3:       "",
+        vva_libl_item_atrib_suplm4:       "",
+        vva_libl_item_atrib_suplm5:       "",
+        vva_id_item_atrib_suplm1:         "",
+        vva_id_item_atrib_suplm2:         "",
+        vva_id_item_atrib_suplm3:         "",
+        vva_id_item_atrib_suplm4:         "",
+        vva_id_item_atrib_suplm5:         "",
+      },
+      var_liste_agend: [],
+      vva_async:        true,
+      vva_type_reqst:   "POST",
+      vva_reqst_url:    "wwv_flow.show",
+      vva_flow_id:      afw.sie_11.prodt.obten_numr_apex(),
+      vva_flow_step_id: afw.sie_13.page.obten_numr_apex(),
+      vva_insta:        afw.sie_07.sesn.obten_numr_apex(),
+      vva_plugn_ajax:   ""
+    };
+    
+    this.initl(pjs_optio);
+    
+    return that;
+    
+    function initl(pjs_optio) {
+      //fusionner les options passées en paramètre et leurs valeurs par défaut
+      that.optio = that.jQuery.extend(that.optio, pjs_optio);
+      
+      // determine type of pjs_id and assign that.node accordingly
+      try{
+        switch(typeof(that.optio.vva_id_regn)){
+          case 'string':
+            that.node = document.getElementById(that.optio.vva_id_regn);
+            break;
+          case 'object':
+            that.node = that.optio.vva_id_regn;
+            break;
+          default:
+            that.node = false;
+            break;
+        }
+      }catch(e){
+        that.node = false;
+      }
+      
+      // only proceed if that.node are not false
+      if(that.node){
+        that.id = that.node.id;
+        
+        that.jQuery("#"+that.optio.vva_id_regn)
+          .fullCalendar({
+            defaultView:  that.optio.vva_mode_calnd,
+            /** General Display **/
+            theme: that.optio.vbo_theme_jquer_ui,
+            header: {
+              left:     that.optio.vjs_entet.gauch,
+              center:   that.optio.vjs_entet.centr,
+              right:    that.optio.vjs_entet.droit
+            },
+            firstDay: that.optio.vnu_premr_jour_semn,
+            weekends: that.optio.vbo_afich_fin_semn,
+            weekMode: that.optio.vva_afich_nombr_semn,
+            viewDisplay: function(view) {
+              that.jQuery.exec_aplic_procs({
+                plugn_ajax:     that.optio.vva_plugn_ajax,
+                widget_action:  "DEFNR_ETAT_CALND",
+                x01:            view.name,
+                x02:            view.calendar.getDate().getTime()
+              });
+            },
+            /** Agenda Options **/
+            /*allDaySlot: ,*/
+            allDayText:   that.optio.vjs_libl.vjs_titre.vva_journ_compl,
+            axisFormat:   that.optio.vjs_formt.vjs_agend.vva_formt_axe_y,
+            slotMinutes:  that.optio.vjs_formt.vjs_agend.vnu_nombr_mints,
+            firstHour:    that.optio.vjs_formt.vjs_agend.vnu_premr_heure,
+            minTime:      that.optio.vjs_formt.vjs_agend.vnu_heure_debut,
+            maxTime:      that.optio.vjs_formt.vjs_agend.vnu_heure_fin,
+            /** Current Date **/
+            year:     that.optio.vjs_date_calnd.vva_an,
+            month:    that.optio.vjs_date_calnd.vva_mois,
+            date:     that.optio.vjs_date_calnd.vva_jour,
+            /** Text/Time Customization **/
+            /*timeFormat: {
+            },*/
+            columnFormat: {
+              month:  that.optio.vjs_formt.vjs_coln.vva_mois,
+              week:   that.optio.vjs_formt.vjs_coln.vva_semn,
+              day:    that.optio.vjs_formt.vjs_coln.vva_jour
+            },
+            titleFormat: {
+              month:  that.optio.vjs_formt.vjs_titre.vva_mois,
+              week:   that.optio.vjs_formt.vjs_titre.vva_semn,
+              day:    that.optio.vjs_formt.vjs_titre.vva_jour
+            },
+            buttonText: {
+              prev:     that.optio.vjs_libl.vjs_boutn.vva_precd,
+              next:     that.optio.vjs_libl.vjs_boutn.vva_suivn,
+              prevYear: that.optio.vjs_libl.vjs_boutn.vva_an_precd,
+              nextYear: that.optio.vjs_libl.vjs_boutn.vva_an_suivn,
+              today:    that.optio.vjs_libl.vjs_boutn.vva_aujrd,
+              month:    that.optio.vjs_libl.vjs_boutn.vva_mois,
+              week:     that.optio.vjs_libl.vjs_boutn.vva_semn, 
+              day:      that.optio.vjs_libl.vjs_boutn.vva_jour
+            },
+            monthNames:       that.optio.vjs_libl.vjs_titre.var_mois,
+            monthNamesShort:  that.optio.vjs_libl.vjs_titre.var_abrev_mois,
+            dayNames:         that.optio.vjs_libl.vjs_titre.var_jour,
+            dayNamesShort:    that.optio.vjs_libl.vjs_titre.var_abrev_jour,
+            /** Clicking & Hovering **/
+            dayClick: function(date, allDay, jsEvent, view) {
+            },
+            eventClick: function(event, jsEvent, view) {
+              that._afich_dialg_modfr_evenm(event, jsEvent, view);
+            },
+            eventMouseover: function( event, jsEvent, view ) {
+              that._afich_aide_insta(event, jsEvent, view);
+            },
+            eventMouseout: function( event, jsEvent, view ) {
+            },
+            /** Selection **/
+            selectable:       true,
+            selectHelper:     true,
+            unselectAuto:     false,
+            unselectCancel:   "",
+            select: function(startDate, endDate, allDay, jsEvent, view ) {
+              that._afich_dialg_creat_evenm(startDate, endDate, allDay, jsEvent, view);
+            },
+            /** Event Data **/
+            lazyFetching: true,
+            eventSources: [],
+            loading: function(isLoading, view) {
+            },
+            /** Event Rendering **/
+            eventRender: function(event, element, view) {
+              afw.sie_07.debug.trace({vva_mesg:'eventRender'},1);
+            },
+            eventAfterRender : function( event, element, view ) {
+              afw.sie_07.debug.trace({vva_mesg:'eventAfterRender'},1);
+            },
+            /** Event Dragging & Resizing **/
+            editable:         that.optio.vbo_modfb,
+            /** Dropping External Elements **/
+            droppable:        false
+          });
+      } //end if (that.node)
+    }; //END initl
+
+    function _gestn_json_evenm_calnd(pjs_evenm) {
+      that.evenm = [];
+      
+      for (var i=0, vnu_nombr_evenm=pjs_evenm.row.length; i<vnu_nombr_evenm; i++) {
+        that.evenm.push({
+          id:         pjs_evenm.row[i].id,
+          title:      pjs_evenm.row[i].titre,
+          allDay:     pjs_evenm.row[i].indic_journ_compl,
+          start:      (pjs_evenm.row[i].date_journ_compl!="null") ? that.jQuery.fullCalendar.parseDate(pjs_evenm.row[i].date_journ_compl) : that.jQuery.fullCalendar.parseDate(pjs_evenm.row[i].date_debut),
+          end:        (pjs_evenm.row[i].date_fin!="null") ? that.jQuery.fullCalendar.parseDate(pjs_evenm.row[i].date_fin) : that.jQuery.fullCalendar.parseDate(""),
+          //url:        pjs_evenm.row[i].lien,
+          className:  pjs_evenm.row[i].type,
+          editable:   pjs_evenm.row[i].indic_modfb
+        });
+        console.log(that.evenm[i]);
+      }
+      return that.evenm;
+    }; //END _gestn_json_evenm_calnd
+    
+    function _defnr_evenm (pjs_json) {
+      that.vjs_evenm = pjs_json;
+      //console.log(that.vjs_evenm);
+    }; //END _defnr_evenm
+    
+    function _afich_evenm_cree (jsEvent, view) {
+      view.calendar.renderEvent(
+        {title: that.vjs_evenm.row[0].TITRE,
+         start: (that.vjs_evenm.row[0].DATE_JOURN_COMPL!="") ? that.jQuery.fullCalendar.parseDate(that.vjs_evenm.row[0].DATE_JOURN_COMPL) : that.jQuery.fullCalendar.parseDate(that.vjs_evenm.row[0].DATE_DEBUT),
+         end: that.jQuery.fullCalendar.parseDate(that.vjs_evenm.row[0].DATE_FIN),
+         allDay: that.vjs_evenm.row[0].INDIC_JOURN_COMPL,
+         className: that.vjs_evenm.row[0].TYPE,
+         url: that.vjs_evenm.row[0].LIEN,
+         id: that.vjs_evenm.row[0].IDENT, // sera utilisé lors des répétitions d'événements
+         ident: that.vjs_evenm.row[0].IDENT,
+         agend: that.vjs_evenm.row[0].AGEND,
+         descr: that.vjs_evenm.row[0].DESCR,
+         titre_aide_insta: that.vjs_evenm.row[0].TITRE_AIDE_INSTA,
+         aide_insta: that.vjs_evenm.row[0].AIDE_INSTA,
+         atrib_suplm1: that.vjs_evenm.row[0].ATRIB_SUPLM1,
+         atrib_suplm2: that.vjs_evenm.row[0].ATRIB_SUPLM2,
+         atrib_suplm3: that.vjs_evenm.row[0].ATRIB_SUPLM3,
+         atrib_suplm4: that.vjs_evenm.row[0].ATRIB_SUPLM4,
+         atrib_suplm5: that.vjs_evenm.row[0].ATRIB_SUPLM5
+        },
+        true // make the event "stick"
+      );
+      
+      // Déselectionner l'événement
+      //view.calendar.unselect();
+      
+    }; //END _afich_evenm_cree
+    
+    function _afich_evenm_modf (event, jsEvent, view) {
+      event.title = that.vjs_evenm.row[0].TITRE;
+      event.start = (that.vjs_evenm.row[0].DATE_JOURN_COMPL!="") ? that.jQuery.fullCalendar.parseDate(that.vjs_evenm.row[0].DATE_JOURN_COMPL) : that.jQuery.fullCalendar.parseDate(that.vjs_evenm.row[0].DATE_DEBUT);
+      event.end = that.jQuery.fullCalendar.parseDate(that.vjs_evenm.row[0].DATE_FIN);
+      event.allDay = that.vjs_evenm.row[0].INDIC_JOURN_COMPL;
+      event.className = that.vjs_evenm.row[0].TYPE;
+      event.url = that.vjs_evenm.row[0].LIEN;
+      event.agend = that.vjs_evenm.row[0].AGEND;
+      event.descr = that.vjs_evenm.row[0].DESCR;
+      event.titre_aide_insta = that.vjs_evenm.row[0].TITRE_AIDE_INSTA;
+      event.aide_insta = that.vjs_evenm.row[0].AIDE_INSTA;
+      event.atrib_suplm1 = that.vjs_evenm.row[0].ATRIB_SUPLM1;
+      event.atrib_suplm2 = that.vjs_evenm.row[0].ATRIB_SUPLM2;
+      event.atrib_suplm3 = that.vjs_evenm.row[0].ATRIB_SUPLM3;
+      event.atrib_suplm4 = that.vjs_evenm.row[0].ATRIB_SUPLM4;
+      event.atrib_suplm5 = that.vjs_evenm.row[0].ATRIB_SUPLM5;
+      
+      view.calendar.updateEvent(event);
+    
+      // Déselectionner l'événement
+      //view.calendar.unselect();
+    }; //END _afich_evenm_modf
+    
+    function _afich_dialg_creat_evenm (startDate, endDate, allDay, jsEvent, view) {
+      if (allDay) {
+        //DATE JOURN COMPL
+        var vva_date_journ_compl = that.jQuery.fullCalendar.formatDate(
+          startDate,
+          "dddd, dd MMMM, yyyy",
+          {monthNames:that.optio.vjs_libl.vjs_titre.var_mois,
+           monthNamesShort:  that.optio.vjs_libl.vjs_titre.var_abrev_mois,
+           dayNames:         that.optio.vjs_libl.vjs_titre.var_jour,
+           dayNamesShort:    that.optio.vjs_libl.vjs_titre.var_abrev_jour}
+        );
+        that.jQuery('#'+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).datepicker("setDate", startDate);
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).setValue(vva_date_journ_compl)
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).show();
+        
+        //DATE DEBUT
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).setValue("")
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).hide();
+        
+        //DATE FIN
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).setValue("")
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).hide();
+        
+        //INDIC JOURN COMPL
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_indic_journ_compl).setValue("O");
+      }
+      else {
+        //DATE JOURN COMPL
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).setValue("")
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).hide();
+        
+        //DATE DEBUT
+        var vva_date_debut = that.jQuery.fullCalendar.formatDate(
+          startDate,
+          "dddd, dd MMMM, yyyy, HH:mm",
+          {monthNames:that.optio.vjs_libl.vjs_titre.var_mois,
+           monthNamesShort:  that.optio.vjs_libl.vjs_titre.var_abrev_mois,
+           dayNames:         that.optio.vjs_libl.vjs_titre.var_jour,
+           dayNamesShort:    that.optio.vjs_libl.vjs_titre.var_abrev_jour}
+        );
+        that.jQuery('#'+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).datepicker("setDate", startDate);
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).setValue(vva_date_debut)
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).show();
+        
+        //DATE FIN
+        var vva_date_fin = that.jQuery.fullCalendar.formatDate(
+          endDate,
+          "dddd, dd MMMM, yyyy, HH:mm",
+          {monthNames:that.optio.vjs_libl.vjs_titre.var_mois,
+           monthNamesShort:  that.optio.vjs_libl.vjs_titre.var_abrev_mois,
+           dayNames:         that.optio.vjs_libl.vjs_titre.var_jour,
+           dayNamesShort:    that.optio.vjs_libl.vjs_titre.var_abrev_jour}
+        );
+        that.jQuery('#'+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).datepicker("setDate", endDate);
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).setValue(vva_date_fin)
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).show();
+        
+        //INDIC JOURN COMPL
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_indic_journ_compl).setValue("");
+      }
+      
+      //DESCR
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_descr).setValue("");
+      
+      //IDENT
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_ident).setValue("");
+      
+      //AGEND
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_agend).setValue("");
+      
+      //TITRE
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre).setValue("");
+      
+      //DESCR
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_descr).setValue("");
+      
+      //TYPE
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_type).setValue("");
+      
+      //TITRE AIDE INSTA
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre_aide_insta).setValue("");
+      
+      //AIDE INSTA
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_aide_insta).setValue("");
+      
+      //URL
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_lien).setValue("");
+      
+      //ATRIB SUPLM 1
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm1).setValue("");
+      
+      //ATRIB SUPLM 2
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm2).setValue("");
+      
+      //ATRIB SUPLM 3
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm3).setValue("");
+      
+      //ATRIB SUPLM 4
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm4).setValue("");
+      
+      //ATRIB SUPLM 5
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm5).setValue("");
+      
+      // Obtenir l'instance du plugin de région popup
+      vjs_dialg = afw.sie_21.regn.dialg.obten(that.optio.vnu_id_regn_dialg);
+      vjs_dialg.defnr_largr(485);
+      
+      vjs_dialg.defnr_boutn(
+        [{ 
+		  text: "Appliquer",
+          click:function(){
+          var var_argmt_nams = [];
+          var var_argmt_vals = [];
+          
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_ident);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_agend);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_indic_journ_compl);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_descr);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_type);
+          //var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre_aide_insta);
+          //var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_aide_insta);
+          //var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_lien);
+          var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm1);
+          //var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm2);
+          //var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm3);
+          //var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm4);
+          //var_argmt_nams.push(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm5);
+          
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_ident).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_agend).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_indic_journ_compl).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_descr).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_type).getValue());
+          //var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre_aide_insta).getValue());
+          //var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_aide_insta).getValue());
+          //var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_lien).getValue());
+          var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm1).getValue());
+          //var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm2).getValue());
+          //var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm3).getValue());
+          //var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm4).getValue());
+          //var_argmt_vals.push(apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm5).getValue());
+          
+          that.jQuery.exec_aplic_procs({
+            plugn_ajax:     that.optio.vva_plugn_ajax,
+            widget_action:  "CREER_EVENM",
+            argmt_nams: var_argmt_nams,
+            argmt_vals: var_argmt_vals,
+            sucs_procs:     that._defnr_evenm
+          });
+          that._afich_evenm_cree(jsEvent, view);
+          vjs_dialg.fermr();
+          }},
+		  {
+           text: "Annuler",
+		   click: function(){ vjs_dialg.fermr(); }
+		  }
+        ]);
+      
+      vjs_dialg.defnr_actio_fermr(function(event, ui) {
+        view.calendar.unselect();
+      });
+      
+      that.jQuery("#"+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre).focus();
+      vjs_dialg.ouvri();
+    }; //END _afich_dialg_creat_evenm
+    
+    function _afich_dialg_modfr_evenm (event, jsEvent, view) {
+      //console.log(event);
+      
+      if (event.allDay) {
+        //DATE JOURN COMPL
+        var vva_date_journ_compl = that.jQuery.fullCalendar.formatDate(
+          event.start,
+          "dddd, dd MMMM, yyyy",
+          {monthNames:that.optio.vjs_libl.vjs_titre.var_mois,
+           monthNamesShort:  that.optio.vjs_libl.vjs_titre.var_abrev_mois,
+           dayNames:         that.optio.vjs_libl.vjs_titre.var_jour,
+           dayNamesShort:    that.optio.vjs_libl.vjs_titre.var_abrev_jour}
+        );
+        that.jQuery('#'+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).datepicker("setDate", event.start);
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).setValue(vva_date_journ_compl)
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).show();
+        
+        //DATE DEBUT
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).setValue("")
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).hide();
+        
+        //DATE FIN
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).setValue("")
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).hide();
+        
+        //INDIC JOURN COMPL
+        // TODO LG: faire une modif pour gérer d'autre valeur au niveau de l'indicateur
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_indic_journ_compl).setValue("O");
+      }
+      else {
+        //DATE JOURN COMPL
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).setValue("")
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).hide();
+        
+        //DATE DEBUT
+        //console.log(event.start);
+        var vva_date_debut = that.jQuery.fullCalendar.formatDate(
+          event.start,
+          "dddd, dd MMMM, yyyy, HH:mm",
+          {monthNames:that.optio.vjs_libl.vjs_titre.var_mois,
+           monthNamesShort:  that.optio.vjs_libl.vjs_titre.var_abrev_mois,
+           dayNames:         that.optio.vjs_libl.vjs_titre.var_jour,
+           dayNamesShort:    that.optio.vjs_libl.vjs_titre.var_abrev_jour}
+        );
+        //console.log(vva_date_debut);
+        that.jQuery('#'+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).datepicker("setDate", event.start);
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).setValue(vva_date_debut)
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).show();
+        
+        //DATE FIN
+        //console.log(event.endDate);
+        var vva_date_fin = that.jQuery.fullCalendar.formatDate(
+          event.end,
+          "dddd, dd MMMM, yyyy, HH:mm",
+          {monthNames:that.optio.vjs_libl.vjs_titre.var_mois,
+           monthNamesShort:  that.optio.vjs_libl.vjs_titre.var_abrev_mois,
+           dayNames:         that.optio.vjs_libl.vjs_titre.var_jour,
+           dayNamesShort:    that.optio.vjs_libl.vjs_titre.var_abrev_jour}
+        );
+        //console.log(vva_date_fin);
+        that.jQuery('#'+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).datepicker("setDate", event.end);
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).setValue(vva_date_fin)
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).show();
+        
+        //INDIC JOURN COMPL
+        apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_indic_journ_compl).setValue("");
+      }
+     
+      //IDENT
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_ident).setValue(event.ident);
+      
+      //AGEND
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_agend).setValue(event.agend);
+      
+      //TITRE
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre).setValue(event.title);
+      
+      //DESCR
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_descr).setValue(event.descr);
+      
+      //TYPE
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_type).setValue(event.className);
+      
+      //TITRE AIDE INSTA
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre_aide_insta).setValue(event.titre_aide_insta);
+      
+      //AIDE INSTA
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_aide_insta).setValue(event.aide_insta);
+      
+      //URL
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_lien).setValue(event.url);
+      
+      //ATRIB SUPLM 1
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm1).setValue(event.atrib_suplm1);
+      
+      //ATRIB SUPLM 2
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm2).setValue(event.atrib_suplm2);
+      
+      //ATRIB SUPLM 3
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm3).setValue(event.atrib_suplm3);
+      
+      //ATRIB SUPLM 4
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm4).setValue(event.atrib_suplm4);
+      
+      //ATRIB SUPLM 5
+      apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_atrib_suplm5).setValue(event.atrib_suplm5);
+      
+      // Obtenir l'instance du plugin de région popup
+      vjs_dialg = afw.sie_21.regn.dialg.obten(that.optio.vnu_id_regn_dialg);
+      vjs_dialg.defnr_largr(485);
+      
+      vjs_dialg.defnr_boutn(
+        [{ text: "Appliquer",
+		   click :function(){
+          that.jQuery.exec_aplic_procs({
+            plugn_ajax:     that.optio.vva_plugn_ajax,
+            widget_action:  "MODFR_EVENM",
+            x01:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_ident).getValue(),
+            x02:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_agend).getValue(),
+            x03:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_indic_journ_compl).getValue(),
+            x04:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_journ_compl).getValue(),
+            x05:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_debut).getValue(),
+            x06:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_date_fin).getValue(),
+            x07:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre).getValue(),
+            x08:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_descr).getValue(),
+            x09:            apex.item(that.optio.vjs_item_dialg_maj_evenm.vva_id_item_type).getValue(),
+            sucs_procs:     that._defnr_evenm
+          });
+          that._afich_evenm_modf(event, jsEvent, view);
+          vjs_dialg.fermr();
+          }},
+		 {
+           text: "Annuler",
+		   click: function(){
+           vjs_dialg.fermr();
+         }}
+        ]);
+        
+      vjs_dialg.defnr_actio_fermr(function(event, ui) {
+        view.calendar.unselect();
+      });
+    
+      that.jQuery("#"+that.optio.vjs_item_dialg_maj_evenm.vva_id_item_titre).focus();
+      vjs_dialg.ouvri();
+    }; //END _afich_dialg_modfr_evenm
+    
+    function _afich_aide_insta (event, jsEvent, view) {
+      if (event.aide_insta!="") {
+        that.jQuery(jsEvent.currentTarget)
+          .attr("title",event.titre_aide_insta+"|"+event.aide_insta)
+          .cluetip({
+            "cursor": "pointer",
+            "positionBy": "auto",
+            "hideLocal": false,
+            "clickThrough": false,
+            "showTitle": true,
+            "splitTitle": "|",
+            onShow: function(ct, c) {
+              that.toltp_aide_insta = ct;
+            }}
+          );
+      }
+    }; //END _afich_aide_insta
+    
+    function ajout_evenm_agend(pva_agend) {
+      //console.log("addEventSource");
+      
+      that.evenm_sourc["agend_"+pva_agend] = {
+            events: function(start, end, callback) {
+              that.jQuery.exec_aplic_procs({
+                plugn_ajax:     that.optio.vva_plugn_ajax,
+                widget_action:  "OBTEN_JSON_EVENM_AGEND",
+                x01:            start.getTime(),
+                x02:            end.getTime(),
+                x03:            pva_agend,
+                sucs_procs:     that._gestn_json_evenm_calnd
+              });
+              callback(that.evenm);
+            },
+            className: pva_agend
+          };
+      
+      that.jQuery("#"+that.id)
+        .fullCalendar(
+          "addEventSource",
+          that.evenm_sourc["agend_"+pva_agend]
+        );
+        
+      console.log(that.evenm_sourc);
+    }; //END ajout_evenm_agend
+    
+    function suprm_evenm_agend(pva_agend) {
+      that.jQuery("#"+that.id)
+        .fullCalendar(
+          "removeEventSource",
+          that.evenm_sourc["agend_"+pva_agend]
+        );
+        
+      delete that.evenm_sourc["agend_"+pva_agend];
+      
+      console.log(that.evenm_sourc);
+    }; //END suprm_evenm_agend
+    
+    function afich_evenm_agend(pva_liste_agend) {
+      var_liste_agend_exist = [];
+      var_liste_nouv_agend = [];
+      
+      that.jQuery("#"+pva_liste_agend+" input:checked").each(function(i){
+        var_liste_nouv_agend.push(that.jQuery(this).val());
+      });
+      
+      for (i=0; vnu_nombr_agend=that.optio.var_liste_agend.length, i<vnu_nombr_agend; i++) {
+        vnu_postn = -1;
+        if ((vnu_postn=that.jQuery.inArray(that.optio.var_liste_agend[i],var_liste_nouv_agend)) == -1) {
+          that.suprm_evenm_agend(that.optio.var_liste_agend[i]);
+        }
+        else {
+          var_liste_agend_exist.push(var_liste_nouv_agend[vnu_postn]);
+          var_liste_nouv_agend.splice(vnu_postn,1);
+        }
+      }
+      
+      for (i=0; vnu_nombr_agend=var_liste_nouv_agend.length, i<vnu_nombr_agend; i++) {
+        that.ajout_evenm_agend(var_liste_nouv_agend[i]);
+      }
+      
+      that.optio.var_liste_agend = that.jQuery.merge(var_liste_agend_exist, var_liste_nouv_agend);
+      
+    }; //END afich_evenm_agend
+    
+    return that;
+  } //END calnd
+}

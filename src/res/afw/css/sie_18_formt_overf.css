@@ -1,0 +1,48 @@
+#tablr_form_overf {
+  display: none;
+}
+
+#tablr_form_overf_gauch, #tablr_form_overf_droit {
+  border: 1px solid #666;
+  display: inline-block;
+  height: 100%;
+}
+
+#tablr_form_overf .tablr_form_entet {
+  height: 50px;
+}
+
+#tablr_form_overf_gauch table{
+  display: inline-block;
+}
+
+#tablr_form_overf_gauch th, 
+#tablr_form_overf_droit th
+{
+  height: 45px;
+}
+
+
+#tablr_form_overf_gauch tr{
+  height: 25px;
+}
+
+#tablr_form_overf_gauch tfoot{
+  height: 18px;
+}
+
+#tablr_form_overf_gauch th{
+  height: 45px;
+}
+
+#tablr_form_overf_droit {
+  display: inline-block;
+  border: 1px solid #666;
+  overflow-x: scroll;
+  width: 330px;
+  /*width: expression(document.compatMode=='BackCompat'? document.documentElement.clientWidth-20+'px' : body.clientWidth-20+'px');*/
+}
+
+#tablr_form_overf_droit table {
+  display: inline-block;
+}

@@ -1,0 +1,36 @@
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns.ui-dialog-content.ui-widget-content {
+  overflow: hidden;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns > iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns.no-close .ui-dialog-titlebar-close {
+  display:none;
+}
+
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns .regn_forml_enonc {
+}
+
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns .regn_forml_repns {
+}
+
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns .barre_boutn {
+  text-align: right;
+}
+
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns .regn_forml_mesg_valdt {
+  display: none;
+  color: red;
+  border: 1px solid red;
+}
+
+div.afw_sie_21_actio_dynmq_sie_41_forml_repns > span.regn_forml_indic_repns_oblig{
+  color: red;
+}

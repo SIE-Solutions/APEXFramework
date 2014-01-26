@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <title>jQuery Submit & Reset Buttons - Inconized</title>
+        <link rel="stylesheet" href="http://ajax.microsoft.com/ajax/jquery.ui/1.8.9/themes/smoothness/jquery-ui.css" type="text/css" media="screen" charset="utf-8" />
+        <link type="text/css" href="assets/css/demo.css" rel="stylesheet"/>
+        <link type="text/css" href="assets/css/fff.icon.core.css" rel="stylesheet"/>
+        <link type="text/css" href="assets/css/demo.form.css" rel="stylesheet"/>
+         
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.inputbutton.js"></script>
+        <script type="text/javascript" src="assets/js/demo.inputbutton.js"></script>
+        <script type="text/javascript">
+            $(function(){ initInterface(false); });
+        </script>
+    </head>
+    <body>
+        <div>
+            <h1>jQuery Input Button Plugin</h1>
+            <span id="loadMsg">Loading interface - please wait...</span>          
+        </div>
+        <div id="demoContainer" style="display: none;">
+            <div id="switcher"></div>
+            <div class="ui-widget">
+                <div class="ui-state-highlight" style="margin-top: 20px; padding: 0 .7em;"> 
+                    <p>
+                        <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                        jQuery ThemeSwitcher version <a href="demo-submitbutton-ts.html">here</a>.
+                    </p>
+                </div>
+            </div>
+            <form method="post" action="">            
+                <fieldset>
+                    <legend>Customer</legend>
+                    <div class="editor-label">
+                        <label for="Customer_FirstName">
+                            First Name
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" value="" name="Customer.FirstName" id="Customer_FirstName" />
+                    </div>
+                    <div class="editor-label">
+                        <label for="Customer_LastName">
+                            Last Name
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" value="" name="Customer.LastName" id="Customer_LastName" />
+                    </div>
+                    <div class="editor-label">
+                        <label for="Customer_Company">
+                            Company
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" value="" name="Customer.Company" id="Customer_Company" />
+                    </div>                
+                    <div class="editor-label">
+                        <label for="Customer_Country">
+                            Country
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" value="" name="Customer.Country" id="Customer_Country" />
+                    </div>
+                    <div class="editor-label">
+                        <label for="Customer_PostalCode">
+                            Postal Code
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" value="" name="Customer.PostalCode" id="Customer_PostalCode" />
+                    </div>
+                    <div class="editor-label">
+                        <label for="Customer_Phone">
+                            Phone
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" value="" name="Customer.Phone" id="Customer_Phone" />
+                    </div>               
+                    <div class="editor-label">
+                        <label for="Customer_Email">
+                            Email
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" value="" name="Customer.Email" id="Customer_Email" />
+                    </div>
+                    <div class="editor-label">
+                        <label for="Customer_SupportRep">
+                            Support Representative
+                        </label>
+                    </div>
+                    <div class="editor-field">
+                        <select name="Customer.SupportRep" id="Customer_SupportRep">
+                            <option value="-1">Select Representative</option>
+                            <option value="1">Adams, Andrew</option>
+                            <option value="2">Edwards, Nancy</option>
+                            <option value="3">Peacock, Jane</option>
+                            <option value="4">Park, Margaret</option>
+                            <option value="5">Johnson, Steve</option>
+                            <option value="6">Mitchell, Michael</option>
+                            <option value="7">King, Robert</option>
+                            <option value="8">Callahan, Laura</option>
+                        </select>
+                    </div>
+                    <p>
+                        <input type="submit" value="Create"/>
+                        <input type="reset" value="Reset"/>                        
+                        <span style="margin-left: 20px;">Using jQuery UI icons</span>                    
+                    </p>
+                    <p>
+                        <input type="submit" value="Create"/>
+                        <input type="reset" value="Reset"/>
+                        <span style="margin-left: 20px;">Using Custom icons</span>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

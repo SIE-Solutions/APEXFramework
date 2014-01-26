@@ -1,0 +1,15 @@
+.popup_lov_entet {
+  background-color: #EBEBEB;
+  border: 1px solid #4D5154;
+  padding: 6px;
+  color: #006FB7;
+}
+
+.popup_lov_corps {
+  padding:6px;
+}
+
+.popup_lov_pied_page {
+  padding: 2px;
+  font-size: 8pt;
+}

@@ -1,0 +1,4 @@
+/**
+ * @namespace afw
+ */
+var afw = {};

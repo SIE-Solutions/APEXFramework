@@ -1,0 +1,14 @@
+div.afw_sie_21_actio_dynmq_dialg.ui-dialog-content.ui-widget-content {
+  overflow: hidden;
+  padding: 0;
+}
+
+div.afw_sie_21_actio_dynmq_dialg > iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+div.afw_sie_21_actio_dynmq_dialg.no-close .ui-dialog-titlebar-close {
+  display:none;
+}

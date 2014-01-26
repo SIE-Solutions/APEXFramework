@@ -1,0 +1,9 @@
+form { font-size: 1.2em; }
+fieldset { border: 1px solid #ddd; padding: 0 1.4em 1.4em 1.4em; margin: 1.5em 0; }
+legend { font-size: 1.2em; font-weight: bold; }
+input[type="text"] { width: 200px; border: 1px solid #ccc; }
+.display-label, .editor-label { margin: 0.5em 0 0 0; font-weight: 700; }
+.display-field, .editor-field { margin: 0.5em 0 0 0; }
+
+.ui-icon.fff-icon-arrow-refresh {background-image:url('../ico/arrow_refresh.png') !important;}
+.ui-icon.fff-icon-disk {background-image:url('../ico/disk.png') !important;}

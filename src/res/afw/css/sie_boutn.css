@@ -1,0 +1,17 @@
+.boutn {
+  background: #C9E5EC url(../images/boutn_bg.gif) repeat scroll 0 0;
+  border-color: #A5A9B6 #7B8194 #7B8194 #A5A9B6;
+  border-style: solid;
+  border-width: 1px;
+  color: #586073 !important;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 3px;
+  padding: 0 8px;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.boutn:hover {
+  background-color:#AAA;
+}

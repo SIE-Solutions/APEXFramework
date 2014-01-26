@@ -1,0 +1,16 @@
+#barre_navgt {
+  color:#024480;
+  text-align:right;
+  white-space:nowrap;
+}
+
+.barre_navgt {
+  padding:5px 10px 0 5px;
+}
+
+#barre_navgt a.elemn_barre_navgt, #barre_navgt a.elemn_barre_navgt:visited {
+  color:#024480;
+  font-weight:bold;
+  margin:0 3px;
+  text-decoration:none;
+}
