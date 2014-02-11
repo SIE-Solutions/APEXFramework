@@ -345,22 +345,6 @@ create table sie_01_ocurn_sa_evenm_notfb
   ref_seqnc_struc_aplic                   number (10) not null
 );
 
-
-prompt Table SIE_01_PROPG_EVENM_NOTFB;
-
-create table sie_01_propg_evenm_notfb
-(
-  seqnc                                   number (10) not null,
-  ref_evenm_notfb                         number (10) not null,
-  ref_seqnc_struc_aplic                   number (10) not null,
-  ref_utils                               number (10) not null,
-  date_creat                              date not null,
-  utils_creat                             varchar2 (123 byte) not null,
-  date_modfc                              date null,
-  utils_modfc                             varchar2 (123 byte) null
-);
-
-
 prompt Table SIE_01_RESLT_DESTN;
 
 create table sie_01_reslt_destn
