@@ -1,3376 +1,3575 @@
-﻿SET DEFINE OFF;
-Prompt Table SIE_01_ATRIB_MODL_COMNC;
-CREATE TABLE SIE_01_ATRIB_MODL_COMNC
-(
-  SEQNC           NUMBER(10)                        NULL,
-  CODE            VARCHAR2(23 BYTE)                 NULL,
-  NOM             VARCHAR2(60 BYTE)                 NULL,
-  DESCR           VARCHAR2(4000 BYTE)               NULL,
-  REF_MODL_COMNC  NUMBER(10)                        NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL
-);
-
-
-Prompt Table SIE_01_CODE_ERR_ORACL;
-CREATE TABLE SIE_01_CODE_ERR_ORACL
-(
-  SEQNC        NUMBER(10)                           NULL,
-  ERR_CODE     NUMBER(5)                            NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_CREAT   DATE                                 NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  LIBL         VARCHAR2(255 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_01_CONFG_EVENM_NOTFB;
-CREATE TABLE SIE_01_CONFG_EVENM_NOTFB
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_TYPE_COMNC   NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  OBJET            VARCHAR2(200 BYTE)               NULL,
-  TITRE_MESG       VARCHAR2(60 BYTE)                NULL,
-  MESG_SMS         VARCHAR2(160 BYTE)               NULL,
-  REF_EVENM_NOTFB  NUMBER(10)                       NULL,
-  NOM              VARCHAR2(60 BYTE)                NULL,
-  DESCR            VARCHAR2(4000 BYTE)              NULL,
-  REF_DOMN         NUMBER(10)                       NULL,
-  REF_COMPT_TWILI  NUMBER(10)                       NULL,
-  REF_PROFL_COURL  NUMBER(10)                       NULL,
-  INDIC_DEFT       VARCHAR2(1 BYTE)             DEFAULT 'N'                       NULL,
-  MESG             CLOB                             NULL
-);
-
-
-Prompt Table SIE_01_DESTN;
-CREATE TABLE SIE_01_DESTN
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  REF_ATRIB_STRUC_APLIC  NUMBER(10)                 NULL,
-  DESCR                  VARCHAR2(4000 BYTE)        NULL,
-  DNR_REF_PRODT          NUMBER(10)                 NULL
+set define off;
+prompt Table SIE_01_ATRIB_MODL_COMNC;
+
+create table sie_01_atrib_modl_comnc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_modl_comnc                          number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_01_CODE_ERR_ORACL;
+
+create table sie_01_code_err_oracl
+(
+  seqnc                                   number (10) not null,
+  err_code                                number (5) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  libl                                    varchar2 (255 byte) null
+);
+
+
+prompt Table SIE_01_CONFG_EVENM_NOTFB;
+
+create table sie_01_confg_evenm_notfb
+(
+  seqnc                                   number (10) not null,
+  ref_type_comnc                          number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  objet                                   varchar2 (200 byte) null,
+  titre_mesg                              varchar2 (60 byte) null,
+  mesg_sms                                varchar2 (160 byte) null,
+  ref_evenm_notfb                         number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_domn                                number (10) not null,
+  ref_compt_twili                         number (10) null,
+  ref_profl_courl                         number (10) null,
+  indic_deft                              varchar2 (1 byte) default 'N' not null,
+  mesg                                    clob null
+);
+
+
+prompt Table SIE_01_DESTN;
+
+create table sie_01_destn
+(
+  seqnc                                   number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_atrib_struc_aplic                   number (10) not null,
+  descr                                   varchar2 (4000 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_01_DESTN_CONFG_EVENM_NOTFB;
+
+create table sie_01_destn_confg_evenm_notfb
+(
+  seqnc                                   number (10) not null,
+  ref_dv_natr_destn                       number (10) null,
+  ref_confg_evenm_notfb                   number (10) not null,
+  ref_destn                               number (10) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_creat                              date not null,
+  ref_reslt_destn                         number (10) not null,
+  ref_atrib_sa_nom_formt                  number (10) null,
+  ref_atrib_sa_adres_destn                number (10) not null
+);
+
+
+prompt Table SIE_01_ELEMN_CONFG_EVENM_NOTFB;
+
+create table sie_01_elemn_confg_evenm_notfb
+(
+  seqnc                                   number (10) not null,
+  ref_confg_evenm_notfb                   number (10) not null,
+  code                                    varchar2 (30 byte) not null,
+  ident_acces                             varchar2 (4000 byte) not null,
+  ident_acces_formt                       varchar2 (4000 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  formt                                   varchar2 (50 byte) null
+);
+
+
+prompt Table SIE_01_EVENM_NOTFB;
+
+create table sie_01_evenm_notfb
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_struc_aplic                         number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_01_HIERC_APLIC;
+
+create table sie_01_hierc_aplic
+(
+  seqnc                                   number (10) null,
+  ref_evenm_notfb                         number (10) not null,
+  aplic_prior                             number (10) not null,
+  ref_atrib_struc_aplic                   number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_01_LANG;
+
+create table sie_01_lang
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_01_LANG_LANG;
+
+create table sie_01_lang_lang
+(
+  seqnc                                   number (10) not null,
+  ref_lang                                number (10) not null,
+  nom                                     varchar2 (200 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_lang_cible                          number (10) not null
+);
+
+
+prompt Table SIE_01_MESG;
+
+create table sie_01_mesg
+(
+  seqnc                                   number (10) null,
+  numr_mesg                               varchar2 (10 byte) not null,
+  ref_prodt                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  descr                                   varchar2 (4000 byte) null,
+  type_mesg                               varchar2 (1 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_01_MESG_ERR_LIE;
+
+create table sie_01_mesg_err_lie
+(
+  seqnc                                   number (10) null,
+  nom_table                               varchar2 (30 byte) null,
+  nom_coln                                varchar2 (30 byte) null,
+  nom_contr                               varchar2 (30 byte) null,
+  page                                    number (10) null,
+  comnt                                   varchar2 (4000 byte) null,
+  ref_prodt                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  type_liais                              number (1) not null,
+  ref_mesg                                number (10) not null,
+  dnr_ref_prodt                           number (10) not null,
+  ref_code_err_oracl                      number (10) not null
+);
+
+
+prompt Table SIE_01_MESG_INFOR;
+
+create table sie_01_mesg_infor
+(
+  seqnc                                   number (10) not null,
+  text_mesg                               varchar2 (4000 byte) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  sess_id                                 number null,
+  ref_utils                               number (10) null,
+  ref_mesg_lang                           number (10) null
+);
+
+
+prompt Table SIE_01_MESG_LANG;
+
+create table sie_01_mesg_lang
+(
+  seqnc                                   number (10) null,
+  mesg                                    varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_mesg                                number (10) not null,
+  ref_lang                                number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_01_MESG_TRADC_APEX;
+
+create table sie_01_mesg_tradc_apex
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (255 byte) not null,
+  text                                    varchar2 (4000 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_lang                                number (10) not null,
+  ref_prodt                               number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_01_MODL_AFICH_NOTFC;
+
+create table sie_01_modl_afich_notfc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  coulr_texte                             varchar2 (7 byte) null,
+  tail_texte                              number (2) default 12 null,
+  coulr_titre                             varchar2 (7 byte) null,
+  tail_titre                              number (2) default 12 null,
+  temps_afich                             number (2) default 0 null,
+  ref_resrc_icon                          number (10) null,
+  ref_formt_resrc_icon                    number (10) null,
+  ref_ocurn_resrc_icon                    number (10) null,
+  ref_domn                                number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_type_comnc                          number (10) not null,
+  ref_modl_comnc                          number (10) null
+);
+
+
+prompt Table SIE_01_MODL_COMNC;
+
+create table sie_01_modl_comnc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_type_comnc                          number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_systm                             varchar2 (1 byte) default 'N' not null,
+  ref_domn                                number (10) null
+);
+
+
+prompt Table SIE_01_MODL_MESG_NOTFC;
+
+create table sie_01_modl_mesg_notfc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  objet                                   varchar2 (200 byte) null,
+  ref_domn                                number (10) null,
+  corps_mesg                              clob null
+);
+
+
+prompt Table SIE_01_NOTFC;
+
+create table sie_01_notfc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  inden_mesg                              varchar2 (10 byte) not null,
+  titre_mesg                              varchar2 (60 byte) not null,
+  mesg                                    varchar2 (4000 byte) null,
+  ref_modl_afich_notfc                    number (10) not null,
+  indic_specf                             varchar2 (1 byte) default 'O' not null,
+  indic_afich_uniq                        varchar2 (1 byte) default 'O' not null,
+  ref_domn                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_01_OCURN_SA_EVENM_NOTFB;
+
+create table sie_01_ocurn_sa_evenm_notfb
+(
+  seqnc                                   number (16) not null,
+  ref_hierc_aplic                         number (10) not null,
+  ref_confg_evenm_notfb                   number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_seqnc_struc_aplic                   number (10) not null
+);
+
+
+prompt Table SIE_01_PROPG_EVENM_NOTFB;
+
+create table sie_01_propg_evenm_notfb
+(
+  seqnc                                   number (10) not null,
+  ref_evenm_notfb                         number (10) not null,
+  ref_seqnc_struc_aplic                   number (10) not null,
+  ref_utils                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_01_RESLT_DESTN;
+
+create table sie_01_reslt_destn
+(
+  seqnc                                   number (10) not null,
+  ref_destn                               number (10) not null,
+  dnr_ref_prodt                           number (10) not null,
+  ident_acces                             varchar2 (4000 byte) not null,
+  ident_acces_formt                       varchar2 (4000 byte) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  nom                                     varchar2 (60 byte) not null,
+  ref_struc_aplic_acces                   number (10) not null
+);
+
+
+prompt Table SIE_01_TYPE_COMNC;
+
+create table sie_01_type_comnc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_03_CLAS_INTER;
+
+create table sie_03_clas_inter
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (100 byte) not null,
+  descr                                   varchar2 (400 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) not null,
+  ref_profl_courl                         number (10) not null,
+  indic_avert_autr_uniq                   varchar2 (1 byte) default 'N' not null
+);
+
+
+prompt Table SIE_03_JOURN;
+
+create table sie_03_journ
+(
+  date_heure                              timestamp (6) default systimestamp null,
+  expli                                   varchar2 (4000 byte) null,
+  ereur                                   varchar2 (500 byte) null,
+  pile_trace                              varchar2 (4000 byte) null,
+  travl                                   varchar2 (200 byte) null
+);
+
+
+prompt Table SIE_03_JOURN_STRUC_APLIC;
+
+create table sie_03_journ_struc_aplic
+(
+  seqnc                                   number (12) not null,
+  ref_domn                                number (10) not null,
+  struc_aplic                             number (10) not null,
+  seqnc_struc_aplic                       number (10) not null,
+  date_time                               date not null,
+  numr_err                                varchar2 (10 byte) null,
+  actio_journ                             varchar2 (200 byte) not null,
+  don_nomnl                               varchar2 (200 byte) null,
+  reslt                                   varchar2 (500 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_03_LIEN_CLAS_INTER_UTILS;
+
+create table sie_03_lien_clas_inter_utils
+(
+  seqnc                                   number (10) not null,
+  ref_clas_inter                          number (10) not null,
+  ref_utils                               number (10) null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_group_utils                         number (10) null
+);
+
+
+prompt Table SIE_03_TRACE_EXECT;
+
+create table sie_03_trace_exect
+(
+  un                                      varchar2 (4000 byte) null,
+  deux                                    varchar2 (4000 byte) null,
+  dthr                                    timestamp (9) null,
+  utils                                   varchar2 (30 byte) default user null,
+  seqnc                                   number (10) null,
+  lb                                      clob null,
+  who_called_me                           varchar2 (4000 byte) null,
+  page                                    number null,
+  app                                     number null,
+  app_user                                varchar2 (30 byte) null,
+  fil                                     number (10) null,
+  duree                                   number (20, 3) null,
+  bb                                      blob null
+);
+
+
+prompt Table SIE_04_CONTX;
+
+create table sie_04_contx
+(
+  ref_fil_arian                           number (10) not null,
+  contx                                   varchar2 (30 byte) null,
+  actio                                   varchar2 (200 byte) null,
+  seqnc_contx                             number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  contx_inter                             varchar2 (30 byte) null,
+  actio_inter                             varchar2 (200 byte) null,
+  seqnc_contx_inter                       number (10) null,
+  indic_ignor                             varchar2 (1 byte) null,
+  nom_procd_infor_suplm                   varchar2 (92 byte) null,
+  infor_suplm                             varchar2 (4000 byte) null,
+  contx_formt                             varchar2 (4000 byte) null
+);
+
+
+prompt Table SIE_04_CONTX_ETEND;
+
+create table sie_04_contx_etend
+(
+  seqnc                                   number (10) not null,
+  ref_contx                               number (10) not null,
+  nom                                     varchar2 (30 byte) not null,
+  valr_numbr                              number (10) null,
+  valr_varch                              varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  page_cible                              varchar2 (1 byte) null,
+  type_alimn                              varchar2 (3 byte) not null,
+  type_elemn                              varchar2 (1 byte) not null
+);
+
+
+prompt Table SIE_04_FIL_ARIAN;
+
+create table sie_04_fil_arian
+(
+  seqnc                                   number (10) not null,
+  page                                    number (10) not null,
+  session_id                              number null,
+  ref_elemn_sup                           number (10) null,
+  libl                                    varchar2 (200 byte) not null,
+  timst                                   timestamp (6) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  app_id                                  number null,
+  hash_dernr_url                          raw (16) not null,
+  indic_afich                             varchar2 (1 byte) not null,
+  ref_navgt_histr                         number (10) null,
+  aplic                                   number null
+);
+
+
+prompt Table SIE_04_NAVGT_HISTR;
+
+create table sie_04_navgt_histr
+(
+  seqnc                                   number (10) not null,
+  ref_utils                               number (10) not null,
+  dnr_libl                                varchar2 (60 byte) not null,
+  dnr_url                                 varchar2 (200 byte) not null,
+  dnr_icon                                varchar2 (200 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_07_AUDIT_STRUC_APLIC;
+
+create table sie_07_audit_struc_aplic
+(
+  seqnc                                   number (16) not null,
+  ref_utils                               number (10) not null,
+  ref_seqnc_struc_aplic                   number (10) not null,
+  dnr_ref_seqnc_sa_formt                  varchar2 (4000 byte) not null,
+  ref_struc_aplic                         number (10) not null,
+  ref_actio_audit                         number (10) null,
+  ref_page                                number (10) null,
+  natr_audit                              varchar2 (3 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_domn                                number (10) not null
+);
+
+
+prompt Table SIE_07_ETAT_SESN;
+
+create table sie_07_etat_sesn
+(
+  seqnc                                   number (10) not null,
+  session_id                              number not null,
+  nom                                     varchar2 (60 byte) not null,
+  valr                                    varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_07_INSTA_SEMPH;
+
+create table sie_07_insta_semph
+(
+  seqnc                                   number (10) not null,
+  ref_semph                               number (10) not null,
+  id_sesn                                 number null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  indic_seqnc                             varchar2 (1 byte) not null,
+  page_perst                              varchar2 (500 byte) null
+);
+
+
+prompt Table SIE_07_SEMPH;
+
+create table sie_07_semph
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  varbl1                                  varchar2 (200 byte) null,
+  varbl2                                  varchar2 (200 byte) null,
+  varbl3                                  varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  indic_exclu                             varchar2 (1 byte) not null
+);
+
+
+prompt Table SIE_07_VALR_AUDIT_STRUC_APLIC;
+
+create table sie_07_valr_audit_struc_aplic
+(
+  seqnc                                   number (16) not null,
+  ref_audit_struc_aplic                   number (10) not null,
+  code                                    varchar2 (30 byte) not null,
+  valr_formt                              varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_11_APLIC;
+
+create table sie_11_aplic
+(
+  seqnc                                   number (10) null,
+  code                                    varchar2 (10 byte) null,
+  nom                                     varchar2 (60 byte) null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  numr_aplic_apex                         number null,
+  date_dernr_maj_refrn_apex               date null,
+  ref_versn                               number (10) null,
+  indic_aplic_authe                       varchar2 (1 byte) default 'N' null,
+  ref_aplic_authe                         number (10) null,
+  ref_page_conxn                          number (10) null,
+  ref_prodt                               number (10) not null,
+  dnr_ref_prodt                           number (10) not null,
+  ref_page_acuei                          number (10) null
+);
+
+
+prompt Table SIE_11_ATRIB_ENTIT;
+
+create table sie_11_atrib_entit
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  type_don                                varchar2 (5 byte) not null,
+  compr_migrt                             varchar2 (23 byte) not null,
+  ref_entit                               number (10) not null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null,
+  code                                    varchar2 (30 byte) not null,
+  ref_entit_refrn                         number (10) null,
+  indic_nouvl_atrib                       varchar2 (1 byte) default 'O' not null
+);
+
+
+prompt Table SIE_11_ENTIT;
+
+create table sie_11_entit
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  nom_table_tempr                         varchar2 (30 byte) not null,
+  nom_table_ereur                         varchar2 (30 byte) not null,
+  indic_creer_ocurn                       varchar2 (1 byte) not null,
+  indic_modif_ocurn                       varchar2 (1 byte) not null,
+  indic_suprm_ocurn                       varchar2 (1 byte) not null,
+  ref_versn                               number (10) not null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ordre_exect                             number (10) default 1 not null,
+  dnr_ref_prodt                           number (10) not null,
+  code                                    varchar2 (30 byte) not null,
+  indic_force_selct                       varchar2 (1 byte) default 'N' null,
+  longr_bloc                              number (5) null,
+  indic_nouvl_entit                       varchar2 (1 byte) default 'O' not null,
+  niv_inclu_migrt                         varchar2 (23 byte) null,
+  confg_inclu_migrt                       varchar2 (4000 byte) null,
+  ref_atrib_entit_supr                    number (10) null,
+  indic_expor_tabl_index                  varchar2 (1 byte) default 'O' null,
+  indic_suprm_don_prodt                   varchar2 (1 byte) default 'N' not null
+);
+
+
+prompt Table SIE_11_PARMT_AFW;
+
+create table sie_11_parmt_afw
+(
+  seqnc                                   number (10) null,
+  code                                    varchar2 (30 byte) null,
+  valr                                    varchar2 (200 byte) null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_11_PLUGN;
+
+create table sie_11_plugn
+(
+  seqnc                                   number (10) not null,
+  code_inter                              varchar2 (5 byte) not null,
+  nom                                     varchar2 (200 byte) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_creat                              date not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_versn                               number (10) null
+);
+
+
+prompt Table SIE_11_PRODT;
+
+create table sie_11_prodt
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (10 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  procd_expor_metdn                       varchar2 (100 byte) null,
+  tail_tabl_extra                         number (10) default 10 null,
+  indic_extra_tout                        varchar2 (1 byte) default 'N' not null,
+  ref_group_utils_admin                   number (10) null,
+  dosr_fichr                              varchar2 (200 byte) null,
+  ident_envir                             varchar2 (60 byte) not null,
+  ref_versn                               number (10) null,
+  mesg_tout_droit_resrv                   varchar2 (150 byte) null,
+  jquer_ui_css_scope                      varchar2 (50 byte) null,
+  indic_afich_err_code                    varchar2 (1 byte) default 'O' not null,
+  ref_mesg_sucs                           number (10) null,
+  ref_mesg_echec                          number (10) null,
+  ref_mesg_fetch                          number (10) null,
+  ref_mesg_range_suprm                    number (10) null,
+  ref_mesg_range_modf                     number (10) null,
+  ref_mesg_range_inser                    number (10) null,
+  ref_mesg_aucun_don_trouv                number (10) null,
+  ref_mesg_trop_don_trouv                 number (10) null,
+  ref_mesg_audit_creat                    number (10) null,
+  ref_mesg_audit_modfc                    number (10) null,
+  ref_mesg_audit_suprs                    number (10) null,
+  fonct_obten_base_url                    varchar2 (92 byte) null,
+  ref_aplic_acuei                         number (10) null,
+  ref_page_acuei                          number (10) null,
+  ref_aplic_comnt_bogue                   number (10) null,
+  ref_page_comnt_bogue                    number (10) null,
+  indic_page_inexs_maj_refrn              varchar2 (1 byte) default 'N' not null,
+  procd_impre_entet_pdf_ir                varchar2 (200 byte) null,
+  procd_impre_pied_page_pdf_ir            varchar2 (200 byte) null,
+  procd_plpdf_coulr                       varchar2 (200 byte) null,
+  compt_genrl                             number (6) default 0 null
+);
+
+
+prompt Table SIE_11_PRODT_LANG;
+
+create table sie_11_prodt_lang
+(
+  seqnc                                   number (10) not null,
+  ref_prodt                               number (10) not null,
+  ref_lang                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_11_PRODT_RESRC;
+
+create table sie_11_prodt_resrc
+(
+  seqnc                                   number (10) not null,
+  ref_prodt                               number (10) null,
+  ref_resrc                               number (10) not null,
+  ref_formt                               number (10) not null,
+  ref_condt_exect                         number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_plugn                               number (10) null
+);
+
+
+prompt Table SIE_11_UTILS;
+
+create table sie_11_utils
+(
+  seqnc                                   number (10) not null,
+  ref_prodt                               number (10) not null,
+  ref_utils                               number (10) not null,
+  role                                    varchar2 (5 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_11_VERSN;
+
+create table sie_11_versn
+(
+  seqnc                                   number (10) not null,
+  numr_versn_1                            number (2) not null,
+  numr_versn_2                            number (2) not null,
+  numr_versn_3                            number (2) not null,
+  numr_versn_4                            number (2) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) null,
+  indic_docmn_verl                        varchar2 (1 byte) default 'O' not null,
+  nom                                     varchar2 (30 byte) null,
+  ref_plugn                               number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  dnr_ref_prodt                           number (10) null,
+  ref_aplic                               number (10) null,
+  dnr_ref_aplic                           number (10) null
+);
+
+
+prompt Table SIE_12_ACTIO_AUDIT;
+
+create table sie_12_actio_audit
+(
+  seqnc                                   number (10) not null,
+  ref_struc_aplic                         number (10) not null,
+  dnr_ref_prodt                           number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  ref_mesg                                number (10) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_ARBRE;
+
+create table sie_12_arbre
+(
+  seqnc                                   number (10) not null,
+  noeud_actif                             varchar2 (60 byte) null,
+  ref_sesn                                number null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_rafrc                             varchar2 (1 byte) default 'N' null,
+  id_apex_regn                            number not null
+);
+
+
+prompt Table SIE_12_ARBRE_NOEUD;
+
+create table sie_12_arbre_noeud
+(
+  seqnc                                   number (10) not null,
+  ref_arbre                               number (10) not null,
+  noeud_ouver                             varchar2 (60 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_ATRIB_STRUC_APLIC;
+
+create table sie_12_atrib_struc_aplic
+(
+  seqnc                                   number (10) not null,
+  nom_coln                                varchar2 (50 byte) not null,
+  nom_fonct                               varchar2 (50 byte) null,
+  ref_dv_natr_infor                       number (10) null,
+  indic_valid                             varchar2 (1 byte) default 'O' null,
+  ref_struc_aplic                         number (10) not null,
+  ref_atrib_struc_aplic                   number (10) null,
+  indic_destn                             varchar2 (1 byte) default 'N' null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_12_DEFNT_ACCES;
+
+create table sie_12_defnt_acces
+(
+  seqnc                                   number (10) not null,
+  ref_group_utils                         number (10) null,
+  ref_utils                               number (10) null,
+  indic_acces                             varchar2 (5 byte) null,
+  indic_modfc                             varchar2 (5 byte) null,
+  indic_suprs                             varchar2 (5 byte) null,
+  indic_creat                             varchar2 (5 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_opert                               number (10) null,
+  ref_struc_aplic                         number (10) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_12_DOMN;
+
+create table sie_12_domn
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (30 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  type_travl_deft                         number (10) null,
+  ref_profl_courl_notfc                   number (10) null,
+  ref_profl_sms_notfc                     number (10) null,
+  ref_compt_axiat_deft                    number (10) null,
+  ref_modl_rechr_deft                     number (10) null,
+  procd_authe_exter_afw                   varchar2 (92 byte) null,
+  indic_demnd_activ_compt_utils           varchar2 (1 byte) default 'N' not null,
+  procd_vald_niv_secrt_mot_passe          varchar2 (92 byte) default 'sie_12_mot_passe_pkg.valdr_secrt_mot_passe' null
+);
+
+
+prompt Table SIE_12_DOMN_FONCT;
+
+create table sie_12_domn_fonct
+(
+  seqnc                                   number (10) null,
+  ref_fonct                               number (10) null,
+  ref_domn                                number (10) null,
+  indic_actif                             varchar2 (1 byte) default 'O' null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_DOMN_SERVR_LDAP;
+
+create table sie_12_domn_servr_ldap
+(
+  seqnc                                   number (10) null,
+  ref_domn                                number (10) not null,
+  ref_servr_ldap                          number (10) not null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_DOMN_UTILS;
+
+create table sie_12_domn_utils
+(
+  seqnc                                   number (10) not null,
+  ref_utils                               number (10) not null,
+  ref_domn                                number (10) not null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_EVOLT_STAT;
+
+create table sie_12_evolt_stat
+(
+  seqnc                                   number (10) null,
+  ref_stat                                number (10) not null,
+  ref_stat_evolt                          number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_code                              varchar2 (1 byte) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_12_FAVR;
+
+create table sie_12_favr
+(
+  seqnc                                   number (10) not null,
+  ref_struc_aplic                         number (10) not null,
+  ref_seqnc_struc_aplic                   number (10) not null,
+  ref_utils                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_FONCT;
+
+create table sie_12_fonct
+(
+  seqnc                                   number (10) null,
+  ref_prodt                               number (10) null,
+  code                                    varchar2 (23 byte) null,
+  nom                                     varchar2 (60 byte) null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) null
+);
+
+
+prompt Table SIE_12_FONCT_STRUC_APLIC;
+
+create table sie_12_fonct_struc_aplic
+(
+  seqnc                                   number (10) null,
+  ref_fonct                               number (10) null,
+  ref_struc_aplic                         number (10) null,
+  dnr_ref_prodt                           number (10) null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_GROUP_STAT;
+
+create table sie_12_group_stat
+(
+  seqnc                                   number (10) not null,
+  ref_prodt                               number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_12_GROUP_UTILS;
+
+create table sie_12_group_utils
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (100 byte) not null,
+  descr                                   varchar2 (400 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) null,
+  code                                    varchar2 (29 byte) not null,
+  indic_ignor_group_admin                 varchar2 (1 byte) default 'N' not null,
+  indic_systm                             varchar2 (1 byte) default 'N' not null,
+  dnr_ref_prodt                           number (10) null,
+  ref_domn                                number (10) null,
+  indic_acces_globl                       varchar2 (1 byte) default 'N' not null,
+  ref_fonct                               number (10) null
+);
+
+
+prompt Table SIE_12_GR_UT_OPERT_OPTIO_DOMN;
+
+create table sie_12_gr_ut_opert_optio_domn
+(
+  seqnc                                   number (10) null,
+  ref_group_utils                         number (10) null,
+  ref_opert                               number (10) null,
+  ref_opert_optio                         number (10) null,
+  ref_domn                                number (10) null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_HISTR_ACCES;
+
+create table sie_12_histr_acces
+(
+  seqnc                                   number (10) not null,
+  ref_utils                               number (10) not null,
+  date_evenm                              date not null,
+  ref_dv_type_evenm                       number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  adres_ip                                varchar2 (15 byte) null,
+  ref_utils_pour                          number (10) null
+);
+
+
+prompt Table SIE_12_LIEN_GROUP_UTILS;
+
+create table sie_12_lien_group_utils
+(
+  seqnc                                   number (10) not null,
+  ref_group                               number (10) not null,
+  ref_utils                               number (10) null,
+  date_debut_efect                        date default null not null,
+  date_fin_efect                          date null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_group_utils_lie                     number (10) null,
+  dnr_ref_prodt                           number (10) null,
+  ref_domn                                number (10) null
+);
+
+
+prompt Table SIE_12_LIEN_STRUC;
+
+create table sie_12_lien_struc
+(
+  seqnc                                   number (10) not null,
+  ref_struc_admin                         number (10) not null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_struc_lie                           number (10) null
+);
+
+
+prompt Table SIE_12_MEMBR_STRUC;
+
+create table sie_12_membr_struc
+(
+  seqnc                                   number (10) not null,
+  ref_utils                               number (10) not null,
+  ref_struc_admin                         number (10) not null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_12_REQT_INTER_UTILS;
+
+create table sie_12_reqt_inter_utils
+(
+  seqnc                                   number (10) null,
+  ident                                   raw (16) not null,
+  ref_utils                               number (10) not null,
+  ref_dv_type_reqt_inter                  number (10) not null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_domn                                number (10) not null,
+  ref_prodt                               number (10) not null,
+  numr_aplic_apex                         number null,
+  numr_page_apex                          number null,
+  date_trait                              date null,
+  procd_persn_url_apres_authe             varchar2 (92 byte) null
+);
+
+
+prompt Table SIE_12_SERVR_LDAP;
+
+create table sie_12_servr_ldap
+(
+  seqnc                                   number (10) null,
+  adres                                   varchar2 (200 byte) not null,
+  port                                    number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  base_dn                                 varchar2 (400 byte) null,
+  utils_cn                                varchar2 (400 byte) null,
+  mot_passe                               varchar2 (50 byte) null
+);
+
+
+prompt Table SIE_12_SESN;
+
+create table sie_12_sesn
+(
+  id_sesn                                 number null,
+  app_user                                varchar2 (30 byte) not null,
+  ref_id_sesn                             number null,
+  ref_lang                                number (10) null
+);
+
+
+prompt Table SIE_12_STAT;
+
+create table sie_12_stat
+(
+  seqnc                                   number (10) not null,
+  ref_struc_aplic                         number (10) null,
+  ordre                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  indic_initl                             varchar2 (1 byte) default 'N' not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_stat_utils                        varchar2 (1 byte) default 'O' not null,
+  ref_group_stat                          number (10) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_12_STRUC_ADMIN;
+
+create table sie_12_struc_admin
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  indic_deft                              varchar2 (1 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_type_struc                          number (10) null,
+  ref_respn                               number (10) null,
+  debut_efect                             date null,
+  fin_efect                               date null,
+  ref_domn                                number (10) not null
+);
+
+
+prompt Table SIE_12_STRUC_APLIC;
+
+create table sie_12_struc_aplic
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (100 byte) not null,
+  descr                                   varchar2 (200 byte) null,
+  ref_prodt                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  code                                    varchar2 (23 byte) not null,
+  ref_mesg_err_suprs                      number (10) null,
+  indic_extra_tout                        varchar2 (2 byte) default 'HE' not null,
+  tail_tabl_extra                         number (10) null,
+  nom_struc_acces_don                     varchar2 (30 byte) null,
+  ref_page_liste                          number (10) null,
+  ref_page_forml                          number (10) null,
+  nom_packg                               varchar2 (30 byte) null,
+  dnr_ref_prodt                           number (10) not null,
+  indic_dispn_docmn                       varchar2 (1 byte) default 'N' not null,
+  nom_schem                               varchar2 (30 byte) null
+);
+
+
+prompt Table SIE_12_STRUC_APLIC_DESTN;
+
+create table sie_12_struc_aplic_destn
+(
+  seqnc                                   number (10) not null,
+  ref_struc_aplic                         number (10) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  ref_destn                               number (10) not null
+);
+
+
+prompt Table SIE_12_STRUC_APLIC_LANG;
+
+create table sie_12_struc_aplic_lang
+(
+  seqnc                                   number (10) not null,
+  ref_struc_aplic                         number (10) not null,
+  adjec_demns                             varchar2 (10 byte) null,
+  nom                                     varchar2 (255 byte) not null,
+  ref_lang                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  descr                                   varchar2 (4000 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_12_STRUC_APLIC_SUIVI;
+
+create table sie_12_struc_aplic_suivi
+(
+  seqnc                                   number (10) not null,
+  ref_struc_aplic                         number (10) not null,
+  ref_suivi                               number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  nom_persn                               varchar2 (60 byte) null,
+  indic_creat_initl                       varchar2 (1 byte) not null,
+  seqnc_presn                             number (4) null,
+  ref_sucrs_impla                         number (10) not null
+);
+
+
+prompt Table SIE_12_TYPE_STRUC;
+
+create table sie_12_type_struc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (20 byte) not null,
+  nom                                     varchar2 (100 byte) not null,
+  descr                                   varchar2 (2000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_domn                                number (10) not null
+);
+
+
+prompt Table SIE_12_UTILS;
+
+create table sie_12_utils
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  prenm                                   varchar2 (60 byte) not null,
+  code_utils                              varchar2 (30 byte) not null,
+  mot_passe                               raw (2000) null,
+  date_expir                              date null,
+  indic_verl                              varchar2 (1 byte) not null,
+  indic_chang_mot_passe                   varchar2 (1 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  courl                                   varchar2 (200 byte) null,
+  dernr_prodt_acces                       varchar2 (23 byte) null,
+  indic_actif                             varchar2 (1 byte) default 'N' not null,
+  dernr_domn_acces                        varchar2 (23 byte) null,
+  ref_dv_compl_maxm                       number (10) null,
+  code_utils_base_don                     varchar2 (30 byte) null,
+  parmt_authe_exter_afw                   varchar2 (400 byte) null
+);
+
+
+prompt Table SIE_13_CONDT_EXECT;
+
+create table sie_13_condt_exect
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  enonc_condt_plsql                       varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_13_CONDT_PILTB;
+
+create table sie_13_condt_piltb
+(
+  seqnc                                   number (10) not null,
+  ref_page                                number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (2000 byte) null,
+  condt                                   varchar2 (4000 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_page_item_focus                     number (10) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_DOSR_VIRTL;
+
+create table sie_13_dosr_virtl
+(
+  seqnc                                   number (10) not null,
+  ref_prodt                               number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_13_EMPLA_DOSR_VIRTL;
+
+create table sie_13_empla_dosr_virtl
+(
+  seqnc                                   number (10) not null,
+  ref_dosr_virtl                          number (10) not null,
+  ref_versn                               number (10) not null,
+  empla                                   varchar2 (100 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_13_EXPOR_APLIC;
+
+create table sie_13_expor_aplic
+(
+  seqnc                                   number (10) not null,
+  ref_sesn                                number not null,
+  ref_aplic                               number (10) not null,
+  indic_maj_refrn                         varchar2 (1 byte) default 'N' not null,
+  numr_aplic_cible                        number null,
+  indic_ajout_aplic_apex                  varchar2 (1 byte) default 'O' not null
+);
+
+
+prompt Table SIE_13_EXPOR_PAGE;
+
+create table sie_13_expor_page
+(
+  ref_page                                number (10) not null,
+  ref_sesn                                number not null,
+  seqnc                                   number (10) null
+);
+
+
+prompt Table SIE_13_FORMT_RESRC;
+
+create table sie_13_formt_resrc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  ref_prodt                               number (10) not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_type_fichr                          number (10) not null,
+  largr                                   number (4) null,
+  hautr                                   number (4) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  nom                                     varchar2 (60 byte) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_13_INSTA_PREFR;
+
+create table sie_13_insta_prefr
+(
+  seqnc                                   number (10) not null,
+  ref_prefr                               number (10) not null,
+  ref_utils                               number (10) null,
+  ref_sesn                                number null,
+  valr                                    varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_struc_aplic                         number (10) null
+);
+
+
+prompt Table SIE_13_ITEM_MENU;
+
+create table sie_13_item_menu
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (2000 byte) null,
+  aide_insta                              varchar2 (2000 byte) null,
+  titre_aide_insta                        varchar2 (60 byte) null,
+  ordre_presn                             number null,
+  ref_page                                number (10) null,
+  icone                                   varchar2 (1000 byte) null,
+  efacr_cache                             varchar2 (1000 byte) null,
+  ref_menu                                number (10) not null,
+  ref_dv_valr_reqst                       number (10) null,
+  forml_valr_reqst                        varchar2 (4000 byte) null,
+  indic_reint_pagnt                       varchar2 (1 byte) default 'N' not null,
+  indic_reint_page_ir                     varchar2 (1 byte) default 'N' not null,
+  indic_clear_page_ir                     varchar2 (1 byte) default 'N' not null,
+  ref_dv_valr_scpc                        number (10) null,
+  forml_valr_scpc                         varchar2 (4000 byte) null,
+  ref_dv_valr_sspc                        number (10) null,
+  forml_valr_sspc                         varchar2 (4000 byte) null,
+  ref_dv_valr_sapc                        number (10) null,
+  forml_valr_sapc                         varchar2 (4000 byte) null,
+  ref_dv_valr_scpi                        number (10) null,
+  forml_valr_scpi                         varchar2 (4000 byte) null,
+  ref_dv_valr_sspi                        number (10) null,
+  forml_valr_sspi                         varchar2 (4000 byte) null,
+  ref_dv_valr_sapi                        number (10) null,
+  forml_valr_sapi                         varchar2 (4000 byte) null,
+  ref_dv_valr_snpi                        number (10) null,
+  forml_valr_snpi                         varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_soums_page                        varchar2 (1 byte) default 'N' null,
+  indic_reint_navgt                       varchar2 (1 byte) default 'O' null,
+  ref_item_menu                           number (10) null,
+  dnr_ref_prodt                           number (10) not null,
+  ref_struc_aplic                         number (10) null,
+  forml_libl                              varchar2 (4000 byte) not null,
+  liste_ref_page_activ                    varchar2 (1000 byte) null,
+  ref_resrc                               number (10) null,
+  ref_ocurn_resrc                         number (10) null,
+  ref_formt_resrc                         number (10) null,
+  ref_dv_valr_insta_libl                  number (10) null,
+  ref_dv_valr_url                         number (10) null,
+  forml_valr_url                          varchar2 (4000 byte) null,
+  indic_gerer_sidf                        varchar2 (1 byte) default 'N' not null,
+  ref_aplic                               number (10) null,
+  ref_dv_valr_insta_condt_afich           number (10) null,
+  forml_condt_afich                       varchar2 (4000 byte) null
+);
+
+
+prompt Table SIE_13_LIEN_CONDT_PILTB;
+
+create table sie_13_lien_condt_piltb
+(
+  seqnc                                   number (10) not null,
+  ref_page_item                           number (10) not null,
+  ref_condt_piltb                         number (10) not null,
+  indic_lectr_seul                        varchar2 (1 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_afich                             varchar2 (1 byte) default 'O' not null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_LISTE_NAVGT;
+
+create table sie_13_liste_navgt
+(
+  seqnc                                   number (10) not null,
+  ref_page                                number (10) not null,
+  libl                                    varchar2 (30 byte) not null,
+  page                                    varchar2 (30 byte) not null,
+  sspc                                    varchar2 (30 byte) null,
+  sapc                                    varchar2 (30 byte) null,
+  sspi                                    varchar2 (30 byte) null,
+  sapi                                    varchar2 (30 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ordre_presn                             number (3) default 1 not null,
+  code                                    varchar2 (23 byte) not null,
+  indic_reint_sidf                        varchar2 (1 byte) default 'N' not null,
+  dnr_ref_aplic                           number (10) not null,
+  aplic                                   varchar2 (30 byte) null,
+  css_icone_boots                         varchar2 (400 byte) null
+);
+
+
+prompt Table SIE_13_MENU;
+
+create table sie_13_menu
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (2000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) null,
+  dnr_ref_prodt                           number (10) not null,
+  resrc_aditn                             varchar2 (4000 byte) null
+);
+
+
+prompt Table SIE_13_MIME_TYPE;
+
+create table sie_13_mime_type
+(
+  seqnc                                   number (10) not null,
+  ref_type_fichr                          number (10) null,
+  ext                                     varchar2 (10 byte) not null,
+  mime_type                               varchar2 (200 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ordre_choix                             number (2) null
+);
+
+
+prompt Table SIE_13_NAVGT;
+
+create table sie_13_navgt
+(
+  seqnc                                   number (14) not null,
+  ref_id_sesn                             number not null,
+  indic_extra_total                       varchar2 (1 byte) not null,
+  tail_tabl_extra                         number (10) not null,
+  nombr_rang_extra                        number (8) not null,
+  enonc_sql                               clob not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_extra_termn                       varchar2 (1 byte) default 'N' not null,
+  apex_repts_id                           number null,
+  ref_raprt_inter                         number (10) null,
+  ref_fil_arian                           number (10) not null
+);
+
+
+prompt Table SIE_13_NAVGT_ELEMN;
+
+create table sie_13_navgt_elemn
+(
+  seqnc                                   number (10) not null,
+  numr_elemn                              number (8) not null,
+  indic_courn                             varchar2 (1 byte) not null,
+  seqnc_elemn                             number (10) not null,
+  ref_navgt                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_13_OCURN_RESRC;
+
+create table sie_13_ocurn_resrc
+(
+  seqnc                                   number (10) not null,
+  ref_resrc                               number (10) not null,
+  ref_formt_resrc                         number (10) not null,
+  ref_mime_type                           number (10) null,
+  nom_physq                               varchar2 (300 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  cordn_x_debut                           number (6) null,
+  cordn_y_debut                           number (10) null,
+  largr_prepn                             number (3) null,
+  hautr_prepn                             number (3) null,
+  nom                                     varchar2 (60 byte) null,
+  ref_dosr_virtl                          number (10) null,
+  ref_versn                               number (10) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_13_OPERT;
+
+create table sie_13_opert
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (100 byte) not null,
+  descr                                   varchar2 (400 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) not null,
+  code                                    varchar2 (23 byte) null,
+  dnr_ref_prodt                           number (10) not null,
+  ref_fonct                               number (10) null
+);
+
+
+prompt Table SIE_13_OPERT_OPTIO;
+
+create table sie_13_opert_optio
+(
+  seqnc                                   number (10) null,
+  ref_opert                               number (10) null,
+  code                                    varchar2 (23 byte) null,
+  nom                                     varchar2 (60 byte) null,
+  descr                                   varchar2 (4000 byte) null,
+  dnr_ref_prodt                           number (10) null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  prepn                                   number (3) default null null
+);
+
+
+prompt Table SIE_13_PAGE;
+
+create table sie_13_page
+(
+  seqnc                                   number (10) not null,
+  numr_apex                               number not null,
+  nom                                     varchar2 (255 byte) not null,
+  descr                                   varchar2 (400 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_struc_aplic                         number (10) null,
+  indic_prise_charg_sie01                 varchar2 (1 byte) default 'O' not null,
+  indic_prise_charg_sie04                 varchar2 (1 byte) default 'O' not null,
+  ref_mesg_suprs_specf                    number (10) null,
+  indic_prise_charg_sie19                 varchar2 (1 byte) default 'O' not null,
+  indic_prise_charg_sie13_navgt           varchar2 (1 byte) default 'O' not null,
+  indic_prise_charg_sie18                 varchar2 (1 byte) default 'N' not null,
+  ref_page_rechr                          number (10) null,
+  indic_prise_charg_sie14_popup           varchar2 (1 byte) default 'N' not null,
+  indic_prise_charg_sie13_confr           varchar2 (1 byte) default 'N' null,
+  prefx_mesg                              varchar2 (3 byte) null,
+  date_dernr_maj_refrn_apex               date null,
+  ref_mesg_sucs_specf                     number (10) null,
+  ref_mesg_echec_specf                    number (10) null,
+  ref_mesg_fetch_specf                    number (10) null,
+  ref_mesg_range_suprm_specf              number (10) null,
+  ref_mesg_range_modf_specf               number (10) null,
+  ref_mesg_range_inser_specf              number (10) null,
+  ref_mesg_aucun_don_trouv                number (10) null,
+  ref_mesg_trop_don_trouv                 number (10) null,
+  ref_aplic                               number (10) not null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_PAGE_IR;
+
+create table sie_13_page_ir
+(
+  seqnc                                   number (10) not null,
+  libl_regn                               varchar2 (255 byte) not null,
+  id_apex                                 number null,
+  ref_page                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  largr_deft                              number null,
+  unite_mesr_largr_deft                   number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  dnr_ref_aplic                           number (10) not null,
+  indic_forcr_ajust_page                  varchar2 (1 byte) default 'N' not null,
+  nombr_page_largr                        number (2) default 1 not null
+);
+
+
+prompt Table SIE_13_PAGE_IR_COLN;
+
+create table sie_13_page_ir_coln
+(
+  seqnc                                   number (10) not null,
+  ordre_afich                             number (3) not null,
+  libl                                    varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  coln_table                              varchar2 (30 byte) not null,
+  ref_page_ir                             number (10) not null,
+  id_apex                                 number not null,
+  largr                                   number (5, 2) null,
+  type_largr                              varchar2 (5 byte) null,
+  indic_exprt                             varchar2 (1 byte) default 'O' not null,
+  ref_mesg_aide                           number (10) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_PAGE_ITEM;
+
+create table sie_13_page_item
+(
+  seqnc                                   number (10) not null,
+  ref_page                                number (10) not null,
+  id_apex                                 number not null,
+  nom_apex                                varchar2 (500 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  libl                                    varchar2 (500 byte) null,
+  indic_creat                             varchar2 (1 byte) null,
+  indic_modfc                             varchar2 (1 byte) null,
+  indic_suprs                             varchar2 (1 byte) null,
+  indic_en_creat                          varchar2 (1 byte) null,
+  indic_en_modfc                          varchar2 (1 byte) null,
+  type_item                               varchar2 (5 byte) default 'ITEM' not null,
+  ref_opert                               number (10) null,
+  ref_mesg_aide                           number (10) null,
+  depsm_alias_coln                        varchar2 (200 byte) null,
+  indic_rechr                             varchar2 (1 byte) default 'N' not null,
+  indic_confr_sauvg                       varchar2 (1 byte) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_PAGE_ITEM_LANG;
+
+create table sie_13_page_item_lang
+(
+  seqnc                                   number (10) not null,
+  ref_page_item                           number (10) not null,
+  nom                                     varchar2 (255 byte) not null,
+  ref_lang                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_PAGE_LANG;
+
+create table sie_13_page_lang
+(
+  seqnc                                   number (10) not null,
+  ref_page                                number (10) not null,
+  nom                                     varchar2 (255 byte) not null,
+  ref_lang                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_PAGE_PREFR_NAVGT;
+
+create table sie_13_page_prefr_navgt
+(
+  seqnc                                   number (10) not null,
+  ref_page                                number (10) not null,
+  ref_page_ir                             number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_PREFR;
+
+create table sie_13_prefr
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  ref_dv_condt_utils                      number (10) not null,
+  forml_condt_utils                       varchar2 (4000 byte) null,
+  ref_dv_condt_sauvg                      number (10) not null,
+  forml_condt_sauvg                       varchar2 (4000 byte) null,
+  ref_dv_type_insta                       number (10) not null,
+  indic_contx                             varchar2 (1 byte) not null,
+  ref_dv_valr_insta                       number (10) not null,
+  forml_valr_insta                        varchar2 (4000 byte) null,
+  descr_comnt                             varchar2 (4000 byte) null,
+  ref_item                                number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_REGN_PILTB;
+
+create table sie_13_regn_piltb
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_page                                number (10) not null,
+  ref_dv_type_regn_piltb                  number (10) not null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_REGN_PILTB_LANG;
+
+create table sie_13_regn_piltb_lang
+(
+  seqnc                                   number (10) not null,
+  ref_regn_piltb                          number (10) not null,
+  contn                                   clob null,
+  ref_lang                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_aplic                           number (10) not null
+);
+
+
+prompt Table SIE_13_RESRC;
+
+create table sie_13_resrc
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (60 byte) null,
+  ref_prodt                               number (10) null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_type_fichr                          number (10) not null,
+  ref_struc_aplic                         number (10) null,
+  indic_stock_meme_reprt                  varchar2 (1 byte) default 'O' not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  type_resrc                              varchar2 (5 byte) default 'SIMPL' not null,
+  nom                                     varchar2 (60 byte) not null,
+  nom_physq_comps                         varchar2 (100 byte) null,
+  indic_publc                             varchar2 (1 byte) default 'N' not null,
+  empla_html                              varchar2 (11 byte) default 'HEADR' not null,
+  ref_plugn                               number (10) null,
+  ref_dosr_virtl                          number (10) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_13_TYPE_FICHR;
+
+create table sie_13_type_fichr
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  nom_icon                                varchar2 (60 byte) null
+);
+
+
+prompt Table SIE_14_DETL_DOMN_VALR;
+
+create table sie_14_detl_domn_valr
+(
+  seqnc                                   number (10) not null,
+  code_valr                               varchar2 (23 byte) not null,
+  valr                                    varchar2 (2000 byte) not null,
+  ref_domn_valr                           number (10) not null,
+  seqnc_presn                             number (3) not null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  valr_court                              varchar2 (20 byte) null,
+  valr_organ                              varchar2 (4000 byte) null,
+  dnr_ref_prodt                           number (10) null
+);
+
+
+prompt Table SIE_14_DOMN_VALR;
+
+create table sie_14_domn_valr
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (2000 byte) null,
+  enonc_sourc                             varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  type_don                                varchar2 (1 byte) not null,
+  ref_formt                               number (10) null,
+  ref_prodt                               number (10) null,
+  ref_type_domn_valr                      number (10) null,
+  indic_systm                             varchar2 (1 byte) default 'N' not null,
+  dnr_ref_prodt                           number (10) null,
+  ref_domn                                number (10) null
+);
+
+
+prompt Table SIE_14_FORMT;
+
+create table sie_14_formt
+(
+  seqnc                                   number (10) not null,
+  libl                                    varchar2 (60 byte) not null,
+  defnt                                   varchar2 (60 byte) not null,
+  type_don                                varchar2 (2 byte) not null,
+  date_creat                              date null,
+  utils_creat                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) not null,
+  indic_formt_orcl                        varchar2 (1 byte) not null,
+  indic_unite_inclu                       varchar2 (1 byte) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_14_TYPE_DOMN_VALR;
+
+create table sie_14_type_domn_valr
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (2000 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_17_ATACH_COURL_ENTRA;
+
+create table sie_17_atach_courl_entra
+(
+  seqnc                                   number (18) not null,
+  ref_courl_entra                         number (16) not null,
+  nom                                     varchar2 (100 byte) not null,
+  contn                                   blob null,
+  ref_mime_type                           number (10) null,
+  propr                                   varchar2 (4000 byte) null,
+  tail                                    number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  numr_piece_corps_mesg                   varchar2 (4 byte) not null
+);
+
+
+prompt Table SIE_17_COMPT_AXIAT;
+
+create table sie_17_compt_axiat
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  numr                                    number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_domn                                number (10) null,
+  ref_profl_courl                         number (10) null,
+  ref_publc_page_garde                    number (10) null
+);
+
+
+prompt Table SIE_17_COMPT_TWILI;
+
+create table sie_17_compt_twili
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  acoun_id                                varchar2 (100 byte) not null,
+  authe_token                             varchar2 (100 byte) not null,
+  reprt_walt                              varchar2 (500 byte) not null,
+  mot_passe_walt                          varchar2 (30 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  numr                                    number (11) not null,
+  indic_partg                             varchar2 (1 byte) default 'N' not null,
+  ref_domn                                number (10) not null
+);
+
+
+prompt Table SIE_17_COURL;
+
+create table sie_17_courl
+(
+  seqnc                                   number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  servr                                   varchar2 (100 byte) not null,
+  port                                    number default 25 null,
+  domn                                    varchar2 (100 byte) null,
+  nom_envoy                               varchar2 (100 byte) not null,
+  adres_envoy                             varchar2 (100 byte) not null,
+  sujet                                   varchar2 (1000 byte) null,
+  indic_formt_html                        varchar2 (1 byte) default 'N' null,
+  authe_methd                             varchar2 (23 byte) null,
+  authe_usagr                             varchar2 (100 byte) null,
+  authe_mdp                               varchar2 (100 byte) null,
+  corps                                   clob null,
+  nombr_tentv                             number default 0 not null,
+  nombr_tentv_max                         number default 5 not null,
+  sens                                    varchar2 (5 byte) not null,
+  stat_soums                              varchar2 (30 byte) not null
+);
+
+
+prompt Table SIE_17_COURL_DESTN;
+
+create table sie_17_courl_destn
+(
+  seqnc                                   number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_fil_atent                           number (10) null,
+  nom                                     varchar2 (100 byte) null,
+  adres                                   varchar2 (100 byte) null,
+  type                                    varchar2 (10 byte) null
+);
+
+
+prompt Table SIE_17_COURL_ENTRA;
+
+create table sie_17_courl_entra
+(
+  seqnc                                   number (16) not null,
+  ref_profl_courl                         number (10) not null,
+  date_recpt                              date not null,
+  date_courl                              date not null,
+  objet                                   varchar2 (4000 byte) null,
+  contn_texte_pur                         clob null,
+  contn_html                              clob null,
+  nom_exped                               varchar2 (500 byte) null,
+  courl_exped                             varchar2 (2000 byte) null,
+  indic_suprm                             varchar2 (1 byte) not null,
+  indic_lu                                varchar2 (1 byte) not null,
+  indic_recnt                             varchar2 (1 byte) not null,
+  indic_repnd                             varchar2 (1 byte) not null,
+  type_contn                              varchar2 (100 byte) not null,
+  tail_mesg                               number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_17_COURL_PIECE_JOINT;
+
+create table sie_17_courl_piece_joint
+(
+  seqnc                                   number (10) not null,
+  ref_courl                               number (10) not null,
+  mime_type                               varchar2 (100 byte) not null,
+  contn                                   blob not null,
+  tail                                    number (12) not null,
+  nom_fichr                               varchar2 (500 byte) not null,
+  mode_atach                              varchar2 (30 byte) not null
+);
+
+
+prompt Table SIE_17_PIECE_TELCP_AXIAT;
+
+create table sie_17_piece_telcp_axiat
+(
+  seqnc                                   number (10) not null,
+  ref_telcp_axiat                         number (10) not null,
+  nombr_page                              number (5) not null,
+  ordre_atach                             number (3) not null,
+  contn                                   blob null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  mime_type                               varchar2 (100 byte) not null,
+  nom_fichr                               varchar2 (100 byte) not null
+);
+
+
+prompt Table SIE_17_PROFL_COURL;
+
+create table sie_17_profl_courl
+(
+  seqnc                                   number (10) not null,
+  domn                                    varchar2 (100 byte) null,
+  nom_envoy                               varchar2 (100 byte) not null,
+  adres_envoy                             varchar2 (100 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  code                                    varchar2 (23 byte) not null,
+  servr_sortn                             varchar2 (100 byte) null,
+  port_sortn                              number (5) default 25 null,
+  authe_methd_sortn                       varchar2 (23 byte) null,
+  authe_usagr_sortn                       varchar2 (100 byte) null,
+  authe_mdp_sortn                         varchar2 (100 byte) null,
+  ref_domn                                number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  indic_ssl_sortn                         varchar2 (1 byte) default 'N' not null,
+  servr_entra                             varchar2 (100 byte) null,
+  port_entra                              number (5) null,
+  indic_ssl_entra                         varchar2 (1 byte) default 'N' not null,
+  authe_methd_entra                       varchar2 (23 byte) null,
+  authe_usagr_entra                       varchar2 (100 byte) null,
+  authe_mdp_entra                         varchar2 (100 byte) null,
+  protc_entra                             varchar2 (5 byte) default 'IMAP' null,
+  indic_lire_profl_entra                  varchar2 (1 byte) default 'N' not null,
+  indic_lectr_entra_err                   varchar2 (1 byte) default 'N' not null,
+  indic_reprs_lectr_entra                 varchar2 (1 byte) default 'N' not null
+);
+
+
+prompt Table SIE_17_PROPR_COURL_ENTRA;
+
+create table sie_17_propr_courl_entra
+(
+  seqnc                                   number (18) not null,
+  ref_courl_entra                         number (16) not null,
+  nom                                     varchar2 (100 byte) not null,
+  valr                                    varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_17_SMS_TWILI;
+
+create table sie_17_sms_twili
+(
+  seqnc                                   number (10) not null,
+  numr_de                                 number (18) not null,
+  numr_a                                  number (18) not null,
+  mesg                                    varchar2 (160 char) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  tw_sid                                  varchar2 (100 byte) null,
+  tw_status                               varchar2 (50 byte) null,
+  tw_price                                number (5, 2) null,
+  tw_uri                                  varchar2 (500 byte) null,
+  stat_soums                              varchar2 (30 byte) not null,
+  date_envoi_difr                         date null,
+  ref_compt_twili                         number (10) not null,
+  numr_mesg                               number (3) not null,
+  nombr_mesg_totl                         number (3) not null,
+  ref_mesg_precd                          number (10) null,
+  id_sesn                                 number null,
+  group_sms                               number (10) null,
+  repns_servr                             sys.xmltype null,
+  sens                                    varchar2 (5 byte) not null
+);
+
+
+prompt Table SIE_17_SMS_TWILI_ENTRA;
+
+create table sie_17_sms_twili_entra
+(
+  seqnc                                   number (10) not null,
+  tw_recpt_accountsid                     varchar2 (100 byte) null,
+  tw_recpt_apiversion                     varchar2 (10 byte) null,
+  tw_recpt_body                           varchar2 (200 byte) null,
+  tw_recpt_from                           varchar2 (16 byte) null,
+  tw_recpt_fromcity                       varchar2 (100 byte) null,
+  tw_recpt_fromcountry                    varchar2 (100 byte) null,
+  tw_recpt_fromstate                      varchar2 (100 byte) null,
+  tw_recpt_fromzip                        varchar2 (100 byte) null,
+  tw_recpt_smsmessagesid                  varchar2 (100 byte) null,
+  tw_recpt_smssid                         varchar2 (100 byte) null,
+  tw_recpt_smsstatus                      varchar2 (30 byte) null,
+  tw_recpt_to                             varchar2 (16 byte) null,
+  tw_recpt_tocity                         varchar2 (100 byte) null,
+  tw_recpt_tocountry                      varchar2 (100 byte) null,
+  tw_recpt_tostate                        varchar2 (200 byte) null,
+  tw_recpt_tozip                          varchar2 (20 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_17_TELCP_AXIAT;
+
+create table sie_17_telcp_axiat
+(
+  seqnc                                   number (10) not null,
+  ref_compt_axiat                         number (10) not null,
+  destn_formt                             varchar2 (100 byte) not null,
+  numr_destn                              number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  stat_soums                              varchar2 (30 byte) not null,
+  date_envoi_difr                         date null,
+  objet                                   varchar2 (500 byte) null,
+  sens                                    varchar2 (5 byte) not null
+);
+
+
+prompt Table SIE_19_BOUTN;
+
+create table sie_19_boutn
+(
+  seqnc                                   number (10) not null,
+  ref_lang                                number (10) not null,
+  ref_dispn_fonct                         number (10) not null,
+  item_subst                              varchar2 (60 byte) null,
+  id_templ_boutn                          number null,
+  templ_boutn                             varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  libl                                    varchar2 (200 byte) null,
+  indic_actif                             varchar2 (1 byte) default 'O' null,
+  ref_dv_type_mesg_aide_contx             number (10) not null,
+  mesg_aide_contx                         varchar2 (200 byte) null
+);
+
+
+prompt Table SIE_19_CLE;
+
+create table sie_19_cle
+(
+  seqnc                                   number (10) not null,
+  ref_lang                                number (10) not null,
+  indic_shift                             varchar2 (1 byte) default 'N' not null,
+  indic_alt                               varchar2 (1 byte) default 'N' not null,
+  indic_ctrl                              varchar2 (1 byte) default 'N' not null,
+  indic_inter                             varchar2 (1 byte) default 'N' not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  code_keypr                              number (4) null,
+  code_keydw                              number (4) null,
+  ref_dispn_fonct                         number (10) not null,
+  indic_actif                             varchar2 (1 byte) default 'O' null
+);
+
+
+prompt Table SIE_19_DISPN_FONCT;
+
+create table sie_19_dispn_fonct
+(
+  seqnc                                   number (10) not null,
+  ref_prodt                               number (10) not null,
+  ref_fonct                               number (10) not null,
+  valr_atrib_1                            varchar2 (200 byte) null,
+  valr_atrib_2                            varchar2 (200 byte) null,
+  valr_atrib_3                            varchar2 (200 byte) null,
+  valr_atrib_4                            varchar2 (200 byte) null,
+  valr_atrib_5                            varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_19_FONCT;
+
+create table sie_19_fonct
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  titre_atrib1                            varchar2 (60 byte) null,
+  ref_dv_type_atrib1                      number (10) null,
+  valr_deft_atrib1                        varchar2 (200 byte) null,
+  titre_atrib2                            varchar2 (60 byte) null,
+  titre_atrib3                            varchar2 (60 byte) null,
+  titre_atrib4                            varchar2 (60 byte) null,
+  titre_atrib5                            varchar2 (60 byte) null,
+  ref_dv_type_atrib2                      number (10) null,
+  ref_dv_type_atrib3                      number (10) null,
+  ref_dv_type_atrib4                      number (10) null,
+  ref_dv_type_atrib5                      number (10) null,
+  valr_deft_atrib2                        varchar2 (200 byte) null,
+  valr_deft_atrib3                        varchar2 (200 byte) null,
+  valr_deft_atrib4                        varchar2 (200 byte) null,
+  valr_deft_atrib5                        varchar2 (200 byte) null,
+  ref_dv_type_actio                       number (10) null,
+  expre_actio                             varchar2 (4000 byte) null,
+  ref_dv_type_expre                       number (10) null,
+  indic_afect_input_html                  varchar2 (1 byte) default 'O' not null,
+  indic_prevn_actio_deft                  varchar2 (1 byte) default 'O' not null,
+  indic_cle                               varchar2 (1 byte) default 'O' null,
+  indic_boutn                             varchar2 (1 byte) default 'O' null,
+  condt_prise_charg                       varchar2 (200 byte) null
+);
+
+
+prompt Table SIE_19_FONCT_LANG;
+
+create table sie_19_fonct_lang
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  ref_lang                                number (10) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_fonct                               number (10) not null
+);
+
+
+prompt Table SIE_19_SPECF_FONCT;
+
+create table sie_19_specf_fonct
+(
+  seqnc                                   number (10) not null,
+  ref_dispn_fonct                         number (10) not null,
+  ref_item                                number (10) null,
+  ref_page                                number (10) null,
+  ref_dv_type_subst                       number (10) not null,
+  valr_atrib_1                            varchar2 (200 byte) null,
+  valr_atrib_2                            varchar2 (200 byte) null,
+  valr_atrib_3                            varchar2 (200 byte) null,
+  valr_atrib_4                            varchar2 (200 byte) null,
+  valr_atrib_5                            varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_page                            number (10) null
+);
+
+
+prompt Table SIE_20_DEPLM;
+
+create table sie_20_deplm
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_modl                                number (10) null,
+  ref_modl_parmt                          number (10) null,
+  ref_prodt_lang                          number (10) not null
+);
+
+
+prompt Table SIE_20_DETL_DOCMN;
+
+create table sie_20_detl_docmn
+(
+  seqnc                                   number (10) not null,
+  ref_docmn                               number (10) not null,
+  ref_sectn_docmn                         number (10) null,
+  ref_detl_docmn                          number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  valr                                    varchar2 (4000 byte) null
+);
+
+
+prompt Table SIE_20_DOCMN;
+
+create table sie_20_docmn
+(
+  seqnc                                   number (10) not null,
+  ref_prodt_lang                          number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_struc_aplic                         number (10) null,
+  ref_seqnc_struc_aplic                   number (10) null
+);
+
+
+prompt Table SIE_20_MODL;
+
+create table sie_20_modl
+(
+  seqnc                                   number (10) not null,
+  ref_dv_type_modl                        number (10) not null,
+  ref_versn                               number (10) not null,
+  ref_modl                                number (10) null,
+  nom_organ                               varchar2 (30 byte) not null,
+  numr_surch                              number (2) null,
+  indic_agreg                             varchar2 (1 byte) default 'N' not null,
+  indic_pipln                             varchar2 (1 byte) default 'N' not null,
+  indic_detrm                             varchar2 (1 byte) default 'N' not null,
+  indic_authid_curnt_utils                varchar2 (1 byte) default 'N' not null,
+  indic_publc                             varchar2 (1 byte) default 'N' not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  versn_bd_aplic                          varchar2 (30 byte) not null
+);
+
+
+prompt Table SIE_20_MODL_EXCEP;
+
+create table sie_20_modl_excep
+(
+  seqnc                                   number (10) not null,
+  ref_modl                                number (10) not null,
+  nom_organ                               varchar2 (30 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_20_MODL_PARMT;
+
+create table sie_20_modl_parmt
+(
+  seqnc                                   number (10) not null,
+  ref_modl                                number (10) not null,
+  nom_organ                               varchar2 (30 byte) not null,
+  ref_dv_type_don                         number (10) not null,
+  postn                                   number (3) not null,
+  valr_deft                               varchar2 (200 byte) null,
+  sens                                    varchar2 (15 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_publc                             varchar2 (1 byte) default 'N' not null,
+  indic_retr                              varchar2 (1 byte) default 'N' not null
+);
+
+
+prompt Table SIE_20_SECTN_DOCMN;
+
+create table sie_20_sectn_docmn
+(
+  seqnc                                   number (10) not null,
+  ref_dv_type_sectn                       number (10) not null,
+  ref_sectn_docmn                         number (10) null,
+  ref_struc_aplic                         number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  nom                                     varchar2 (30 byte) not null,
+  titre                                   varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_formt                               number (10) null
+);
+
+
+prompt Table SIE_21_PLUGN_ARBRE;
+
+create table sie_21_plugn_arbre
+(
+  seqnc                                   number (10) not null,
+  enonc_pre_reqt                          varchar2 (4000 byte) null,
+  nom_table                               varchar2 (30 byte) null,
+  coln_titre                              varchar2 (30 byte) null,
+  coln_type                               varchar2 (30 byte) default null null,
+  coln_valr                               varchar2 (30 byte) null,
+  coln_aide_insta                         varchar2 (30 byte) null,
+  coln_lien                               varchar2 (400 byte) null,
+  coln_id                                 varchar2 (30 byte) null,
+  coln_id_parnt                           varchar2 (30 byte) null,
+  enonc_condt                             varchar2 (400 byte) null,
+  enonc_condt_comnc_par                   varchar2 (400 byte) null,
+  enonc_trier_par                         varchar2 (400 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_renmr                             varchar2 (1 byte) default 'N' null,
+  indic_deplc                             varchar2 (1 byte) default 'N' null,
+  coln_titre_aide_insta                   varchar2 (30 byte) null,
+  largr_regn_arbre                        number (10) default 256 not null,
+  hautr_regn_arbre                        number (10) default 768 not null,
+  ref_plugn_arbre_noeud                   number (10) null,
+  indic_comnc_par_racn                    varchar2 (1 byte) default 'O' not null,
+  image_sprit                             varchar2 (400 byte) null,
+  type_icone_noeud                        varchar2 (5 byte) default 'RESRC' not null,
+  ref_formt_resrc                         number (10) null,
+  ref_resrc_comps                         number (10) null,
+  obten_json_arbre_nombr_niv              number (10) default 2 not null,
+  obten_json_noeud_nombr_niv              number (10) default 1 not null,
+  mode_cache                              varchar2 (23 byte) default 'SESN' not null,
+  dnr_ref_prodt                           number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  indic_charg_progr                       varchar2 (1 byte) default 'O' not null,
+  indic_flech_aide_insta                  varchar2 (1 byte) default 'N' null,
+  ref_dv_cursr_aide_insta                 number (10) null,
+  nom_procd_glisr_elemn_arbre             varchar2 (92 byte) null,
+  nom_procd_depsr_elemn_arbre             varchar2 (92 byte) null,
+  indic_comnc_par_coln_parnt_nul          varchar2 (1 byte) default 'O' null,
+  ref_prodt                               number (10) not null
+);
+
+
+prompt Table SIE_21_PLUGN_ARBRE_NOEUD;
+
+create table sie_21_plugn_arbre_noeud
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (35 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (2000 byte) null,
+  ref_plugn_arbre                         number (10) not null,
+  indic_selct_noeud                       varchar2 (1 byte) default 'O' not null,
+  indic_ouvri_noeud                       varchar2 (1 byte) default 'O' not null,
+  indic_creer_noeud                       varchar2 (1 byte) default 'O' not null,
+  indic_suprm_noeud                       varchar2 (1 byte) default 'O' not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  indic_fermr_noeud                       varchar2 (1 byte) default 'O' not null,
+  ref_resrc                               number (10) null,
+  ref_ocurn_resrc                         number (10) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_21_PLUGN_CALND;
+
+create table sie_21_plugn_calnd
+(
+  seqnc                                   number (10) not null,
+  enonc_pre_reqt                          varchar2 (4000 byte) null,
+  ref_dv_vue_deft                         number (10) null,
+  conct_propr_entet_gauch                 varchar2 (400 byte) null,
+  conct_propr_entet_centr                 varchar2 (400 byte) null,
+  conct_propr_entet_droit                 varchar2 (400 byte) null,
+  indic_evenm_modfb                       varchar2 (1 byte) default 'O' not null,
+  nom_table                               varchar2 (30 byte) null,
+  coln_titre                              varchar2 (30 byte) null,
+  coln_descr                              varchar2 (30 byte) null,
+  coln_type                               varchar2 (30 byte) null,
+  coln_aide_insta                         varchar2 (30 byte) null,
+  coln_lien                               varchar2 (30 byte) null,
+  coln_indic_journ_compl                  varchar2 (30 byte) null,
+  coln_date_debut                         varchar2 (30 byte) null,
+  coln_date_fin                           varchar2 (30 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  largr_regn_calnd                        number (4) null,
+  coln_titre_aide_insta                   varchar2 (30 byte) null,
+  indic_agend                             varchar2 (1 byte) default 'N' not null,
+  agend_nom_table                         varchar2 (30 byte) null,
+  agend_coln_titre                        varchar2 (30 byte) null,
+  coln_valr                               varchar2 (30 byte) null,
+  agend_coln_valr                         varchar2 (30 byte) null,
+  agend_coln_coulr                        varchar2 (30 byte) null,
+  code                                    varchar2 (23 byte) default null not null,
+  dnr_ref_prodt                           number (10) not null,
+  coln_agend                              varchar2 (30 byte) null,
+  coln_ident                              varchar2 (30 byte) null,
+  coln_date_journ_compl                   varchar2 (30 byte) null,
+  coln_date_fin_journ_compl               varchar2 (30 byte) null,
+  nombr_mints_inter                       number (4) default 30 not null,
+  heure_debut_norml                       varchar2 (10 byte) default 8 not null,
+  heure_fin_norml                         varchar2 (10 byte) default 17 not null,
+  heure_debut_exten                       varchar2 (10 byte) null,
+  heure_fin_exten                         varchar2 (10 byte) null,
+  coln_indic_evenm_modfb                  varchar2 (30 byte) default null null,
+  ref_prodt                               number (10) not null
+);
+
+
+prompt Table SIE_21_PLUGN_CALND_COULR;
+
+create table sie_21_plugn_calnd_coulr
+(
+  seqnc                                   number (10) null,
+  ordre_presn                             number not null,
+  coulr                                   varchar2 (7 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  coulr_text                              varchar2 (7 byte) null
+);
+
+
+prompt Table SIE_21_PLUGN_CALND_TYPE;
+
+create table sie_21_plugn_calnd_type
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (2000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  coulr_texte                             varchar2 (7 byte) not null,
+  coulr_bordr                             varchar2 (7 byte) not null,
+  coulr_arier_plan                        varchar2 (7 byte) not null,
+  ref_domn                                number (10) not null
+);
+
+
+prompt Table SIE_21_PLUGN_ITEM_MENU;
+
+create table sie_21_plugn_item_menu
+(
+  seqnc                                   number (10) not null,
+  ref_item_menu                           number (10) not null,
+  ref_plugn_menu                          number (10) not null,
+  niv_item                                number (3) not null,
+  etend_nombr_coln                        number (3) default 1 null,
+  rang_item                               number (3) default 1 null,
+  coln_item                               number (3) default 1 null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null,
+  ref_dv_contn_item_menu                  number (10) null,
+  ref_dv_align                            number (10) null
+);
+
+
+prompt Table SIE_21_PLUGN_MENU;
+
+create table sie_21_plugn_menu
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  dnr_ref_prodt                           number (10) not null,
+  ref_dv_type_menu                        number (10) null,
+  largr_regn_menu                         number (4) null,
+  hautr_regn_menu                         number (4) null,
+  ref_dv_orien_menu                       number (10) null,
+  ref_dv_coulr_theme                      number (10) null,
+  ref_dv_coulr_princ                      number (10) null,
+  ref_menu                                number (10) null,
+  ref_dv_formt_menu                       number (10) null,
+  ref_prodt                               number (10) not null
+);
+
+
+prompt Table SIE_23_APLIC_MODL_RECHR;
+
+create table sie_23_aplic_modl_rechr
+(
+  seqnc                                   number (10) not null,
+  ref_modl_rechr                          number (10) not null,
+  ref_struc_aplic_rechr                   number (10) not null,
+  ref_struc_aplic_lien                    number (10) null,
+  nombr_maxim_reslt                       number (4) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  ref_atrib_struc_aplic_afich             number (10) null
+);
+
+
+prompt Table SIE_23_DETL_APLIC_MODL_RECHR;
+
+create table sie_23_detl_aplic_modl_rechr
+(
+  seqnc                                   number (10) not null,
+  ref_aplic_modl_rechr                    number (10) not null,
+  ref_atrib_struc_aplic                   number (10) not null,
+  ref_patrn_rechr                         number (10) not null,
+  ordre_exect                             number (3) null,
+  pertn                                   number (3) null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null
+);
+
+
+prompt Table SIE_23_DETL_RESLT_RECHR;
+
+create table sie_23_detl_reslt_rechr
+(
+  seqnc                                   number (10) not null,
+  ref_rechr                               number (10) not null,
+  ref_enonc_rechr                         number (10) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  ref_detl_aplic_modl_rechr               number (10) not null,
+  dnr_pertn                               number (3) null,
+  ref_seqnc_struc_aplic                   number (10) not null,
+  ref_reslt_rechr                         number (10) null
+);
+
+
+prompt Table SIE_23_ENONC_RECHR;
+
+create table sie_23_enonc_rechr
+(
+  seqnc                                   number (10) not null,
+  ref_rechr                               number (10) not null,
+  mot                                     varchar2 (100 byte) not null,
+  ordre_apart                             number (3) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null
+);
+
+
+prompt Table SIE_23_MODL_RECHR;
+
+create table sie_23_modl_rechr
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  ref_domn                                number (10) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  ref_prodt                               number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_23_PATRN_RECHR;
+
+create table sie_23_patrn_rechr
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  enonc_plsql_gauch                       varchar2 (200 byte) not null,
+  enonc_plsql_droit                       varchar2 (200 byte) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  opert                                   varchar2 (23 byte) not null,
+  ref_prodt                               number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_23_RECHR;
+
+create table sie_23_rechr
+(
+  seqnc                                   number (10) not null,
+  ref_utils                               number (10) not null,
+  date_exect                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  ref_modl_rechr                          number (10) null
+);
+
+
+prompt Table SIE_23_RESLT_RECHR;
+
+create table sie_23_reslt_rechr
+(
+  seqnc                                   number (10) not null,
+  ref_rechr                               number (10) not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_creat                              date not null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_modfc                              date null,
+  dnr_libl_struc_aplic_html               varchar2 (4000 byte) null,
+  dnr_libl_struc_aplic                    varchar2 (1000 byte) null,
+  dnr_pertn                               number (5, 2) null,
+  dnr_lien                                varchar2 (4000 byte) null,
+  dnr_decmp_reslt                         number (4) null,
+  ref_aplic_modl_rechr                    number (10) not null,
+  dnr_ref_struc_aplic                     number (10) not null,
+  ref_seqnc_struc_aplic                   number (10) not null
+);
+
+
+prompt Table SIE_25_CHAMP;
+
+create table sie_25_champ
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) null,
+  postn_x                                 number (10) null,
+  postn_y                                 number (10) null,
+  angle_orint                             number (10) null,
+  ref_formt                               number (10) null,
+  ref_versn_publc                         number (10) null,
+  ref_dv_type_champ                       number (10) null,
+  indic_modif                             varchar2 (1 byte) default 'N' not null,
+  nom                                     varchar2 (60 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_25_CHAMP_PUBLC_TRAVL;
+
+create table sie_25_champ_publc_travl
+(
+  seqnc                                   number (10) not null,
+  ref_champ                               number (10) not null,
+  ref_publc_travl                         number (10) not null,
+  contn                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_25_DOMN_TYPE_PUBLC;
+
+create table sie_25_domn_type_publc
+(
+  seqnc                                   number (10) null,
+  ref_domn                                number (10) not null,
+  ref_type_publc                          number (10) not null,
+  ref_publc                               number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  note_bas_page                           varchar2 (4000 byte) null
+);
+
+
+prompt Table SIE_25_ELEMN_CONFG_PUBLC;
+
+create table sie_25_elemn_confg_publc
+(
+  seqnc                                   number (10) null,
+  ref_type_publc                          number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  type_don                                varchar2 (1 byte) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_25_ENGIN;
+
+create table sie_25_engin
+(
+  seqnc                                   number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  ref_dv_formt_sort                       number (10) not null,
+  url_servl                               varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  url_servl_exter                         varchar2 (200 byte) null
+);
+
+
+prompt Table SIE_25_ENGIN_VERSN_PUBLC;
+
+create table sie_25_engin_versn_publc
+(
+  seqnc                                   number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_versn_publc                         number (10) not null,
+  ref_engin                               number (10) not null,
+  iden_acces                              varchar2 (60 byte) null,
+  pdf_fusn                                blob null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_25_GROUP_PUBLC;
+
+create table sie_25_group_publc
+(
+  seqnc                                   number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_25_JOURN_TRAVL_EXECT;
+
+create table sie_25_journ_travl_exect
+(
+  seqnc                                   number (10) null,
+  ref_dv_type_ecrit                       number (10) not null,
+  ref_travl                               number (10) not null,
+  ref_publc_travl                         number (10) not null,
+  date_journ                              date not null,
+  enonc                                   varchar2 (4000 byte) null
+);
+
+
+prompt Table SIE_25_OCURN_PARMT_PUBLC_TRAVL;
+
+create table sie_25_ocurn_parmt_publc_travl
+(
+  seqnc                                   number (10) null,
+  valr_date                               date null,
+  valr_numbr                              number null,
+  valr_varch                              varchar2 (4000 byte) null,
+  ref_parmt_publc_travl                   number (10) null
+);
+
+
+prompt Table SIE_25_PARMT_PUBLC_TRAVL;
+
+create table sie_25_parmt_publc_travl
+(
+  seqnc                                   number (10) null,
+  ref_publc_travl                         number (10) not null,
+  ref_parmt_type_publc                    number (10) not null,
+  valr_varch                              varchar2 (4000 byte) null,
+  valr_date                               date null,
+  valr_numbr                              number null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_25_PARMT_PUBLC_TRAVL_EXECT;
+
+create table sie_25_parmt_publc_travl_exect
+(
+  ref_travl_publc                         number (10) not null,
+  valr_numbr1                             number null,
+  valr_varch1                             varchar2 (256 byte) null,
+  valr_date1                              date null,
+  valr_numbr2                             number null,
+  valr_varch2                             varchar2 (256 byte) null,
+  valr_date2                              date null,
+  valr_numbr3                             number null,
+  valr_varch3                             varchar2 (256 byte) null,
+  valr_date3                              date null,
+  valr_numbr4                             number null,
+  valr_varch4                             varchar2 (256 byte) null,
+  valr_date4                              date null,
+  valr_numbr5                             number null,
+  valr_varch5                             varchar2 (256 byte) null,
+  valr_date6                              date null,
+  valr_numbr7                             number null,
+  valr_varch7                             varchar2 (256 byte) null,
+  valr_date7                              date null,
+  valr_numbr8                             number null,
+  valr_varch8                             varchar2 (256 byte) null,
+  valr_date8                              date null,
+  valr_numbr9                             number null,
+  valr_varch9                             varchar2 (256 byte) null,
+  valr_date9                              date null,
+  valr_numbr10                            number null,
+  valr_varch10                            varchar2 (256 byte) null,
+  valr_date10                             date null,
+  ref_travl                               number (10) not null,
+  seqnc                                   number (10) null,
+  valr_date5                              date null,
+  valr_varch6                             varchar2 (256 byte) null,
+  valr_numbr6                             number (10) null
+);
+
+
+prompt Table SIE_25_PARMT_TYPE_PUBLC;
+
+create table sie_25_parmt_type_publc
+(
+  seqnc                                   number (10) null,
+  ref_type_publc                          number (10) null,
+  ref_engin                               number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  indic_presn_appel                       varchar2 (1 byte) default 'N' not null,
+  indic_fixe                              varchar2 (1 byte) default 'O' not null,
+  valr_deft                               varchar2 (200 byte) null,
+  type_valr_deft                          varchar2 (5 byte) default 'LITL' not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  type_don                                varchar2 (1 byte) not null,
+  ordre_presn                             number (3) null,
+  cardn                                   varchar2 (1 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_25_PUBLC;
+
+create table sie_25_publc
+(
+  seqnc                                   number (10) null,
+  ref_type_publc                          number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_group_publc                         number (10) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_25_PUBLC_TRAVL;
+
+create table sie_25_publc_travl
+(
+  seqnc                                   number (10) null,
+  ref_publc                               number (10) null,
+  ref_travl                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_stat                                number (10) not null,
+  nom                                     varchar2 (200 byte) not null,
+  indic_parmt_alimn                       varchar2 (1 byte) default 'N' null,
+  ref_versn_publc                         number (10) null
+);
+
+
+prompt Table SIE_25_TRAVL;
+
+create table sie_25_travl
+(
+  seqnc                                   number (10) null,
+  ref_utils                               number (10) not null,
+  indic_imedt                             varchar2 (1 byte) default 'O' not null,
+  nom                                     varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_domn                                number (10) not null,
+  ref_stat                                number (10) not null,
+  ref_type_travl                          number (10) not null
+);
+
+
+prompt Table SIE_25_TYPE_PUBLC;
+
+create table sie_25_type_publc
+(
+  seqnc                                   number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_struc_aplic                         number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_25_TYPE_TRAVL;
+
+create table sie_25_type_travl
+(
+  seqnc                                   number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (200 byte) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_domn                                number (10) not null
+);
+
+
+prompt Table SIE_25_VALR_CHAMP;
+
+create table sie_25_valr_champ
+(
+  seqnc                                   number (10) not null,
+  ref_champ                               number (10) not null,
+  ref_publc_travl                         number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  valr_nombr                              number (10) null,
+  valr_date                               date null,
+  valr_varch                              varchar2 (400 byte) null
+);
+
+
+prompt Table SIE_25_VALR_ELEMN_CONFG;
+
+create table sie_25_valr_elemn_confg
+(
+  seqnc                                   number (10) null,
+  ref_elemn_confg_publc                   number (10) not null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  valr_varch                              varchar2 (4000 byte) null,
+  valr_date                               date null,
+  valr_numbr                              number null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_domn                                number (10) not null
+);
+
+
+prompt Table SIE_25_VERSN_PUBLC;
+
+create table sie_25_versn_publc
+(
+  seqnc                                   number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  date_debut_efect                        date not null,
+  date_fin_efect                          date null,
+  ref_publc                               number (10) not null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (200 byte) null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_29_CONTR;
+
+create table sie_29_contr
+(
+  seqnc                                   number (10) not null,
+  code_contr                              varchar2 (23 byte) not null,
+  nom_struc_acces                         varchar2 (61 byte) not null,
+  nom                                     varchar2 (60 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  niv_gravt                               number (1) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_prodt                               number (10) not null,
+  dnr_ref_prodt                           number (10) not null
+);
+
+
+prompt Table SIE_29_RESLT_REQUT_AQ;
+
+create table sie_29_reslt_requt_aq
+(
+  ref_contr                               number (10) not null,
+  id                                      number not null,
+  flow_id                                 number not null,
+  page_id                                 number not null,
+  nom_comps                               varchar2 (500 byte) not null,
+  niv_gravt                               number (1) not null,
+  natr                                    varchar2 (500 byte) null
+);
+
+
+prompt Table SIE_30_AFECT_ITEM;
+
+create table sie_30_afect_item
+(
+  seqnc                                   number (10) not null,
+  ref_item_carnt_prodt                    number (10) not null,
+  ref_utils                               number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_30_CARNT_APLIC;
+
+create table sie_30_carnt_aplic
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (200 byte) not null,
+  ref_carnt_prodt                         number (10) not null,
+  ref_aplic                               number (10) not null,
+  ref_utils_respn                         number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  docmn_refrc                             varchar2 (200 byte) null
+);
+
+
+prompt Table SIE_30_CARNT_PRODT;
+
+create table sie_30_carnt_prodt
+(
+  seqnc                                   number (10) not null,
+  ref_prodt                               number (10) not null,
+  docmn_refrc                             varchar2 (200 byte) null,
+  ref_utils_respn                         number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_30_CARNT_SPRIN;
+
+create table sie_30_carnt_sprin
+(
+  seqnc                                   number (10) not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_utils_respn                         number (10) null,
+  ref_carnt_prodt                         number (10) null,
+  date_debut_prevu                        date not null,
+  date_fin_prevu                          date not null,
+  ref_versn                               number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_30_CAS_UTILS;
+
+create table sie_30_cas_utils
+(
+  seqnc                                   number (10) null,
+  code                                    varchar2 (23 byte) not null,
+  nom                                     varchar2 (200 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  docmn_refrc                             varchar2 (200 byte) null,
+  ref_carnt_prodt                         number (10) null,
+  ref_stat                                number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_utils_respn                         number (10) null
 );
+
 
-
-Prompt Table SIE_01_DESTN_CONFG_EVENM_NOTFB;
-CREATE TABLE SIE_01_DESTN_CONFG_EVENM_NOTFB
-(
-  SEQNC                     NUMBER(10)              NULL,
-  REF_DV_NATR_DESTN         NUMBER(10)              NULL,
-  REF_CONFG_EVENM_NOTFB     NUMBER(10)              NULL,
-  REF_DESTN                 NUMBER(10)              NULL,
-  UTILS_CREAT               VARCHAR2(123 BYTE)      NULL,
-  DATE_MODFC                DATE                    NULL,
-  UTILS_MODFC               VARCHAR2(123 BYTE)      NULL,
-  DATE_CREAT                DATE                    NULL,
-  REF_RESLT_DESTN           NUMBER(10)              NULL,
-  REF_ATRIB_SA_NOM_FORMT    NUMBER(10)              NULL,
-  REF_ATRIB_SA_ADRES_DESTN  NUMBER(10)              NULL
+prompt Table SIE_30_EFORT_ITEM;
+
+create table sie_30_efort_item
+(
+  seqnc                                   number (10) not null,
+  ref_item_carnt_sprin                    number (10) not null,
+  ref_utils                               number (10) not null,
+  comnt                                   varchar2 (4000 byte) null,
+  date_efort                              date not null,
+  valr                                    number (5, 2) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
 );
-
-
-Prompt Table SIE_01_ELEMN_CONFG_EVENM_NOTFB;
-CREATE TABLE SIE_01_ELEMN_CONFG_EVENM_NOTFB
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  REF_CONFG_EVENM_NOTFB  NUMBER(10)                 NULL,
-  CODE                   VARCHAR2(30 BYTE)          NULL,
-  IDENT_ACCES            VARCHAR2(4000 BYTE)        NULL,
-  IDENT_ACCES_FORMT      VARCHAR2(4000 BYTE)        NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  FORMT                  VARCHAR2(50 BYTE)          NULL
-);
-
-
-Prompt Table SIE_01_EVENM_NOTFB;
-CREATE TABLE SIE_01_EVENM_NOTFB
-(
-  SEQNC            NUMBER(10)                       NULL,
-  CODE             VARCHAR2(23 BYTE)                NULL,
-  NOM              VARCHAR2(60 BYTE)                NULL,
-  DESCR            VARCHAR2(4000 BYTE)              NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
+
+
+prompt Table SIE_30_HISTR_EFORT_RESTN;
+
+create table sie_30_histr_efort_restn
+(
+  seqnc                                   number (10) not null,
+  ref_item_carnt_sprin                    number (10) not null,
+  date_heure_saisi                        date not null,
+  efort_restn                             number (10, 2) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
 );
 
 
-Prompt Table SIE_01_HIERC_APLIC;
-CREATE TABLE SIE_01_HIERC_APLIC
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  REF_EVENM_NOTFB        NUMBER(10)                 NULL,
-  APLIC_PRIOR            NUMBER(10)                 NULL,
-  REF_ATRIB_STRUC_APLIC  NUMBER(10)                 NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  DNR_REF_PRODT          NUMBER(10)                 NULL
+prompt Table SIE_30_ITEM_CARNT_PRODT;
+
+create table sie_30_item_carnt_prodt
+(
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (200 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  ref_carnt_prodt                         number (10) not null,
+  ref_dv_prior                            number (1) null,
+  ref_stat                                number (10) null,
+  ref_dv_tail_reltv                       number (10) null,
+  ref_cas_utils                           number (10) null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
 );
 
 
-Prompt Table SIE_01_LANG;
-CREATE TABLE SIE_01_LANG
+prompt Table SIE_30_ITEM_CARNT_SPRIN;
+
+create table sie_30_item_carnt_sprin
 (
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(23 BYTE)                    NULL,
-  NOM          VARCHAR2(60 BYTE)                    NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
+  seqnc                                   number (10) not null,
+  nom                                     varchar2 (200 byte) not null,
+  descr                                   varchar2 (4000 byte) null,
+  numr_refrc_docmn                        number (3) null,
+  ref_item_carnt_prodt                    number (10) null,
+  ref_carnt_sprin                         number (10) not null,
+  efort_prevu                             number (10, 2) null,
+  efort_restn                             number (10, 2) null,
+  ref_dv_prior                            number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null,
+  ref_sie_30_page                         number (10) null
 );
+
 
+prompt Table SIE_30_PAGE;
 
-Prompt Table SIE_01_LANG_LANG;
-CREATE TABLE SIE_01_LANG_LANG
+create table sie_30_page
 (
-  SEQNC           NUMBER(10)                        NULL,
-  REF_LANG        NUMBER(10)                        NULL,
-  NOM             VARCHAR2(200 BYTE)                NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  REF_LANG_CIBLE  NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_01_MESG;
-CREATE TABLE SIE_01_MESG
-(
-  SEQNC          NUMBER(10)                         NULL,
-  NUMR_MESG      VARCHAR2(10 BYTE)                  NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DESCR          VARCHAR2(4000 BYTE)                NULL,
-  TYPE_MESG      VARCHAR2(1 BYTE)                   NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_01_MESG_ERR_LIE;
-CREATE TABLE SIE_01_MESG_ERR_LIE
-(
-  SEQNC               NUMBER(10)                    NULL,
-  NOM_TABLE           VARCHAR2(30 BYTE)             NULL,
-  NOM_COLN            VARCHAR2(30 BYTE)             NULL,
-  NOM_CONTR           VARCHAR2(30 BYTE)             NULL,
-  PAGE                NUMBER(10)                    NULL,
-  COMNT               VARCHAR2(4000 BYTE)           NULL,
-  REF_PRODT           NUMBER(10)                    NULL,
-  DATE_CREAT          DATE                          NULL,
-  UTILS_CREAT         VARCHAR2(123 BYTE)            NULL,
-  DATE_MODFC          DATE                          NULL,
-  UTILS_MODFC         VARCHAR2(123 BYTE)            NULL,
-  TYPE_LIAIS          NUMBER(1)                     NULL,
-  REF_MESG            NUMBER(10)                    NULL,
-  DNR_REF_PRODT       NUMBER(10)                    NULL,
-  REF_CODE_ERR_ORACL  NUMBER(10)                    NULL
-);
-
-
-Prompt Table SIE_01_MESG_INFOR;
-CREATE TABLE SIE_01_MESG_INFOR
+  seqnc                                   number (10) not null,
+  ref_sie_13_page                         number (10) null,
+  nom                                     varchar2 (200 byte) null,
+  numr_apex                               number null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
+);
+
+
+prompt Table SIE_30_PAGE_ITEM;
+
+create table sie_30_page_item
 (
-  SEQNC          NUMBER(10)                         NULL,
-  TEXT_MESG      VARCHAR2(4000 BYTE)                NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_CREAT     DATE                               NULL,
-  SESS_ID        NUMBER                             NULL,
-  REF_UTILS      NUMBER(10)                         NULL,
-  REF_MESG_LANG  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_01_MESG_LANG;
-CREATE TABLE SIE_01_MESG_LANG
-(
-  SEQNC          NUMBER(10)                         NULL,
-  MESG           VARCHAR2(4000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  REF_MESG       NUMBER(10)                         NULL,
-  REF_LANG       NUMBER(10)                         NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_01_MESG_TRADC_APEX;
-CREATE TABLE SIE_01_MESG_TRADC_APEX
-(
-  SEQNC          NUMBER(10)                         NULL,
-  NOM            VARCHAR2(255 BYTE)                 NULL,
-  TEXT           VARCHAR2(4000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  REF_LANG       NUMBER(10)                         NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_01_MODL_AFICH_NOTFC;
-CREATE TABLE SIE_01_MODL_AFICH_NOTFC
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  CODE                  VARCHAR2(23 BYTE)           NULL,
-  NOM                   VARCHAR2(60 BYTE)           NULL,
-  DESCR                 VARCHAR2(4000 BYTE)         NULL,
-  COULR_TEXTE           VARCHAR2(7 BYTE)            NULL,
-  TAIL_TEXTE            NUMBER(2)               DEFAULT 12                        NULL,
-  COULR_TITRE           VARCHAR2(7 BYTE)            NULL,
-  TAIL_TITRE            NUMBER(2)               DEFAULT 12                        NULL,
-  TEMPS_AFICH           NUMBER(2)               DEFAULT 0                         NULL,
-  REF_RESRC_ICON        NUMBER(10)                  NULL,
-  REF_FORMT_RESRC_ICON  NUMBER(10)                  NULL,
-  REF_OCURN_RESRC_ICON  NUMBER(10)                  NULL,
-  REF_DOMN              NUMBER(10)                  NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL,
-  REF_TYPE_COMNC        NUMBER(10)                  NULL,
-  REF_MODL_COMNC        NUMBER(10)                  NULL
-);
-
-
-Prompt Table SIE_01_MODL_COMNC;
-CREATE TABLE SIE_01_MODL_COMNC
-(
-  SEQNC           NUMBER(10)                        NULL,
-  CODE            VARCHAR2(23 BYTE)                 NULL,
-  NOM             VARCHAR2(60 BYTE)                 NULL,
-  DESCR           VARCHAR2(4000 BYTE)               NULL,
-  REF_TYPE_COMNC  NUMBER(10)                        NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  INDIC_SYSTM     VARCHAR2(1 BYTE)              DEFAULT 'N'                       NULL,
-  REF_DOMN        NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_01_MODL_MESG_NOTFC;
-CREATE TABLE SIE_01_MODL_MESG_NOTFC
-(
-  SEQNC       NUMBER(10)                            NULL,
-  CODE        VARCHAR2(23 BYTE)                     NULL,
-  NOM         VARCHAR2(60 BYTE)                     NULL,
-  DESCR       VARCHAR2(4000 BYTE)                   NULL,
-  OBJET       VARCHAR2(200 BYTE)                    NULL,
-  REF_DOMN    NUMBER(10)                            NULL,
-  CORPS_MESG  CLOB                                  NULL
+  seqnc                                   number (10) not null,
+  ref_sie_30_page                         number (10) not null,
+  ref_item_carnt_prodt                    number (10) not null,
+  date_creat                              date not null,
+  utils_creat                             varchar2 (123 byte) not null,
+  date_modfc                              date null,
+  utils_modfc                             varchar2 (123 byte) null
 );
+
 
+prompt Table TC_SIE_07_SEQNC;
 
-Prompt Table SIE_01_NOTFC;
-CREATE TABLE SIE_01_NOTFC
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  CODE                  VARCHAR2(23 BYTE)           NULL,
-  NOM                   VARCHAR2(60 BYTE)           NULL,
-  DESCR                 VARCHAR2(4000 BYTE)         NULL,
-  INDEN_MESG            VARCHAR2(10 BYTE)           NULL,
-  TITRE_MESG            VARCHAR2(60 BYTE)           NULL,
-  MESG                  VARCHAR2(4000 BYTE)         NULL,
-  REF_MODL_AFICH_NOTFC  NUMBER(10)                  NULL,
-  INDIC_SPECF           VARCHAR2(1 BYTE)        DEFAULT 'O'                       NULL,
-  INDIC_AFICH_UNIQ      VARCHAR2(1 BYTE)        DEFAULT 'O'                       NULL,
-  REF_DOMN              NUMBER(10)                  NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL
-);
-
-
-Prompt Table SIE_01_OCURN_SA_EVENM_NOTFB;
-CREATE TABLE SIE_01_OCURN_SA_EVENM_NOTFB
-(
-  SEQNC                  NUMBER(16)                 NULL,
-  REF_HIERC_APLIC        NUMBER(10)                 NULL,
-  REF_CONFG_EVENM_NOTFB  NUMBER(10)                 NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  REF_SEQNC_STRUC_APLIC  NUMBER(10)                 NULL
-);
-
-
-Prompt Table SIE_01_RESLT_DESTN;
-CREATE TABLE SIE_01_RESLT_DESTN
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  REF_DESTN              NUMBER(10)                 NULL,
-  DNR_REF_PRODT          NUMBER(10)                 NULL,
-  IDENT_ACCES            VARCHAR2(4000 BYTE)        NULL,
-  IDENT_ACCES_FORMT      VARCHAR2(4000 BYTE)        NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  NOM                    VARCHAR2(60 BYTE)          NULL,
-  REF_STRUC_APLIC_ACCES  NUMBER(10)                 NULL
-);
-
-
-Prompt Table SIE_01_TYPE_COMNC;
-CREATE TABLE SIE_01_TYPE_COMNC
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(23 BYTE)                    NULL,
-  NOM          VARCHAR2(60 BYTE)                    NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_03_CLAS_INTER;
-CREATE TABLE SIE_03_CLAS_INTER
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  CODE                   VARCHAR2(23 BYTE)          NULL,
-  NOM                    VARCHAR2(100 BYTE)         NULL,
-  DESCR                  VARCHAR2(400 BYTE)         NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  REF_PRODT              NUMBER(10)                 NULL,
-  REF_PROFL_COURL        NUMBER(10)                 NULL,
-  INDIC_AVERT_AUTR_UNIQ  VARCHAR2(1 BYTE)       DEFAULT 'N'                       NULL
-);
-
-
-Prompt Table SIE_03_JOURN;
-CREATE TABLE SIE_03_JOURN
-(
-  DATE_HEURE  TIMESTAMP(6)                      DEFAULT systimestamp              NULL,
-  EXPLI       VARCHAR2(4000 BYTE)                   NULL,
-  EREUR       VARCHAR2(500 BYTE)                    NULL,
-  PILE_TRACE  VARCHAR2(4000 BYTE)                   NULL,
-  TRAVL       VARCHAR2(200 BYTE)                    NULL
-);
-
-
-Prompt Table SIE_03_JOURN_STRUC_APLIC;
-CREATE TABLE SIE_03_JOURN_STRUC_APLIC
-(
-  SEQNC              NUMBER(12)                     NULL,
-  REF_DOMN           NUMBER(10)                     NULL,
-  STRUC_APLIC        NUMBER(10)                     NULL,
-  SEQNC_STRUC_APLIC  NUMBER(10)                     NULL,
-  DATE_TIME          DATE                           NULL,
-  NUMR_ERR           VARCHAR2(10 BYTE)              NULL,
-  ACTIO_JOURN        VARCHAR2(200 BYTE)             NULL,
-  DON_NOMNL          VARCHAR2(200 BYTE)             NULL,
-  RESLT              VARCHAR2(500 BYTE)             NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL
-);
-
-
-Prompt Table SIE_03_LIEN_CLAS_INTER_UTILS;
-CREATE TABLE SIE_03_LIEN_CLAS_INTER_UTILS
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_CLAS_INTER    NUMBER(10)                      NULL,
-  REF_UTILS         NUMBER(10)                      NULL,
-  DATE_DEBUT_EFECT  DATE                            NULL,
-  DATE_FIN_EFECT    DATE                            NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  REF_GROUP_UTILS   NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_03_TRACE_EXECT;
-CREATE TABLE SIE_03_TRACE_EXECT
-(
-  UN             VARCHAR2(4000 BYTE)                NULL,
-  DEUX           VARCHAR2(4000 BYTE)                NULL,
-  DTHR           TIMESTAMP(9)                       NULL,
-  UTILS          VARCHAR2(30 BYTE)              DEFAULT user                      NULL,
-  SEQNC          NUMBER(10)                         NULL,
-  LB             CLOB                               NULL,
-  WHO_CALLED_ME  VARCHAR2(4000 BYTE)                NULL,
-  PAGE           NUMBER                             NULL,
-  APP            NUMBER                             NULL,
-  APP_USER       VARCHAR2(30 BYTE)                  NULL,
-  FIL            NUMBER(10)                         NULL,
-  DUREE          NUMBER(20,3)                       NULL,
-  BB             BLOB                               NULL
-);
-
-
-Prompt Table SIE_04_CONTX;
-CREATE TABLE SIE_04_CONTX
-(
-  REF_FIL_ARIAN          NUMBER(10)                 NULL,
-  CONTX                  VARCHAR2(30 BYTE)          NULL,
-  ACTIO                  VARCHAR2(200 BYTE)         NULL,
-  SEQNC_CONTX            NUMBER(10)                 NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  CONTX_INTER            VARCHAR2(30 BYTE)          NULL,
-  ACTIO_INTER            VARCHAR2(200 BYTE)         NULL,
-  SEQNC_CONTX_INTER      NUMBER(10)                 NULL,
-  INDIC_IGNOR            VARCHAR2(1 BYTE)           NULL,
-  NOM_PROCD_INFOR_SUPLM  VARCHAR2(92 BYTE)          NULL,
-  INFOR_SUPLM            VARCHAR2(4000 BYTE)        NULL,
-  CONTX_FORMT            VARCHAR2(4000 BYTE)        NULL
-);
-
-
-Prompt Table SIE_04_CONTX_ETEND;
-CREATE TABLE SIE_04_CONTX_ETEND
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_CONTX    NUMBER(10)                           NULL,
-  NOM          VARCHAR2(30 BYTE)                    NULL,
-  VALR_NUMBR   NUMBER(10)                           NULL,
-  VALR_VARCH   VARCHAR2(4000 BYTE)                  NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  PAGE_CIBLE   VARCHAR2(1 BYTE)                     NULL,
-  TYPE_ALIMN   VARCHAR2(3 BYTE)                     NULL,
-  TYPE_ELEMN   VARCHAR2(1 BYTE)                     NULL
-);
-
-
-Prompt Table SIE_04_FIL_ARIAN;
-CREATE TABLE SIE_04_FIL_ARIAN
-(
-  SEQNC            NUMBER(10)                       NULL,
-  PAGE             NUMBER(10)                       NULL,
-  SESSION_ID       NUMBER                           NULL,
-  REF_ELEMN_SUP    NUMBER(10)                       NULL,
-  LIBL             VARCHAR2(200 BYTE)               NULL,
-  TIMST            TIMESTAMP(6)                     NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  APP_ID           NUMBER                           NULL,
-  HASH_DERNR_URL   RAW(16)                          NULL,
-  INDIC_AFICH      VARCHAR2(1 BYTE)                 NULL,
-  REF_NAVGT_HISTR  NUMBER(10)                       NULL,
-  APLIC            NUMBER                           NULL
-);
-
-
-Prompt Table SIE_04_NAVGT_HISTR;
-CREATE TABLE SIE_04_NAVGT_HISTR
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_UTILS    NUMBER(10)                           NULL,
-  DNR_LIBL     VARCHAR2(60 BYTE)                    NULL,
-  DNR_URL      VARCHAR2(200 BYTE)                   NULL,
-  DNR_ICON     VARCHAR2(200 BYTE)                   NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_07_AUDIT_STRUC_APLIC;
-CREATE TABLE SIE_07_AUDIT_STRUC_APLIC
-(
-  SEQNC                   NUMBER(16)                NULL,
-  REF_UTILS               NUMBER(10)                NULL,
-  REF_SEQNC_STRUC_APLIC   NUMBER(10)                NULL,
-  DNR_REF_SEQNC_SA_FORMT  VARCHAR2(4000 BYTE)       NULL,
-  REF_STRUC_APLIC         NUMBER(10)                NULL,
-  REF_ACTIO_AUDIT         NUMBER(10)                NULL,
-  REF_PAGE                NUMBER(10)                NULL,
-  NATR_AUDIT              VARCHAR2(3 BYTE)          NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL,
-  REF_DOMN                NUMBER(10)                NULL
-);
-
-
-Prompt Table SIE_07_ETAT_SESN;
-CREATE TABLE SIE_07_ETAT_SESN
-(
-  SEQNC        NUMBER(10)                           NULL,
-  SESSION_ID   NUMBER                               NULL,
-  NOM          VARCHAR2(60 BYTE)                    NULL,
-  VALR         VARCHAR2(4000 BYTE)                  NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_07_INSTA_SEMPH;
-CREATE TABLE SIE_07_INSTA_SEMPH
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_SEMPH    NUMBER(10)                           NULL,
-  ID_SESN      NUMBER                               NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  INDIC_SEQNC  VARCHAR2(1 BYTE)                     NULL,
-  PAGE_PERST   VARCHAR2(500 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_07_SEMPH;
-CREATE TABLE SIE_07_SEMPH
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(23 BYTE)                    NULL,
-  VARBL1       VARCHAR2(200 BYTE)                   NULL,
-  VARBL2       VARCHAR2(200 BYTE)                   NULL,
-  VARBL3       VARCHAR2(200 BYTE)                   NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  INDIC_EXCLU  VARCHAR2(1 BYTE)                     NULL
-);
-
-
-Prompt Table SIE_07_VALR_AUDIT_STRUC_APLIC;
-CREATE TABLE SIE_07_VALR_AUDIT_STRUC_APLIC
-(
-  SEQNC                  NUMBER(16)                 NULL,
-  REF_AUDIT_STRUC_APLIC  NUMBER(10)                 NULL,
-  CODE                   VARCHAR2(30 BYTE)          NULL,
-  VALR_FORMT             VARCHAR2(4000 BYTE)        NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL
-);
-
-
-Prompt Table SIE_11_APLIC;
-CREATE TABLE SIE_11_APLIC
-(
-  SEQNC                      NUMBER(10)             NULL,
-  CODE                       VARCHAR2(10 BYTE)      NULL,
-  NOM                        VARCHAR2(60 BYTE)      NULL,
-  DATE_CREAT                 DATE                   NULL,
-  UTILS_CREAT                VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                 DATE                   NULL,
-  UTILS_MODFC                VARCHAR2(123 BYTE)     NULL,
-  NUMR_APLIC_APEX            NUMBER                 NULL,
-  DATE_DERNR_MAJ_REFRN_APEX  DATE                   NULL,
-  REF_VERSN                  NUMBER(10)             NULL,
-  INDIC_APLIC_AUTHE          VARCHAR2(1 BYTE)   DEFAULT 'N'                       NULL,
-  REF_APLIC_AUTHE            NUMBER(10)             NULL,
-  REF_PAGE_CONXN             NUMBER(10)             NULL,
-  REF_PRODT                  NUMBER(10)             NULL,
-  DNR_REF_PRODT              NUMBER(10)             NULL,
-  REF_PAGE_ACUEI             NUMBER(10)             NULL
-);
-
-
-Prompt Table SIE_11_ATRIB_ENTIT;
-CREATE TABLE SIE_11_ATRIB_ENTIT
-(
-  SEQNC              NUMBER(10)                     NULL,
-  NOM                VARCHAR2(60 BYTE)              NULL,
-  TYPE_DON           VARCHAR2(5 BYTE)               NULL,
-  COMPR_MIGRT        VARCHAR2(23 BYTE)              NULL,
-  REF_ENTIT          NUMBER(10)                     NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  DNR_REF_PRODT      NUMBER(10)                     NULL,
-  CODE               VARCHAR2(30 BYTE)              NULL,
-  REF_ENTIT_REFRN    NUMBER(10)                     NULL,
-  INDIC_NOUVL_ATRIB  VARCHAR2(1 BYTE)           DEFAULT 'O'                       NULL
-);
-
-
-Prompt Table SIE_11_ENTIT;
-CREATE TABLE SIE_11_ENTIT
-(
-  SEQNC                   NUMBER(10)                NULL,
-  NOM                     VARCHAR2(60 BYTE)         NULL,
-  NOM_TABLE_TEMPR         VARCHAR2(30 BYTE)         NULL,
-  NOM_TABLE_EREUR         VARCHAR2(30 BYTE)         NULL,
-  INDIC_CREER_OCURN       VARCHAR2(1 BYTE)          NULL,
-  INDIC_MODIF_OCURN       VARCHAR2(1 BYTE)          NULL,
-  INDIC_SUPRM_OCURN       VARCHAR2(1 BYTE)          NULL,
-  REF_VERSN               NUMBER(10)                NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL,
-  ORDRE_EXECT             NUMBER(10)            DEFAULT 1                         NULL,
-  DNR_REF_PRODT           NUMBER(10)                NULL,
-  CODE                    VARCHAR2(30 BYTE)         NULL,
-  INDIC_FORCE_SELCT       VARCHAR2(1 BYTE)      DEFAULT 'N'                       NULL,
-  LONGR_BLOC              NUMBER(5)                 NULL,
-  INDIC_NOUVL_ENTIT       VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL,
-  NIV_INCLU_MIGRT         VARCHAR2(23 BYTE)         NULL,
-  CONFG_INCLU_MIGRT       VARCHAR2(4000 BYTE)       NULL,
-  REF_ATRIB_ENTIT_SUPR    NUMBER(10)                NULL,
-  INDIC_EXPOR_TABL_INDEX  VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL,
-  INDIC_SUPRM_DON_PRODT   VARCHAR2(1 BYTE)      DEFAULT 'N'                       NULL
-);
-
-
-Prompt Table SIE_11_PARMT_AFW;
-CREATE TABLE SIE_11_PARMT_AFW
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(30 BYTE)                    NULL,
-  VALR         VARCHAR2(200 BYTE)                   NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_11_PLUGN;
-CREATE TABLE SIE_11_PLUGN
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE_INTER   VARCHAR2(5 BYTE)                     NULL,
-  NOM          VARCHAR2(200 BYTE)                   NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  DATE_CREAT   DATE                                 NULL,
-  DESCR        VARCHAR2(4000 BYTE)                  NULL,
-  REF_VERSN    NUMBER(10)                           NULL
-);
-
-
-Prompt Table SIE_11_PRODT;
-CREATE TABLE SIE_11_PRODT
-(
-  SEQNC                         NUMBER(10)          NULL,
-  CODE                          VARCHAR2(10 BYTE)     NULL,
-  NOM                           VARCHAR2(60 BYTE)     NULL,
-  DATE_CREAT                    DATE                NULL,
-  UTILS_CREAT                   VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                    DATE                NULL,
-  UTILS_MODFC                   VARCHAR2(123 BYTE)     NULL,
-  PROCD_EXPOR_METDN             VARCHAR2(100 BYTE)     NULL,
-  TAIL_TABL_EXTRA               NUMBER(10)      DEFAULT 10                        NULL,
-  INDIC_EXTRA_TOUT              VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  REF_GROUP_UTILS_ADMIN         NUMBER(10)          NULL,
-  DOSR_FICHR                    VARCHAR2(200 BYTE)     NULL,
-  IDENT_ENVIR                   VARCHAR2(60 BYTE)     NULL,
-  REF_VERSN                     NUMBER(10)          NULL,
-  MESG_TOUT_DROIT_RESRV         VARCHAR2(150 BYTE)     NULL,
-  JQUER_UI_CSS_SCOPE            VARCHAR2(50 BYTE)     NULL,
-  INDIC_AFICH_ERR_CODE          VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  REF_MESG_SUCS                 NUMBER(10)          NULL,
-  REF_MESG_ECHEC                NUMBER(10)          NULL,
-  REF_MESG_FETCH                NUMBER(10)          NULL,
-  REF_MESG_RANGE_SUPRM          NUMBER(10)          NULL,
-  REF_MESG_RANGE_MODF           NUMBER(10)          NULL,
-  REF_MESG_RANGE_INSER          NUMBER(10)          NULL,
-  REF_MESG_AUCUN_DON_TROUV      NUMBER(10)          NULL,
-  REF_MESG_TROP_DON_TROUV       NUMBER(10)          NULL,
-  REF_MESG_AUDIT_CREAT          NUMBER(10)          NULL,
-  REF_MESG_AUDIT_MODFC          NUMBER(10)          NULL,
-  REF_MESG_AUDIT_SUPRS          NUMBER(10)          NULL,
-  FONCT_OBTEN_BASE_URL          VARCHAR2(92 BYTE)     NULL,
-  REF_APLIC_ACUEI               NUMBER(10)          NULL,
-  REF_PAGE_ACUEI                NUMBER(10)          NULL,
-  REF_APLIC_COMNT_BOGUE         NUMBER(10)          NULL,
-  REF_PAGE_COMNT_BOGUE          NUMBER(10)          NULL,
-  INDIC_PAGE_INEXS_MAJ_REFRN    VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  PROCD_IMPRE_ENTET_PDF_IR      VARCHAR2(200 BYTE)     NULL,
-  PROCD_IMPRE_PIED_PAGE_PDF_IR  VARCHAR2(200 BYTE)     NULL,
-  PROCD_PLPDF_COULR             VARCHAR2(200 BYTE)     NULL,
-  COMPT_GENRL                   NUMBER(6)       DEFAULT 0                         NULL
-);
-
-
-Prompt Table SIE_11_PRODT_LANG;
-CREATE TABLE SIE_11_PRODT_LANG
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_PRODT    NUMBER(10)                           NULL,
-  REF_LANG     NUMBER(10)                           NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_11_PRODT_RESRC;
-CREATE TABLE SIE_11_PRODT_RESRC
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_PRODT        NUMBER(10)                       NULL,
-  REF_RESRC        NUMBER(10)                       NULL,
-  REF_FORMT        NUMBER(10)                       NULL,
-  REF_CONDT_EXECT  NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_PLUGN        NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_11_UTILS;
-CREATE TABLE SIE_11_UTILS
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_PRODT    NUMBER(10)                           NULL,
-  REF_UTILS    NUMBER(10)                           NULL,
-  ROLE         VARCHAR2(5 BYTE)                     NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_11_VERSN;
-CREATE TABLE SIE_11_VERSN
-(
-  SEQNC             NUMBER(10)                      NULL,
-  NUMR_VERSN_1      NUMBER(2)                       NULL,
-  NUMR_VERSN_2      NUMBER(2)                       NULL,
-  NUMR_VERSN_3      NUMBER(2)                       NULL,
-  NUMR_VERSN_4      NUMBER(2)                       NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  REF_PRODT         NUMBER(10)                      NULL,
-  INDIC_DOCMN_VERL  VARCHAR2(1 BYTE)            DEFAULT 'O'                       NULL,
-  NOM               VARCHAR2(30 BYTE)               NULL,
-  REF_PLUGN         NUMBER(10)                      NULL,
-  CODE              VARCHAR2(23 BYTE)               NULL,
-  DNR_REF_PRODT     NUMBER(10)                      NULL,
-  REF_APLIC         NUMBER(10)                      NULL,
-  DNR_REF_APLIC     NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_12_ACTIO_AUDIT;
-CREATE TABLE SIE_12_ACTIO_AUDIT
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL,
-  CODE             VARCHAR2(23 BYTE)                NULL,
-  NOM              VARCHAR2(60 BYTE)                NULL,
-  REF_MESG         NUMBER(10)                       NULL,
-  DESCR            VARCHAR2(4000 BYTE)              NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_12_ARBRE;
-CREATE TABLE SIE_12_ARBRE
-(
-  SEQNC         NUMBER(10)                          NULL,
-  NOEUD_ACTIF   VARCHAR2(60 BYTE)                   NULL,
-  REF_SESN      NUMBER                              NULL,
-  DATE_CREAT    DATE                                NULL,
-  UTILS_CREAT   VARCHAR2(123 BYTE)                  NULL,
-  DATE_MODFC    DATE                                NULL,
-  UTILS_MODFC   VARCHAR2(123 BYTE)                  NULL,
-  INDIC_RAFRC   VARCHAR2(1 BYTE)                DEFAULT 'N'                       NULL,
-  ID_APEX_REGN  NUMBER                              NULL
-);
-
-
-Prompt Table SIE_12_ARBRE_NOEUD;
-CREATE TABLE SIE_12_ARBRE_NOEUD
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_ARBRE    NUMBER(10)                           NULL,
-  NOEUD_OUVER  VARCHAR2(60 BYTE)                    NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_12_ATRIB_STRUC_APLIC;
-CREATE TABLE SIE_12_ATRIB_STRUC_APLIC
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  NOM_COLN               VARCHAR2(50 BYTE)          NULL,
-  NOM_FONCT              VARCHAR2(50 BYTE)          NULL,
-  REF_DV_NATR_INFOR      NUMBER(10)                 NULL,
-  INDIC_VALID            VARCHAR2(1 BYTE)       DEFAULT 'O'                       NULL,
-  REF_STRUC_APLIC        NUMBER(10)                 NULL,
-  REF_ATRIB_STRUC_APLIC  NUMBER(10)                 NULL,
-  INDIC_DESTN            VARCHAR2(1 BYTE)       DEFAULT 'N'                       NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  DNR_REF_PRODT          NUMBER(10)                 NULL
-);
-
-
-Prompt Table SIE_12_DEFNT_ACCES;
-CREATE TABLE SIE_12_DEFNT_ACCES
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_GROUP_UTILS  NUMBER(10)                       NULL,
-  REF_UTILS        NUMBER(10)                       NULL,
-  INDIC_ACCES      VARCHAR2(5 BYTE)                 NULL,
-  INDIC_MODFC      VARCHAR2(5 BYTE)                 NULL,
-  INDIC_SUPRS      VARCHAR2(5 BYTE)                 NULL,
-  INDIC_CREAT      VARCHAR2(5 BYTE)                 NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_OPERT        NUMBER(10)                       NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_12_DOMN;
-CREATE TABLE SIE_12_DOMN
-(
-  SEQNC                           NUMBER(10)        NULL,
-  CODE                            VARCHAR2(30 BYTE)     NULL,
-  NOM                             VARCHAR2(60 BYTE)     NULL,
-  DESCR                           VARCHAR2(4000 BYTE)     NULL,
-  DATE_CREAT                      DATE              NULL,
-  UTILS_CREAT                     VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                      DATE              NULL,
-  UTILS_MODFC                     VARCHAR2(123 BYTE)     NULL,
-  TYPE_TRAVL_DEFT                 NUMBER(10)        NULL,
-  REF_PROFL_COURL_NOTFC           NUMBER(10)        NULL,
-  REF_PROFL_SMS_NOTFC             NUMBER(10)        NULL,
-  REF_COMPT_AXIAT_DEFT            NUMBER(10)        NULL,
-  REF_MODL_RECHR_DEFT             NUMBER(10)        NULL,
-  PROCD_AUTHE_EXTER_AFW           VARCHAR2(92 BYTE)     NULL,
-  INDIC_DEMND_ACTIV_COMPT_UTILS   VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  PROCD_VALD_NIV_SECRT_MOT_PASSE  VARCHAR2(92 BYTE) DEFAULT 'sie_12_mot_passe_pkg.valdr_secrt_mot_passe'     NULL
-);
-
-
-Prompt Table SIE_12_DOMN_FONCT;
-CREATE TABLE SIE_12_DOMN_FONCT
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_FONCT    NUMBER(10)                           NULL,
-  REF_DOMN     NUMBER(10)                           NULL,
-  INDIC_ACTIF  VARCHAR2(1 BYTE)                 DEFAULT 'O'                       NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_12_DOMN_SERVR_LDAP;
-CREATE TABLE SIE_12_DOMN_SERVR_LDAP
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_DOMN          NUMBER(10)                      NULL,
-  REF_SERVR_LDAP    NUMBER(10)                      NULL,
-  DATE_DEBUT_EFECT  DATE                            NULL,
-  DATE_FIN_EFECT    DATE                            NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL
-);
-
-
-Prompt Table SIE_12_DOMN_UTILS;
-CREATE TABLE SIE_12_DOMN_UTILS
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_UTILS         NUMBER(10)                      NULL,
-  REF_DOMN          NUMBER(10)                      NULL,
-  DATE_DEBUT_EFECT  DATE                            NULL,
-  DATE_FIN_EFECT    DATE                            NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL
-);
-
-
-Prompt Table SIE_12_EVOLT_STAT;
-CREATE TABLE SIE_12_EVOLT_STAT
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_STAT        NUMBER(10)                        NULL,
-  REF_STAT_EVOLT  NUMBER(10)                        NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  INDIC_CODE      VARCHAR2(1 BYTE)                  NULL,
-  DNR_REF_PRODT   NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_12_FAVR;
-CREATE TABLE SIE_12_FAVR
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  REF_STRUC_APLIC        NUMBER(10)                 NULL,
-  REF_SEQNC_STRUC_APLIC  NUMBER(10)                 NULL,
-  REF_UTILS              NUMBER(10)                 NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL
-);
-
-
-Prompt Table SIE_12_FONCT;
-CREATE TABLE SIE_12_FONCT
-(
-  SEQNC          NUMBER(10)                         NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  NOM            VARCHAR2(60 BYTE)                  NULL,
-  DESCR          VARCHAR2(4000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_12_FONCT_STRUC_APLIC;
-CREATE TABLE SIE_12_FONCT_STRUC_APLIC
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_FONCT        NUMBER(10)                       NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_12_GROUP_STAT;
-CREATE TABLE SIE_12_GROUP_STAT
-(
-  SEQNC          NUMBER(10)                         NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  NOM            VARCHAR2(60 BYTE)                  NULL,
-  DESCR          VARCHAR2(4000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_12_GROUP_UTILS;
-CREATE TABLE SIE_12_GROUP_UTILS
-(
-  SEQNC                    NUMBER(10)               NULL,
-  NOM                      VARCHAR2(100 BYTE)       NULL,
-  DESCR                    VARCHAR2(400 BYTE)       NULL,
-  DATE_CREAT               DATE                     NULL,
-  UTILS_CREAT              VARCHAR2(123 BYTE)       NULL,
-  DATE_MODFC               DATE                     NULL,
-  UTILS_MODFC              VARCHAR2(123 BYTE)       NULL,
-  REF_PRODT                NUMBER(10)               NULL,
-  CODE                     VARCHAR2(29 BYTE)        NULL,
-  INDIC_IGNOR_GROUP_ADMIN  VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL,
-  INDIC_SYSTM              VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL,
-  DNR_REF_PRODT            NUMBER(10)               NULL,
-  REF_DOMN                 NUMBER(10)               NULL,
-  INDIC_ACCES_GLOBL        VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL,
-  REF_FONCT                NUMBER(10)               NULL
-);
-
-
-Prompt Table SIE_12_GR_UT_OPERT_OPTIO_DOMN;
-CREATE TABLE SIE_12_GR_UT_OPERT_OPTIO_DOMN
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_GROUP_UTILS  NUMBER(10)                       NULL,
-  REF_OPERT        NUMBER(10)                       NULL,
-  REF_OPERT_OPTIO  NUMBER(10)                       NULL,
-  REF_DOMN         NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_12_HISTR_ACCES;
-CREATE TABLE SIE_12_HISTR_ACCES
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_UTILS          NUMBER(10)                     NULL,
-  DATE_EVENM         DATE                           NULL,
-  REF_DV_TYPE_EVENM  NUMBER(10)                     NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  ADRES_IP           VARCHAR2(15 BYTE)              NULL,
-  REF_UTILS_POUR     NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_12_LIEN_GROUP_UTILS;
-CREATE TABLE SIE_12_LIEN_GROUP_UTILS
-(
-  SEQNC                NUMBER(10)                   NULL,
-  REF_GROUP            NUMBER(10)                   NULL,
-  REF_UTILS            NUMBER(10)                   NULL,
-  DATE_DEBUT_EFECT     DATE                     DEFAULT NULL                      NULL,
-  DATE_FIN_EFECT       DATE                         NULL,
-  DATE_CREAT           DATE                         NULL,
-  UTILS_CREAT          VARCHAR2(123 BYTE)           NULL,
-  DATE_MODFC           DATE                         NULL,
-  UTILS_MODFC          VARCHAR2(123 BYTE)           NULL,
-  REF_GROUP_UTILS_LIE  NUMBER(10)                   NULL,
-  DNR_REF_PRODT        NUMBER(10)                   NULL,
-  REF_DOMN             NUMBER(10)                   NULL
-);
-
-
-Prompt Table SIE_12_LIEN_STRUC;
-CREATE TABLE SIE_12_LIEN_STRUC
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_STRUC_ADMIN   NUMBER(10)                      NULL,
-  DATE_DEBUT_EFECT  DATE                            NULL,
-  DATE_FIN_EFECT    DATE                            NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  REF_STRUC_LIE     NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_12_MEMBR_STRUC;
-CREATE TABLE SIE_12_MEMBR_STRUC
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_UTILS         NUMBER(10)                      NULL,
-  REF_STRUC_ADMIN   NUMBER(10)                      NULL,
-  DATE_DEBUT_EFECT  DATE                            NULL,
-  DATE_FIN_EFECT    DATE                            NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL
-);
-
-
-Prompt Table SIE_12_REQT_INTER_UTILS;
-CREATE TABLE SIE_12_REQT_INTER_UTILS
-(
-  SEQNC                        NUMBER(10)           NULL,
-  IDENT                        RAW(16)              NULL,
-  REF_UTILS                    NUMBER(10)           NULL,
-  REF_DV_TYPE_REQT_INTER       NUMBER(10)           NULL,
-  DATE_DEBUT_EFECT             DATE                 NULL,
-  DATE_FIN_EFECT               DATE                 NULL,
-  DATE_CREAT                   DATE                 NULL,
-  UTILS_CREAT                  VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                   DATE                 NULL,
-  UTILS_MODFC                  VARCHAR2(123 BYTE)     NULL,
-  REF_DOMN                     NUMBER(10)           NULL,
-  REF_PRODT                    NUMBER(10)           NULL,
-  NUMR_APLIC_APEX              NUMBER               NULL,
-  NUMR_PAGE_APEX               NUMBER               NULL,
-  DATE_TRAIT                   DATE                 NULL,
-  PROCD_PERSN_URL_APRES_AUTHE  VARCHAR2(92 BYTE)     NULL
-);
-
-
-Prompt Table SIE_12_SERVR_LDAP;
-CREATE TABLE SIE_12_SERVR_LDAP
-(
-  SEQNC        NUMBER(10)                           NULL,
-  ADRES        VARCHAR2(200 BYTE)                   NULL,
-  PORT         NUMBER(10)                           NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  BASE_DN      VARCHAR2(400 BYTE)                   NULL,
-  UTILS_CN     VARCHAR2(400 BYTE)                   NULL,
-  MOT_PASSE    VARCHAR2(50 BYTE)                    NULL
-);
-
-
-Prompt Table SIE_12_SESN;
-CREATE TABLE SIE_12_SESN
-(
-  ID_SESN      NUMBER                               NULL,
-  APP_USER     VARCHAR2(30 BYTE)                    NULL,
-  REF_ID_SESN  NUMBER                               NULL,
-  REF_LANG     NUMBER(10)                           NULL
-);
-
-
-Prompt Table SIE_12_STAT;
-CREATE TABLE SIE_12_STAT
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_STRUC_APLIC   NUMBER(10)                      NULL,
-  ORDRE             NUMBER(10)                      NULL,
-  CODE              VARCHAR2(23 BYTE)               NULL,
-  NOM               VARCHAR2(60 BYTE)               NULL,
-  DESCR             VARCHAR2(4000 BYTE)             NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  INDIC_INITL       VARCHAR2(1 BYTE)            DEFAULT 'N'                       NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  INDIC_STAT_UTILS  VARCHAR2(1 BYTE)            DEFAULT 'O'                       NULL,
-  REF_GROUP_STAT    NUMBER(10)                      NULL,
-  DNR_REF_PRODT     NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_12_STRUC_ADMIN;
-CREATE TABLE SIE_12_STRUC_ADMIN
-(
-  SEQNC           NUMBER(10)                        NULL,
-  NOM             VARCHAR2(60 BYTE)                 NULL,
-  INDIC_DEFT      VARCHAR2(1 BYTE)                  NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  REF_TYPE_STRUC  NUMBER(10)                        NULL,
-  REF_RESPN       NUMBER(10)                        NULL,
-  DEBUT_EFECT     DATE                              NULL,
-  FIN_EFECT       DATE                              NULL,
-  REF_DOMN        NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_12_STRUC_APLIC;
-CREATE TABLE SIE_12_STRUC_APLIC
-(
-  SEQNC                NUMBER(10)                   NULL,
-  NOM                  VARCHAR2(100 BYTE)           NULL,
-  DESCR                VARCHAR2(200 BYTE)           NULL,
-  REF_PRODT            NUMBER(10)                   NULL,
-  DATE_CREAT           DATE                         NULL,
-  UTILS_CREAT          VARCHAR2(123 BYTE)           NULL,
-  DATE_MODFC           DATE                         NULL,
-  UTILS_MODFC          VARCHAR2(123 BYTE)           NULL,
-  CODE                 VARCHAR2(23 BYTE)            NULL,
-  REF_MESG_ERR_SUPRS   NUMBER(10)                   NULL,
-  INDIC_EXTRA_TOUT     VARCHAR2(2 BYTE)         DEFAULT 'HE'                      NULL,
-  TAIL_TABL_EXTRA      NUMBER(10)                   NULL,
-  NOM_STRUC_ACCES_DON  VARCHAR2(30 BYTE)            NULL,
-  REF_PAGE_LISTE       NUMBER(10)                   NULL,
-  REF_PAGE_FORML       NUMBER(10)                   NULL,
-  NOM_PACKG            VARCHAR2(30 BYTE)            NULL,
-  DNR_REF_PRODT        NUMBER(10)                   NULL,
-  INDIC_DISPN_DOCMN    VARCHAR2(1 BYTE)         DEFAULT 'N'                       NULL,
-  NOM_SCHEM            VARCHAR2(30 BYTE)            NULL
-);
-
-
-Prompt Table SIE_12_STRUC_APLIC_DESTN;
-CREATE TABLE SIE_12_STRUC_APLIC_DESTN
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  REF_DESTN        NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_12_STRUC_APLIC_LANG;
-CREATE TABLE SIE_12_STRUC_APLIC_LANG
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL,
-  ADJEC_DEMNS      VARCHAR2(10 BYTE)                NULL,
-  NOM              VARCHAR2(255 BYTE)               NULL,
-  REF_LANG         NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  DESCR            VARCHAR2(4000 BYTE)              NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_12_STRUC_APLIC_SUIVI;
-CREATE TABLE SIE_12_STRUC_APLIC_SUIVI
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_STRUC_APLIC    NUMBER(10)                     NULL,
-  REF_SUIVI          NUMBER(10)                     NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  NOM_PERSN          VARCHAR2(60 BYTE)              NULL,
-  INDIC_CREAT_INITL  VARCHAR2(1 BYTE)               NULL,
-  SEQNC_PRESN        NUMBER(4)                      NULL,
-  REF_SUCRS_IMPLA    NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_12_TYPE_STRUC;
-CREATE TABLE SIE_12_TYPE_STRUC
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(20 BYTE)                    NULL,
-  NOM          VARCHAR2(100 BYTE)                   NULL,
-  DESCR        VARCHAR2(2000 BYTE)                  NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  REF_DOMN     NUMBER(10)                           NULL
-);
-
-
-Prompt Table SIE_12_UTILS;
-CREATE TABLE SIE_12_UTILS
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  NOM                    VARCHAR2(60 BYTE)          NULL,
-  PRENM                  VARCHAR2(60 BYTE)          NULL,
-  CODE_UTILS             VARCHAR2(30 BYTE)          NULL,
-  MOT_PASSE              RAW(2000)                  NULL,
-  DATE_EXPIR             DATE                       NULL,
-  INDIC_VERL             VARCHAR2(1 BYTE)           NULL,
-  INDIC_CHANG_MOT_PASSE  VARCHAR2(1 BYTE)           NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  COURL                  VARCHAR2(200 BYTE)         NULL,
-  DERNR_PRODT_ACCES      VARCHAR2(23 BYTE)          NULL,
-  INDIC_ACTIF            VARCHAR2(1 BYTE)       DEFAULT 'N'                       NULL,
-  DERNR_DOMN_ACCES       VARCHAR2(23 BYTE)          NULL,
-  REF_DV_COMPL_MAXM      NUMBER(10)                 NULL,
-  CODE_UTILS_BASE_DON    VARCHAR2(30 BYTE)          NULL,
-  PARMT_AUTHE_EXTER_AFW  VARCHAR2(400 BYTE)         NULL
-);
-
-
-Prompt Table SIE_13_CONDT_EXECT;
-CREATE TABLE SIE_13_CONDT_EXECT
-(
-  SEQNC              NUMBER(10)                     NULL,
-  CODE               VARCHAR2(23 BYTE)              NULL,
-  NOM                VARCHAR2(60 BYTE)              NULL,
-  DESCR              VARCHAR2(4000 BYTE)            NULL,
-  ENONC_CONDT_PLSQL  VARCHAR2(4000 BYTE)            NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL
-);
-
-
-Prompt Table SIE_13_CONDT_PILTB;
-CREATE TABLE SIE_13_CONDT_PILTB
-(
-  SEQNC                NUMBER(10)                   NULL,
-  REF_PAGE             NUMBER(10)                   NULL,
-  CODE                 VARCHAR2(23 BYTE)            NULL,
-  NOM                  VARCHAR2(60 BYTE)            NULL,
-  DESCR                VARCHAR2(2000 BYTE)          NULL,
-  CONDT                VARCHAR2(4000 BYTE)          NULL,
-  DATE_CREAT           DATE                         NULL,
-  UTILS_CREAT          VARCHAR2(123 BYTE)           NULL,
-  DATE_MODFC           DATE                         NULL,
-  UTILS_MODFC          VARCHAR2(123 BYTE)           NULL,
-  REF_PAGE_ITEM_FOCUS  NUMBER(10)                   NULL,
-  DNR_REF_APLIC        NUMBER(10)                   NULL
-);
-
-
-Prompt Table SIE_13_DOSR_VIRTL;
-CREATE TABLE SIE_13_DOSR_VIRTL
-(
-  SEQNC          NUMBER(10)                         NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  NOM            VARCHAR2(60 BYTE)                  NULL,
-  DESCR          VARCHAR2(4000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_13_EMPLA_DOSR_VIRTL;
-CREATE TABLE SIE_13_EMPLA_DOSR_VIRTL
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_DOSR_VIRTL  NUMBER(10)                        NULL,
-  REF_VERSN       NUMBER(10)                        NULL,
-  EMPLA           VARCHAR2(100 BYTE)                NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  DNR_REF_PRODT   NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_13_EXPOR_APLIC;
-CREATE TABLE SIE_13_EXPOR_APLIC
-(
-  SEQNC                   NUMBER(10)                NULL,
-  REF_SESN                NUMBER                    NULL,
-  REF_APLIC               NUMBER(10)                NULL,
-  INDIC_MAJ_REFRN         VARCHAR2(1 BYTE)      DEFAULT 'N'                       NULL,
-  NUMR_APLIC_CIBLE        NUMBER                    NULL,
-  INDIC_AJOUT_APLIC_APEX  VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL
-);
-
-
-Prompt Table SIE_13_EXPOR_PAGE;
-CREATE TABLE SIE_13_EXPOR_PAGE
-(
-  REF_PAGE  NUMBER(10)                              NULL,
-  REF_SESN  NUMBER                                  NULL,
-  SEQNC     NUMBER(10)                              NULL
-);
-
-
-Prompt Table SIE_13_FORMT_RESRC;
-CREATE TABLE SIE_13_FORMT_RESRC
-(
-  SEQNC           NUMBER(10)                        NULL,
-  CODE            VARCHAR2(23 BYTE)                 NULL,
-  REF_PRODT       NUMBER(10)                        NULL,
-  DESCR           VARCHAR2(4000 BYTE)               NULL,
-  REF_TYPE_FICHR  NUMBER(10)                        NULL,
-  LARGR           NUMBER(4)                         NULL,
-  HAUTR           NUMBER(4)                         NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  NOM             VARCHAR2(60 BYTE)                 NULL,
-  DNR_REF_PRODT   NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_13_INSTA_PREFR;
-CREATE TABLE SIE_13_INSTA_PREFR
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_PREFR        NUMBER(10)                       NULL,
-  REF_UTILS        NUMBER(10)                       NULL,
-  REF_SESN         NUMBER                           NULL,
-  VALR             VARCHAR2(200 BYTE)               NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_13_ITEM_MENU;
-CREATE TABLE SIE_13_ITEM_MENU
-(
-  SEQNC                          NUMBER(10)         NULL,
-  CODE                           VARCHAR2(23 BYTE)     NULL,
-  NOM                            VARCHAR2(60 BYTE)     NULL,
-  DESCR                          VARCHAR2(2000 BYTE)     NULL,
-  AIDE_INSTA                     VARCHAR2(2000 BYTE)     NULL,
-  TITRE_AIDE_INSTA               VARCHAR2(60 BYTE)     NULL,
-  ORDRE_PRESN                    NUMBER             NULL,
-  REF_PAGE                       NUMBER(10)         NULL,
-  ICONE                          VARCHAR2(1000 BYTE)     NULL,
-  EFACR_CACHE                    VARCHAR2(1000 BYTE)     NULL,
-  REF_MENU                       NUMBER(10)         NULL,
-  REF_DV_VALR_REQST              NUMBER(10)         NULL,
-  FORML_VALR_REQST               VARCHAR2(4000 BYTE)     NULL,
-  INDIC_REINT_PAGNT              VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  INDIC_REINT_PAGE_IR            VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  INDIC_CLEAR_PAGE_IR            VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  REF_DV_VALR_SCPC               NUMBER(10)         NULL,
-  FORML_VALR_SCPC                VARCHAR2(4000 BYTE)     NULL,
-  REF_DV_VALR_SSPC               NUMBER(10)         NULL,
-  FORML_VALR_SSPC                VARCHAR2(4000 BYTE)     NULL,
-  REF_DV_VALR_SAPC               NUMBER(10)         NULL,
-  FORML_VALR_SAPC                VARCHAR2(4000 BYTE)     NULL,
-  REF_DV_VALR_SCPI               NUMBER(10)         NULL,
-  FORML_VALR_SCPI                VARCHAR2(4000 BYTE)     NULL,
-  REF_DV_VALR_SSPI               NUMBER(10)         NULL,
-  FORML_VALR_SSPI                VARCHAR2(4000 BYTE)     NULL,
-  REF_DV_VALR_SAPI               NUMBER(10)         NULL,
-  FORML_VALR_SAPI                VARCHAR2(4000 BYTE)     NULL,
-  REF_DV_VALR_SNPI               NUMBER(10)         NULL,
-  FORML_VALR_SNPI                VARCHAR2(4000 BYTE)     NULL,
-  DATE_CREAT                     DATE               NULL,
-  UTILS_CREAT                    VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                     DATE               NULL,
-  UTILS_MODFC                    VARCHAR2(123 BYTE)     NULL,
-  INDIC_SOUMS_PAGE               VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  INDIC_REINT_NAVGT              VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  REF_ITEM_MENU                  NUMBER(10)         NULL,
-  DNR_REF_PRODT                  NUMBER(10)         NULL,
-  REF_STRUC_APLIC                NUMBER(10)         NULL,
-  FORML_LIBL                     VARCHAR2(4000 BYTE)     NULL,
-  LISTE_REF_PAGE_ACTIV           VARCHAR2(1000 BYTE)     NULL,
-  REF_RESRC                      NUMBER(10)         NULL,
-  REF_OCURN_RESRC                NUMBER(10)         NULL,
-  REF_FORMT_RESRC                NUMBER(10)         NULL,
-  REF_DV_VALR_INSTA_LIBL         NUMBER(10)         NULL,
-  REF_DV_VALR_URL                NUMBER(10)         NULL,
-  FORML_VALR_URL                 VARCHAR2(4000 BYTE)     NULL,
-  INDIC_GERER_SIDF               VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  REF_APLIC                      NUMBER(10)         NULL,
-  REF_DV_VALR_INSTA_CONDT_AFICH  NUMBER(10)         NULL,
-  FORML_CONDT_AFICH              VARCHAR2(4000 BYTE)     NULL
-);
-
-
-Prompt Table SIE_13_LIEN_CONDT_PILTB;
-CREATE TABLE SIE_13_LIEN_CONDT_PILTB
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_PAGE_ITEM     NUMBER(10)                      NULL,
-  REF_CONDT_PILTB   NUMBER(10)                      NULL,
-  INDIC_LECTR_SEUL  VARCHAR2(1 BYTE)                NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  INDIC_AFICH       VARCHAR2(1 BYTE)            DEFAULT 'O'                       NULL,
-  DNR_REF_APLIC     NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_13_LISTE_NAVGT;
-CREATE TABLE SIE_13_LISTE_NAVGT
-(
-  SEQNC             NUMBER(10)                      NULL,
-  REF_PAGE          NUMBER(10)                      NULL,
-  LIBL              VARCHAR2(30 BYTE)               NULL,
-  PAGE              VARCHAR2(30 BYTE)               NULL,
-  SSPC              VARCHAR2(30 BYTE)               NULL,
-  SAPC              VARCHAR2(30 BYTE)               NULL,
-  SSPI              VARCHAR2(30 BYTE)               NULL,
-  SAPI              VARCHAR2(30 BYTE)               NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  ORDRE_PRESN       NUMBER(3)                   DEFAULT 1                         NULL,
-  CODE              VARCHAR2(23 BYTE)               NULL,
-  INDIC_REINT_SIDF  VARCHAR2(1 BYTE)            DEFAULT 'N'                       NULL,
-  DNR_REF_APLIC     NUMBER(10)                      NULL,
-  APLIC             VARCHAR2(30 BYTE)               NULL,
-  CSS_ICONE_BOOTS   VARCHAR2(400 BYTE)              NULL
-);
-
-
-Prompt Table SIE_13_MENU;
-CREATE TABLE SIE_13_MENU
-(
-  SEQNC          NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  NOM            VARCHAR2(60 BYTE)                  NULL,
-  DESCR          VARCHAR2(2000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL,
-  RESRC_ADITN    VARCHAR2(4000 BYTE)                NULL
-);
-
-
-Prompt Table SIE_13_MIME_TYPE;
-CREATE TABLE SIE_13_MIME_TYPE
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_TYPE_FICHR  NUMBER(10)                        NULL,
-  EXT             VARCHAR2(10 BYTE)                 NULL,
-  MIME_TYPE       VARCHAR2(200 BYTE)                NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  ORDRE_CHOIX     NUMBER(2)                         NULL
-);
-
-
-Prompt Table SIE_13_NAVGT;
-CREATE TABLE SIE_13_NAVGT
-(
-  SEQNC              NUMBER(14)                     NULL,
-  REF_ID_SESN        NUMBER                         NULL,
-  INDIC_EXTRA_TOTAL  VARCHAR2(1 BYTE)               NULL,
-  TAIL_TABL_EXTRA    NUMBER(10)                     NULL,
-  NOMBR_RANG_EXTRA   NUMBER(8)                      NULL,
-  ENONC_SQL          CLOB                           NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  INDIC_EXTRA_TERMN  VARCHAR2(1 BYTE)           DEFAULT 'N'                       NULL,
-  APEX_REPTS_ID      NUMBER                         NULL,
-  REF_RAPRT_INTER    NUMBER(10)                     NULL,
-  REF_FIL_ARIAN      NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_13_NAVGT_ELEMN;
-CREATE TABLE SIE_13_NAVGT_ELEMN
-(
-  SEQNC        NUMBER(10)                           NULL,
-  NUMR_ELEMN   NUMBER(8)                            NULL,
-  INDIC_COURN  VARCHAR2(1 BYTE)                     NULL,
-  SEQNC_ELEMN  NUMBER(10)                           NULL,
-  REF_NAVGT    NUMBER(10)                           NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_13_OCURN_RESRC;
-CREATE TABLE SIE_13_OCURN_RESRC
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_RESRC        NUMBER(10)                       NULL,
-  REF_FORMT_RESRC  NUMBER(10)                       NULL,
-  REF_MIME_TYPE    NUMBER(10)                       NULL,
-  NOM_PHYSQ        VARCHAR2(300 BYTE)               NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  CORDN_X_DEBUT    NUMBER(6)                        NULL,
-  CORDN_Y_DEBUT    NUMBER(10)                       NULL,
-  LARGR_PREPN      NUMBER(3)                        NULL,
-  HAUTR_PREPN      NUMBER(3)                        NULL,
-  NOM              VARCHAR2(60 BYTE)                NULL,
-  REF_DOSR_VIRTL   NUMBER(10)                       NULL,
-  REF_VERSN        NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_13_OPERT;
-CREATE TABLE SIE_13_OPERT
-(
-  SEQNC          NUMBER(10)                         NULL,
-  NOM            VARCHAR2(100 BYTE)                 NULL,
-  DESCR          VARCHAR2(400 BYTE)                 NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL,
-  REF_FONCT      NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_13_OPERT_OPTIO;
-CREATE TABLE SIE_13_OPERT_OPTIO
-(
-  SEQNC          NUMBER(10)                         NULL,
-  REF_OPERT      NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  NOM            VARCHAR2(60 BYTE)                  NULL,
-  DESCR          VARCHAR2(4000 BYTE)                NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  PREPN          NUMBER(3)                      DEFAULT NULL                      NULL
-);
-
-
-Prompt Table SIE_13_PAGE;
-CREATE TABLE SIE_13_PAGE
-(
-  SEQNC                          NUMBER(10)         NULL,
-  NUMR_APEX                      NUMBER             NULL,
-  NOM                            VARCHAR2(255 BYTE)     NULL,
-  DESCR                          VARCHAR2(400 BYTE)     NULL,
-  DATE_CREAT                     DATE               NULL,
-  UTILS_CREAT                    VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                     DATE               NULL,
-  UTILS_MODFC                    VARCHAR2(123 BYTE)     NULL,
-  REF_STRUC_APLIC                NUMBER(10)         NULL,
-  INDIC_PRISE_CHARG_SIE01        VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  INDIC_PRISE_CHARG_SIE04        VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  REF_MESG_SUPRS_SPECF           NUMBER(10)         NULL,
-  INDIC_PRISE_CHARG_SIE19        VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  INDIC_PRISE_CHARG_SIE13_NAVGT  VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  INDIC_PRISE_CHARG_SIE18        VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  REF_PAGE_RECHR                 NUMBER(10)         NULL,
-  INDIC_PRISE_CHARG_SIE14_POPUP  VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  INDIC_PRISE_CHARG_SIE13_CONFR  VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  PREFX_MESG                     VARCHAR2(3 BYTE)     NULL,
-  DATE_DERNR_MAJ_REFRN_APEX      DATE               NULL,
-  REF_MESG_SUCS_SPECF            NUMBER(10)         NULL,
-  REF_MESG_ECHEC_SPECF           NUMBER(10)         NULL,
-  REF_MESG_FETCH_SPECF           NUMBER(10)         NULL,
-  REF_MESG_RANGE_SUPRM_SPECF     NUMBER(10)         NULL,
-  REF_MESG_RANGE_MODF_SPECF      NUMBER(10)         NULL,
-  REF_MESG_RANGE_INSER_SPECF     NUMBER(10)         NULL,
-  REF_MESG_AUCUN_DON_TROUV       NUMBER(10)         NULL,
-  REF_MESG_TROP_DON_TROUV        NUMBER(10)         NULL,
-  REF_APLIC                      NUMBER(10)         NULL,
-  DNR_REF_APLIC                  NUMBER(10)         NULL
-);
-
-
-Prompt Table SIE_13_PAGE_IR;
-CREATE TABLE SIE_13_PAGE_IR
-(
-  SEQNC                   NUMBER(10)                NULL,
-  LIBL_REGN               VARCHAR2(255 BYTE)        NULL,
-  ID_APEX                 NUMBER                    NULL,
-  REF_PAGE                NUMBER(10)                NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL,
-  LARGR_DEFT              NUMBER                    NULL,
-  UNITE_MESR_LARGR_DEFT   NUMBER(10)                NULL,
-  CODE                    VARCHAR2(23 BYTE)         NULL,
-  DNR_REF_APLIC           NUMBER(10)                NULL,
-  INDIC_FORCR_AJUST_PAGE  VARCHAR2(1 BYTE)      DEFAULT 'N'                       NULL,
-  NOMBR_PAGE_LARGR        NUMBER(2)             DEFAULT 1                         NULL
-);
-
-
-Prompt Table SIE_13_PAGE_IR_COLN;
-CREATE TABLE SIE_13_PAGE_IR_COLN
-(
-  SEQNC          NUMBER(10)                         NULL,
-  ORDRE_AFICH    NUMBER(3)                          NULL,
-  LIBL           VARCHAR2(4000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  COLN_TABLE     VARCHAR2(30 BYTE)                  NULL,
-  REF_PAGE_IR    NUMBER(10)                         NULL,
-  ID_APEX        NUMBER                             NULL,
-  LARGR          NUMBER(5,2)                        NULL,
-  TYPE_LARGR     VARCHAR2(5 BYTE)                   NULL,
-  INDIC_EXPRT    VARCHAR2(1 BYTE)               DEFAULT 'O'                       NULL,
-  REF_MESG_AIDE  NUMBER(10)                         NULL,
-  DNR_REF_APLIC  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_13_PAGE_ITEM;
-CREATE TABLE SIE_13_PAGE_ITEM
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_PAGE           NUMBER(10)                     NULL,
-  ID_APEX            NUMBER                         NULL,
-  NOM_APEX           VARCHAR2(500 BYTE)             NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  LIBL               VARCHAR2(500 BYTE)             NULL,
-  INDIC_CREAT        VARCHAR2(1 BYTE)               NULL,
-  INDIC_MODFC        VARCHAR2(1 BYTE)               NULL,
-  INDIC_SUPRS        VARCHAR2(1 BYTE)               NULL,
-  INDIC_EN_CREAT     VARCHAR2(1 BYTE)               NULL,
-  INDIC_EN_MODFC     VARCHAR2(1 BYTE)               NULL,
-  TYPE_ITEM          VARCHAR2(5 BYTE)           DEFAULT 'ITEM'                    NULL,
-  REF_OPERT          NUMBER(10)                     NULL,
-  REF_MESG_AIDE      NUMBER(10)                     NULL,
-  DEPSM_ALIAS_COLN   VARCHAR2(200 BYTE)             NULL,
-  INDIC_RECHR        VARCHAR2(1 BYTE)           DEFAULT 'N'                       NULL,
-  INDIC_CONFR_SAUVG  VARCHAR2(1 BYTE)               NULL,
-  DNR_REF_APLIC      NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_13_PAGE_ITEM_LANG;
-CREATE TABLE SIE_13_PAGE_ITEM_LANG
-(
-  SEQNC          NUMBER(10)                         NULL,
-  REF_PAGE_ITEM  NUMBER(10)                         NULL,
-  NOM            VARCHAR2(255 BYTE)                 NULL,
-  REF_LANG       NUMBER(10)                         NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DNR_REF_APLIC  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_13_PAGE_LANG;
-CREATE TABLE SIE_13_PAGE_LANG
-(
-  SEQNC          NUMBER(10)                         NULL,
-  REF_PAGE       NUMBER(10)                         NULL,
-  NOM            VARCHAR2(255 BYTE)                 NULL,
-  REF_LANG       NUMBER(10)                         NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DNR_REF_APLIC  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_13_PAGE_PREFR_NAVGT;
-CREATE TABLE SIE_13_PAGE_PREFR_NAVGT
-(
-  SEQNC          NUMBER(10)                         NULL,
-  REF_PAGE       NUMBER(10)                         NULL,
-  REF_PAGE_IR    NUMBER(10)                         NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DNR_REF_APLIC  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_13_PREFR;
-CREATE TABLE SIE_13_PREFR
-(
-  SEQNC               NUMBER(10)                    NULL,
-  CODE                VARCHAR2(23 BYTE)             NULL,
-  REF_DV_CONDT_UTILS  NUMBER(10)                    NULL,
-  FORML_CONDT_UTILS   VARCHAR2(4000 BYTE)           NULL,
-  REF_DV_CONDT_SAUVG  NUMBER(10)                    NULL,
-  FORML_CONDT_SAUVG   VARCHAR2(4000 BYTE)           NULL,
-  REF_DV_TYPE_INSTA   NUMBER(10)                    NULL,
-  INDIC_CONTX         VARCHAR2(1 BYTE)              NULL,
-  REF_DV_VALR_INSTA   NUMBER(10)                    NULL,
-  FORML_VALR_INSTA    VARCHAR2(4000 BYTE)           NULL,
-  DESCR_COMNT         VARCHAR2(4000 BYTE)           NULL,
-  REF_ITEM            NUMBER(10)                    NULL,
-  DATE_CREAT          DATE                          NULL,
-  UTILS_CREAT         VARCHAR2(123 BYTE)            NULL,
-  DATE_MODFC          DATE                          NULL,
-  UTILS_MODFC         VARCHAR2(123 BYTE)            NULL,
-  DNR_REF_APLIC       NUMBER(10)                    NULL
-);
-
-
-Prompt Table SIE_13_REGN_PILTB;
-CREATE TABLE SIE_13_REGN_PILTB
-(
-  SEQNC                   NUMBER(10)                NULL,
-  CODE                    VARCHAR2(23 BYTE)         NULL,
-  NOM                     VARCHAR2(60 BYTE)         NULL,
-  DESCR                   VARCHAR2(4000 BYTE)       NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL,
-  REF_PAGE                NUMBER(10)                NULL,
-  REF_DV_TYPE_REGN_PILTB  NUMBER(10)                NULL,
-  DNR_REF_APLIC           NUMBER(10)                NULL
-);
-
-
-Prompt Table SIE_13_REGN_PILTB_LANG;
-CREATE TABLE SIE_13_REGN_PILTB_LANG
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_REGN_PILTB  NUMBER(10)                        NULL,
-  CONTN           CLOB                              NULL,
-  REF_LANG        NUMBER(10)                        NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  DNR_REF_APLIC   NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_13_RESRC;
-CREATE TABLE SIE_13_RESRC
-(
-  SEQNC                   NUMBER(10)                NULL,
-  CODE                    VARCHAR2(60 BYTE)         NULL,
-  REF_PRODT               NUMBER(10)                NULL,
-  DESCR                   VARCHAR2(4000 BYTE)       NULL,
-  REF_TYPE_FICHR          NUMBER(10)                NULL,
-  REF_STRUC_APLIC         NUMBER(10)                NULL,
-  INDIC_STOCK_MEME_REPRT  VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL,
-  TYPE_RESRC              VARCHAR2(5 BYTE)      DEFAULT 'SIMPL'                   NULL,
-  NOM                     VARCHAR2(60 BYTE)         NULL,
-  NOM_PHYSQ_COMPS         VARCHAR2(100 BYTE)        NULL,
-  INDIC_PUBLC             VARCHAR2(1 BYTE)      DEFAULT 'N'                       NULL,
-  EMPLA_HTML              VARCHAR2(11 BYTE)     DEFAULT 'HEADR'                   NULL,
-  REF_PLUGN               NUMBER(10)                NULL,
-  REF_DOSR_VIRTL          NUMBER(10)                NULL,
-  DNR_REF_PRODT           NUMBER(10)                NULL
-);
-
-
-Prompt Table SIE_13_TYPE_FICHR;
-CREATE TABLE SIE_13_TYPE_FICHR
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(23 BYTE)                    NULL,
-  NOM          VARCHAR2(60 BYTE)                    NULL,
-  DESCR        VARCHAR2(4000 BYTE)                  NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  NOM_ICON     VARCHAR2(60 BYTE)                    NULL
-);
-
-
-Prompt Table SIE_14_DETL_DOMN_VALR;
-CREATE TABLE SIE_14_DETL_DOMN_VALR
-(
-  SEQNC             NUMBER(10)                      NULL,
-  CODE_VALR         VARCHAR2(23 BYTE)               NULL,
-  VALR              VARCHAR2(2000 BYTE)             NULL,
-  REF_DOMN_VALR     NUMBER(10)                      NULL,
-  SEQNC_PRESN       NUMBER(3)                       NULL,
-  DATE_DEBUT_EFECT  DATE                            NULL,
-  DATE_FIN_EFECT    DATE                            NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  VALR_COURT        VARCHAR2(20 BYTE)               NULL,
-  VALR_ORGAN        VARCHAR2(4000 BYTE)             NULL,
-  DNR_REF_PRODT     NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_14_DOMN_VALR;
-CREATE TABLE SIE_14_DOMN_VALR
-(
-  SEQNC               NUMBER(10)                    NULL,
-  CODE                VARCHAR2(23 BYTE)             NULL,
-  NOM                 VARCHAR2(60 BYTE)             NULL,
-  DESCR               VARCHAR2(2000 BYTE)           NULL,
-  ENONC_SOURC         VARCHAR2(4000 BYTE)           NULL,
-  DATE_CREAT          DATE                          NULL,
-  UTILS_CREAT         VARCHAR2(123 BYTE)            NULL,
-  DATE_MODFC          DATE                          NULL,
-  UTILS_MODFC         VARCHAR2(123 BYTE)            NULL,
-  TYPE_DON            VARCHAR2(1 BYTE)              NULL,
-  REF_FORMT           NUMBER(10)                    NULL,
-  REF_PRODT           NUMBER(10)                    NULL,
-  REF_TYPE_DOMN_VALR  NUMBER(10)                    NULL,
-  INDIC_SYSTM         VARCHAR2(1 BYTE)          DEFAULT 'N'                       NULL,
-  DNR_REF_PRODT       NUMBER(10)                    NULL,
-  REF_DOMN            NUMBER(10)                    NULL
-);
-
-
-Prompt Table SIE_14_FORMT;
-CREATE TABLE SIE_14_FORMT
-(
-  SEQNC              NUMBER(10)                     NULL,
-  LIBL               VARCHAR2(60 BYTE)              NULL,
-  DEFNT              VARCHAR2(60 BYTE)              NULL,
-  TYPE_DON           VARCHAR2(2 BYTE)               NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  REF_PRODT          NUMBER(10)                     NULL,
-  INDIC_FORMT_ORCL   VARCHAR2(1 BYTE)               NULL,
-  INDIC_UNITE_INCLU  VARCHAR2(1 BYTE)               NULL,
-  DNR_REF_PRODT      NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_14_TYPE_DOMN_VALR;
-CREATE TABLE SIE_14_TYPE_DOMN_VALR
-(
-  SEQNC          NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  NOM            VARCHAR2(60 BYTE)                  NULL,
-  DESCR          VARCHAR2(2000 BYTE)                NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_17_ATACH_COURL_ENTRA;
-CREATE TABLE SIE_17_ATACH_COURL_ENTRA
-(
-  SEQNC                  NUMBER(18)                 NULL,
-  REF_COURL_ENTRA        NUMBER(16)                 NULL,
-  NOM                    VARCHAR2(100 BYTE)         NULL,
-  CONTN                  BLOB                       NULL,
-  REF_MIME_TYPE          NUMBER(10)                 NULL,
-  PROPR                  VARCHAR2(4000 BYTE)        NULL,
-  TAIL                   NUMBER(10)                 NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  NUMR_PIECE_CORPS_MESG  VARCHAR2(4 BYTE)           NULL
-);
-
-
-Prompt Table SIE_17_COMPT_AXIAT;
-CREATE TABLE SIE_17_COMPT_AXIAT
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  CODE                  VARCHAR2(23 BYTE)           NULL,
-  NOM                   VARCHAR2(60 BYTE)           NULL,
-  DESCR                 VARCHAR2(4000 BYTE)         NULL,
-  NUMR                  NUMBER(10)                  NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL,
-  REF_DOMN              NUMBER(10)                  NULL,
-  REF_PROFL_COURL       NUMBER(10)                  NULL,
-  REF_PUBLC_PAGE_GARDE  NUMBER(10)                  NULL
-);
-
-
-Prompt Table SIE_17_COMPT_TWILI;
-CREATE TABLE SIE_17_COMPT_TWILI
-(
-  SEQNC           NUMBER(10)                        NULL,
-  CODE            VARCHAR2(23 BYTE)                 NULL,
-  NOM             VARCHAR2(60 BYTE)                 NULL,
-  DESCR           VARCHAR2(4000 BYTE)               NULL,
-  ACOUN_ID        VARCHAR2(100 BYTE)                NULL,
-  AUTHE_TOKEN     VARCHAR2(100 BYTE)                NULL,
-  REPRT_WALT      VARCHAR2(500 BYTE)                NULL,
-  MOT_PASSE_WALT  VARCHAR2(30 BYTE)                 NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  NUMR            NUMBER(11)                        NULL,
-  INDIC_PARTG     VARCHAR2(1 BYTE)              DEFAULT 'N'                       NULL,
-  REF_DOMN        NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_17_COURL;
-CREATE TABLE SIE_17_COURL
-(
-  SEQNC             NUMBER(10)                      NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  SERVR             VARCHAR2(100 BYTE)              NULL,
-  PORT              NUMBER                      DEFAULT 25                        NULL,
-  DOMN              VARCHAR2(100 BYTE)              NULL,
-  NOM_ENVOY         VARCHAR2(100 BYTE)              NULL,
-  ADRES_ENVOY       VARCHAR2(100 BYTE)              NULL,
-  SUJET             VARCHAR2(1000 BYTE)             NULL,
-  INDIC_FORMT_HTML  VARCHAR2(1 BYTE)            DEFAULT 'N'                       NULL,
-  AUTHE_METHD       VARCHAR2(23 BYTE)               NULL,
-  AUTHE_USAGR       VARCHAR2(100 BYTE)              NULL,
-  AUTHE_MDP         VARCHAR2(100 BYTE)              NULL,
-  CORPS             CLOB                            NULL,
-  NOMBR_TENTV       NUMBER                      DEFAULT 0                         NULL,
-  NOMBR_TENTV_MAX   NUMBER                      DEFAULT 5                         NULL,
-  SENS              VARCHAR2(5 BYTE)                NULL,
-  STAT_SOUMS        VARCHAR2(30 BYTE)               NULL
-);
-
-
-Prompt Table SIE_17_COURL_DESTN;
-CREATE TABLE SIE_17_COURL_DESTN
-(
-  SEQNC          NUMBER(10)                         NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  REF_FIL_ATENT  NUMBER(10)                         NULL,
-  NOM            VARCHAR2(100 BYTE)                 NULL,
-  ADRES          VARCHAR2(100 BYTE)                 NULL,
-  TYPE           VARCHAR2(10 BYTE)                  NULL
-);
-
-
-Prompt Table SIE_17_COURL_ENTRA;
-CREATE TABLE SIE_17_COURL_ENTRA
-(
-  SEQNC            NUMBER(16)                       NULL,
-  REF_PROFL_COURL  NUMBER(10)                       NULL,
-  DATE_RECPT       DATE                             NULL,
-  DATE_COURL       DATE                             NULL,
-  OBJET            VARCHAR2(4000 BYTE)              NULL,
-  CONTN_TEXTE_PUR  CLOB                             NULL,
-  CONTN_HTML       CLOB                             NULL,
-  NOM_EXPED        VARCHAR2(500 BYTE)               NULL,
-  COURL_EXPED      VARCHAR2(2000 BYTE)              NULL,
-  INDIC_SUPRM      VARCHAR2(1 BYTE)                 NULL,
-  INDIC_LU         VARCHAR2(1 BYTE)                 NULL,
-  INDIC_RECNT      VARCHAR2(1 BYTE)                 NULL,
-  INDIC_REPND      VARCHAR2(1 BYTE)                 NULL,
-  TYPE_CONTN       VARCHAR2(100 BYTE)               NULL,
-  TAIL_MESG        NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_17_COURL_PIECE_JOINT;
-CREATE TABLE SIE_17_COURL_PIECE_JOINT
-(
-  SEQNC       NUMBER(10)                            NULL,
-  REF_COURL   NUMBER(10)                            NULL,
-  MIME_TYPE   VARCHAR2(100 BYTE)                    NULL,
-  CONTN       BLOB                                  NULL,
-  TAIL        NUMBER(12)                            NULL,
-  NOM_FICHR   VARCHAR2(500 BYTE)                    NULL,
-  MODE_ATACH  VARCHAR2(30 BYTE)                     NULL
-);
-
-
-Prompt Table SIE_17_PIECE_TELCP_AXIAT;
-CREATE TABLE SIE_17_PIECE_TELCP_AXIAT
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_TELCP_AXIAT  NUMBER(10)                       NULL,
-  NOMBR_PAGE       NUMBER(5)                        NULL,
-  ORDRE_ATACH      NUMBER(3)                        NULL,
-  CONTN            BLOB                             NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  MIME_TYPE        VARCHAR2(100 BYTE)               NULL,
-  NOM_FICHR        VARCHAR2(100 BYTE)               NULL
-);
-
-
-Prompt Table SIE_17_PROFL_COURL;
-CREATE TABLE SIE_17_PROFL_COURL
-(
-  SEQNC                    NUMBER(10)               NULL,
-  DOMN                     VARCHAR2(100 BYTE)       NULL,
-  NOM_ENVOY                VARCHAR2(100 BYTE)       NULL,
-  ADRES_ENVOY              VARCHAR2(100 BYTE)       NULL,
-  DATE_CREAT               DATE                     NULL,
-  UTILS_CREAT              VARCHAR2(123 BYTE)       NULL,
-  DATE_MODFC               DATE                     NULL,
-  UTILS_MODFC              VARCHAR2(123 BYTE)       NULL,
-  CODE                     VARCHAR2(23 BYTE)        NULL,
-  SERVR_SORTN              VARCHAR2(100 BYTE)       NULL,
-  PORT_SORTN               NUMBER(5)            DEFAULT 25                        NULL,
-  AUTHE_METHD_SORTN        VARCHAR2(23 BYTE)        NULL,
-  AUTHE_USAGR_SORTN        VARCHAR2(100 BYTE)       NULL,
-  AUTHE_MDP_SORTN          VARCHAR2(100 BYTE)       NULL,
-  REF_DOMN                 NUMBER(10)               NULL,
-  NOM                      VARCHAR2(60 BYTE)        NULL,
-  DESCR                    VARCHAR2(4000 BYTE)      NULL,
-  INDIC_SSL_SORTN          VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL,
-  SERVR_ENTRA              VARCHAR2(100 BYTE)       NULL,
-  PORT_ENTRA               NUMBER(5)                NULL,
-  INDIC_SSL_ENTRA          VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL,
-  AUTHE_METHD_ENTRA        VARCHAR2(23 BYTE)        NULL,
-  AUTHE_USAGR_ENTRA        VARCHAR2(100 BYTE)       NULL,
-  AUTHE_MDP_ENTRA          VARCHAR2(100 BYTE)       NULL,
-  PROTC_ENTRA              VARCHAR2(5 BYTE)     DEFAULT 'IMAP'                    NULL,
-  INDIC_LIRE_PROFL_ENTRA   VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL,
-  INDIC_LECTR_ENTRA_ERR    VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL,
-  INDIC_REPRS_LECTR_ENTRA  VARCHAR2(1 BYTE)     DEFAULT 'N'                       NULL
-);
-
-
-Prompt Table SIE_17_PROPR_COURL_ENTRA;
-CREATE TABLE SIE_17_PROPR_COURL_ENTRA
-(
-  SEQNC            NUMBER(18)                       NULL,
-  REF_COURL_ENTRA  NUMBER(16)                       NULL,
-  NOM              VARCHAR2(100 BYTE)               NULL,
-  VALR             VARCHAR2(4000 BYTE)              NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_17_SMS_TWILI;
-CREATE TABLE SIE_17_SMS_TWILI
-(
-  SEQNC            NUMBER(10)                       NULL,
-  NUMR_DE          NUMBER(18)                       NULL,
-  NUMR_A           NUMBER(18)                       NULL,
-  MESG             VARCHAR2(160 CHAR)               NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  TW_SID           VARCHAR2(100 BYTE)               NULL,
-  TW_STATUS        VARCHAR2(50 BYTE)                NULL,
-  TW_PRICE         NUMBER(5,2)                      NULL,
-  TW_URI           VARCHAR2(500 BYTE)               NULL,
-  STAT_SOUMS       VARCHAR2(30 BYTE)                NULL,
-  DATE_ENVOI_DIFR  DATE                             NULL,
-  REF_COMPT_TWILI  NUMBER(10)                       NULL,
-  NUMR_MESG        NUMBER(3)                        NULL,
-  NOMBR_MESG_TOTL  NUMBER(3)                        NULL,
-  REF_MESG_PRECD   NUMBER(10)                       NULL,
-  ID_SESN          NUMBER                           NULL,
-  GROUP_SMS        NUMBER(10)                       NULL,
-  REPNS_SERVR      SYS.XMLTYPE                      NULL,
-  SENS             VARCHAR2(5 BYTE)                 NULL
-);
-
-
-Prompt Table SIE_17_SMS_TWILI_ENTRA;
-CREATE TABLE SIE_17_SMS_TWILI_ENTRA
-(
-  SEQNC                   NUMBER(10)                NULL,
-  TW_RECPT_ACCOUNTSID     VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_APIVERSION     VARCHAR2(10 BYTE)         NULL,
-  TW_RECPT_BODY           VARCHAR2(200 BYTE)        NULL,
-  TW_RECPT_FROM           VARCHAR2(16 BYTE)         NULL,
-  TW_RECPT_FROMCITY       VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_FROMCOUNTRY    VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_FROMSTATE      VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_FROMZIP        VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_SMSMESSAGESID  VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_SMSSID         VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_SMSSTATUS      VARCHAR2(30 BYTE)         NULL,
-  TW_RECPT_TO             VARCHAR2(16 BYTE)         NULL,
-  TW_RECPT_TOCITY         VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_TOCOUNTRY      VARCHAR2(100 BYTE)        NULL,
-  TW_RECPT_TOSTATE        VARCHAR2(200 BYTE)        NULL,
-  TW_RECPT_TOZIP          VARCHAR2(20 BYTE)         NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL
-);
-
-
-Prompt Table SIE_17_TELCP_AXIAT;
-CREATE TABLE SIE_17_TELCP_AXIAT
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_COMPT_AXIAT  NUMBER(10)                       NULL,
-  DESTN_FORMT      VARCHAR2(100 BYTE)               NULL,
-  NUMR_DESTN       NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  STAT_SOUMS       VARCHAR2(30 BYTE)                NULL,
-  DATE_ENVOI_DIFR  DATE                             NULL,
-  OBJET            VARCHAR2(500 BYTE)               NULL,
-  SENS             VARCHAR2(5 BYTE)                 NULL
-);
-
-
-Prompt Table SIE_19_BOUTN;
-CREATE TABLE SIE_19_BOUTN
-(
-  SEQNC                        NUMBER(10)           NULL,
-  REF_LANG                     NUMBER(10)           NULL,
-  REF_DISPN_FONCT              NUMBER(10)           NULL,
-  ITEM_SUBST                   VARCHAR2(60 BYTE)     NULL,
-  ID_TEMPL_BOUTN               NUMBER               NULL,
-  TEMPL_BOUTN                  VARCHAR2(4000 BYTE)     NULL,
-  DATE_CREAT                   DATE                 NULL,
-  UTILS_CREAT                  VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                   DATE                 NULL,
-  UTILS_MODFC                  VARCHAR2(123 BYTE)     NULL,
-  LIBL                         VARCHAR2(200 BYTE)     NULL,
-  INDIC_ACTIF                  VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  REF_DV_TYPE_MESG_AIDE_CONTX  NUMBER(10)           NULL,
-  MESG_AIDE_CONTX              VARCHAR2(200 BYTE)     NULL
-);
-
-
-Prompt Table SIE_19_CLE;
-CREATE TABLE SIE_19_CLE
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_LANG         NUMBER(10)                       NULL,
-  INDIC_SHIFT      VARCHAR2(1 BYTE)             DEFAULT 'N'                       NULL,
-  INDIC_ALT        VARCHAR2(1 BYTE)             DEFAULT 'N'                       NULL,
-  INDIC_CTRL       VARCHAR2(1 BYTE)             DEFAULT 'N'                       NULL,
-  INDIC_INTER      VARCHAR2(1 BYTE)             DEFAULT 'N'                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  CODE_KEYPR       NUMBER(4)                        NULL,
-  CODE_KEYDW       NUMBER(4)                        NULL,
-  REF_DISPN_FONCT  NUMBER(10)                       NULL,
-  INDIC_ACTIF      VARCHAR2(1 BYTE)             DEFAULT 'O'                       NULL
-);
-
-
-Prompt Table SIE_19_DISPN_FONCT;
-CREATE TABLE SIE_19_DISPN_FONCT
-(
-  SEQNC         NUMBER(10)                          NULL,
-  REF_PRODT     NUMBER(10)                          NULL,
-  REF_FONCT     NUMBER(10)                          NULL,
-  VALR_ATRIB_1  VARCHAR2(200 BYTE)                  NULL,
-  VALR_ATRIB_2  VARCHAR2(200 BYTE)                  NULL,
-  VALR_ATRIB_3  VARCHAR2(200 BYTE)                  NULL,
-  VALR_ATRIB_4  VARCHAR2(200 BYTE)                  NULL,
-  VALR_ATRIB_5  VARCHAR2(200 BYTE)                  NULL,
-  DATE_CREAT    DATE                                NULL,
-  UTILS_CREAT   VARCHAR2(123 BYTE)                  NULL,
-  DATE_MODFC    DATE                                NULL,
-  UTILS_MODFC   VARCHAR2(123 BYTE)                  NULL
-);
-
-
-Prompt Table SIE_19_FONCT;
-CREATE TABLE SIE_19_FONCT
-(
-  SEQNC                   NUMBER(10)                NULL,
-  CODE                    VARCHAR2(23 BYTE)         NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL,
-  TITRE_ATRIB1            VARCHAR2(60 BYTE)         NULL,
-  REF_DV_TYPE_ATRIB1      NUMBER(10)                NULL,
-  VALR_DEFT_ATRIB1        VARCHAR2(200 BYTE)        NULL,
-  TITRE_ATRIB2            VARCHAR2(60 BYTE)         NULL,
-  TITRE_ATRIB3            VARCHAR2(60 BYTE)         NULL,
-  TITRE_ATRIB4            VARCHAR2(60 BYTE)         NULL,
-  TITRE_ATRIB5            VARCHAR2(60 BYTE)         NULL,
-  REF_DV_TYPE_ATRIB2      NUMBER(10)                NULL,
-  REF_DV_TYPE_ATRIB3      NUMBER(10)                NULL,
-  REF_DV_TYPE_ATRIB4      NUMBER(10)                NULL,
-  REF_DV_TYPE_ATRIB5      NUMBER(10)                NULL,
-  VALR_DEFT_ATRIB2        VARCHAR2(200 BYTE)        NULL,
-  VALR_DEFT_ATRIB3        VARCHAR2(200 BYTE)        NULL,
-  VALR_DEFT_ATRIB4        VARCHAR2(200 BYTE)        NULL,
-  VALR_DEFT_ATRIB5        VARCHAR2(200 BYTE)        NULL,
-  REF_DV_TYPE_ACTIO       NUMBER(10)                NULL,
-  EXPRE_ACTIO             VARCHAR2(4000 BYTE)       NULL,
-  REF_DV_TYPE_EXPRE       NUMBER(10)                NULL,
-  INDIC_AFECT_INPUT_HTML  VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL,
-  INDIC_PREVN_ACTIO_DEFT  VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL,
-  INDIC_CLE               VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL,
-  INDIC_BOUTN             VARCHAR2(1 BYTE)      DEFAULT 'O'                       NULL,
-  CONDT_PRISE_CHARG       VARCHAR2(200 BYTE)        NULL
-);
-
-
-Prompt Table SIE_19_FONCT_LANG;
-CREATE TABLE SIE_19_FONCT_LANG
-(
-  SEQNC        NUMBER(10)                           NULL,
-  NOM          VARCHAR2(60 BYTE)                    NULL,
-  REF_LANG     NUMBER(10)                           NULL,
-  DESCR        VARCHAR2(4000 BYTE)                  NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  REF_FONCT    NUMBER(10)                           NULL
-);
-
-
-Prompt Table SIE_19_SPECF_FONCT;
-CREATE TABLE SIE_19_SPECF_FONCT
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_DISPN_FONCT    NUMBER(10)                     NULL,
-  REF_ITEM           NUMBER(10)                     NULL,
-  REF_PAGE           NUMBER(10)                     NULL,
-  REF_DV_TYPE_SUBST  NUMBER(10)                     NULL,
-  VALR_ATRIB_1       VARCHAR2(200 BYTE)             NULL,
-  VALR_ATRIB_2       VARCHAR2(200 BYTE)             NULL,
-  VALR_ATRIB_3       VARCHAR2(200 BYTE)             NULL,
-  VALR_ATRIB_4       VARCHAR2(200 BYTE)             NULL,
-  VALR_ATRIB_5       VARCHAR2(200 BYTE)             NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  DNR_REF_PAGE       NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_20_DEPLM;
-CREATE TABLE SIE_20_DEPLM
-(
-  SEQNC           NUMBER(10)                        NULL,
-  NOM             VARCHAR2(60 BYTE)                 NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  REF_MODL        NUMBER(10)                        NULL,
-  REF_MODL_PARMT  NUMBER(10)                        NULL,
-  REF_PRODT_LANG  NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_20_DETL_DOCMN;
-CREATE TABLE SIE_20_DETL_DOCMN
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_DOCMN        NUMBER(10)                       NULL,
-  REF_SECTN_DOCMN  NUMBER(10)                       NULL,
-  REF_DETL_DOCMN   NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  VALR             VARCHAR2(4000 BYTE)              NULL
-);
-
-
-Prompt Table SIE_20_DOCMN;
-CREATE TABLE SIE_20_DOCMN
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  REF_PRODT_LANG         NUMBER(10)                 NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  REF_STRUC_APLIC        NUMBER(10)                 NULL,
-  REF_SEQNC_STRUC_APLIC  NUMBER(10)                 NULL
-);
-
-
-Prompt Table SIE_20_MODL;
-CREATE TABLE SIE_20_MODL
-(
-  SEQNC                     NUMBER(10)              NULL,
-  REF_DV_TYPE_MODL          NUMBER(10)              NULL,
-  REF_VERSN                 NUMBER(10)              NULL,
-  REF_MODL                  NUMBER(10)              NULL,
-  NOM_ORGAN                 VARCHAR2(30 BYTE)       NULL,
-  NUMR_SURCH                NUMBER(2)               NULL,
-  INDIC_AGREG               VARCHAR2(1 BYTE)    DEFAULT 'N'                       NULL,
-  INDIC_PIPLN               VARCHAR2(1 BYTE)    DEFAULT 'N'                       NULL,
-  INDIC_DETRM               VARCHAR2(1 BYTE)    DEFAULT 'N'                       NULL,
-  INDIC_AUTHID_CURNT_UTILS  VARCHAR2(1 BYTE)    DEFAULT 'N'                       NULL,
-  INDIC_PUBLC               VARCHAR2(1 BYTE)    DEFAULT 'N'                       NULL,
-  DATE_CREAT                DATE                    NULL,
-  UTILS_CREAT               VARCHAR2(123 BYTE)      NULL,
-  DATE_MODFC                DATE                    NULL,
-  UTILS_MODFC               VARCHAR2(123 BYTE)      NULL,
-  VERSN_BD_APLIC            VARCHAR2(30 BYTE)       NULL
-);
-
-
-Prompt Table SIE_20_MODL_EXCEP;
-CREATE TABLE SIE_20_MODL_EXCEP
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_MODL     NUMBER(10)                           NULL,
-  NOM_ORGAN    VARCHAR2(30 BYTE)                    NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_20_MODL_PARMT;
-CREATE TABLE SIE_20_MODL_PARMT
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_MODL         NUMBER(10)                       NULL,
-  NOM_ORGAN        VARCHAR2(30 BYTE)                NULL,
-  REF_DV_TYPE_DON  NUMBER(10)                       NULL,
-  POSTN            NUMBER(3)                        NULL,
-  VALR_DEFT        VARCHAR2(200 BYTE)               NULL,
-  SENS             VARCHAR2(15 BYTE)                NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  INDIC_PUBLC      VARCHAR2(1 BYTE)             DEFAULT 'N'                       NULL,
-  INDIC_RETR       VARCHAR2(1 BYTE)             DEFAULT 'N'                       NULL
-);
-
-
-Prompt Table SIE_20_SECTN_DOCMN;
-CREATE TABLE SIE_20_SECTN_DOCMN
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_DV_TYPE_SECTN  NUMBER(10)                     NULL,
-  REF_SECTN_DOCMN    NUMBER(10)                     NULL,
-  REF_STRUC_APLIC    NUMBER(10)                     NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  NOM                VARCHAR2(30 BYTE)              NULL,
-  TITRE              VARCHAR2(60 BYTE)              NULL,
-  DESCR              VARCHAR2(4000 BYTE)            NULL,
-  REF_FORMT          NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_21_PLUGN_ARBRE;
-CREATE TABLE SIE_21_PLUGN_ARBRE
-(
-  SEQNC                           NUMBER(10)        NULL,
-  ENONC_PRE_REQT                  VARCHAR2(4000 BYTE)     NULL,
-  NOM_TABLE                       VARCHAR2(30 BYTE)     NULL,
-  COLN_TITRE                      VARCHAR2(30 BYTE)     NULL,
-  COLN_TYPE                       VARCHAR2(30 BYTE) DEFAULT NULL     NULL,
-  COLN_VALR                       VARCHAR2(30 BYTE)     NULL,
-  COLN_AIDE_INSTA                 VARCHAR2(30 BYTE)     NULL,
-  COLN_LIEN                       VARCHAR2(400 BYTE)     NULL,
-  COLN_ID                         VARCHAR2(30 BYTE)     NULL,
-  COLN_ID_PARNT                   VARCHAR2(30 BYTE)     NULL,
-  ENONC_CONDT                     VARCHAR2(400 BYTE)     NULL,
-  ENONC_CONDT_COMNC_PAR           VARCHAR2(400 BYTE)     NULL,
-  ENONC_TRIER_PAR                 VARCHAR2(400 BYTE)     NULL,
-  DATE_CREAT                      DATE              NULL,
-  UTILS_CREAT                     VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                      DATE              NULL,
-  UTILS_MODFC                     VARCHAR2(123 BYTE)     NULL,
-  INDIC_RENMR                     VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  INDIC_DEPLC                     VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  COLN_TITRE_AIDE_INSTA           VARCHAR2(30 BYTE)     NULL,
-  LARGR_REGN_ARBRE                NUMBER(10)    DEFAULT 256                       NULL,
-  HAUTR_REGN_ARBRE                NUMBER(10)    DEFAULT 768                       NULL,
-  REF_PLUGN_ARBRE_NOEUD           NUMBER(10)        NULL,
-  INDIC_COMNC_PAR_RACN            VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  IMAGE_SPRIT                     VARCHAR2(400 BYTE)     NULL,
-  TYPE_ICONE_NOEUD                VARCHAR2(5 BYTE) DEFAULT 'RESRC'     NULL,
-  REF_FORMT_RESRC                 NUMBER(10)        NULL,
-  REF_RESRC_COMPS                 NUMBER(10)        NULL,
-  OBTEN_JSON_ARBRE_NOMBR_NIV      NUMBER(10)    DEFAULT 2                         NULL,
-  OBTEN_JSON_NOEUD_NOMBR_NIV      NUMBER(10)    DEFAULT 1                         NULL,
-  MODE_CACHE                      VARCHAR2(23 BYTE) DEFAULT 'SESN'     NULL,
-  DNR_REF_PRODT                   NUMBER(10)        NULL,
-  CODE                            VARCHAR2(23 BYTE)     NULL,
-  INDIC_CHARG_PROGR               VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  INDIC_FLECH_AIDE_INSTA          VARCHAR2(1 BYTE) DEFAULT 'N'     NULL,
-  REF_DV_CURSR_AIDE_INSTA         NUMBER(10)        NULL,
-  NOM_PROCD_GLISR_ELEMN_ARBRE     VARCHAR2(92 BYTE)     NULL,
-  NOM_PROCD_DEPSR_ELEMN_ARBRE     VARCHAR2(92 BYTE)     NULL,
-  INDIC_COMNC_PAR_COLN_PARNT_NUL  VARCHAR2(1 BYTE) DEFAULT 'O'     NULL,
-  REF_PRODT                       NUMBER(10)        NULL
-);
-
-
-Prompt Table SIE_21_PLUGN_ARBRE_NOEUD;
-CREATE TABLE SIE_21_PLUGN_ARBRE_NOEUD
-(
-  SEQNC              NUMBER(10)                     NULL,
-  CODE               VARCHAR2(35 BYTE)              NULL,
-  NOM                VARCHAR2(60 BYTE)              NULL,
-  DESCR              VARCHAR2(2000 BYTE)            NULL,
-  REF_PLUGN_ARBRE    NUMBER(10)                     NULL,
-  INDIC_SELCT_NOEUD  VARCHAR2(1 BYTE)           DEFAULT 'O'                       NULL,
-  INDIC_OUVRI_NOEUD  VARCHAR2(1 BYTE)           DEFAULT 'O'                       NULL,
-  INDIC_CREER_NOEUD  VARCHAR2(1 BYTE)           DEFAULT 'O'                       NULL,
-  INDIC_SUPRM_NOEUD  VARCHAR2(1 BYTE)           DEFAULT 'O'                       NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  INDIC_FERMR_NOEUD  VARCHAR2(1 BYTE)           DEFAULT 'O'                       NULL,
-  REF_RESRC          NUMBER(10)                     NULL,
-  REF_OCURN_RESRC    NUMBER(10)                     NULL,
-  DNR_REF_PRODT      NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_21_PLUGN_CALND;
-CREATE TABLE SIE_21_PLUGN_CALND
-(
-  SEQNC                      NUMBER(10)             NULL,
-  ENONC_PRE_REQT             VARCHAR2(4000 BYTE)     NULL,
-  REF_DV_VUE_DEFT            NUMBER(10)             NULL,
-  CONCT_PROPR_ENTET_GAUCH    VARCHAR2(400 BYTE)     NULL,
-  CONCT_PROPR_ENTET_CENTR    VARCHAR2(400 BYTE)     NULL,
-  CONCT_PROPR_ENTET_DROIT    VARCHAR2(400 BYTE)     NULL,
-  INDIC_EVENM_MODFB          VARCHAR2(1 BYTE)   DEFAULT 'O'                       NULL,
-  NOM_TABLE                  VARCHAR2(30 BYTE)      NULL,
-  COLN_TITRE                 VARCHAR2(30 BYTE)      NULL,
-  COLN_DESCR                 VARCHAR2(30 BYTE)      NULL,
-  COLN_TYPE                  VARCHAR2(30 BYTE)      NULL,
-  COLN_AIDE_INSTA            VARCHAR2(30 BYTE)      NULL,
-  COLN_LIEN                  VARCHAR2(30 BYTE)      NULL,
-  COLN_INDIC_JOURN_COMPL     VARCHAR2(30 BYTE)      NULL,
-  COLN_DATE_DEBUT            VARCHAR2(30 BYTE)      NULL,
-  COLN_DATE_FIN              VARCHAR2(30 BYTE)      NULL,
-  DATE_CREAT                 DATE                   NULL,
-  UTILS_CREAT                VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                 DATE                   NULL,
-  UTILS_MODFC                VARCHAR2(123 BYTE)     NULL,
-  LARGR_REGN_CALND           NUMBER(4)              NULL,
-  COLN_TITRE_AIDE_INSTA      VARCHAR2(30 BYTE)      NULL,
-  INDIC_AGEND                VARCHAR2(1 BYTE)   DEFAULT 'N'                       NULL,
-  AGEND_NOM_TABLE            VARCHAR2(30 BYTE)      NULL,
-  AGEND_COLN_TITRE           VARCHAR2(30 BYTE)      NULL,
-  COLN_VALR                  VARCHAR2(30 BYTE)      NULL,
-  AGEND_COLN_VALR            VARCHAR2(30 BYTE)      NULL,
-  AGEND_COLN_COULR           VARCHAR2(30 BYTE)      NULL,
-  CODE                       VARCHAR2(23 BYTE)  DEFAULT NULL                      NULL,
-  DNR_REF_PRODT              NUMBER(10)             NULL,
-  COLN_AGEND                 VARCHAR2(30 BYTE)      NULL,
-  COLN_IDENT                 VARCHAR2(30 BYTE)      NULL,
-  COLN_DATE_JOURN_COMPL      VARCHAR2(30 BYTE)      NULL,
-  COLN_DATE_FIN_JOURN_COMPL  VARCHAR2(30 BYTE)      NULL,
-  NOMBR_MINTS_INTER          NUMBER(4)          DEFAULT 30                        NULL,
-  HEURE_DEBUT_NORML          VARCHAR2(10 BYTE)  DEFAULT 8                         NULL,
-  HEURE_FIN_NORML            VARCHAR2(10 BYTE)  DEFAULT 17                        NULL,
-  HEURE_DEBUT_EXTEN          VARCHAR2(10 BYTE)      NULL,
-  HEURE_FIN_EXTEN            VARCHAR2(10 BYTE)      NULL,
-  COLN_INDIC_EVENM_MODFB     VARCHAR2(30 BYTE)  DEFAULT NULL                      NULL,
-  REF_PRODT                  NUMBER(10)             NULL
-);
-
-
-Prompt Table SIE_21_PLUGN_CALND_COULR;
-CREATE TABLE SIE_21_PLUGN_CALND_COULR
-(
-  SEQNC        NUMBER(10)                           NULL,
-  ORDRE_PRESN  NUMBER                               NULL,
-  COULR        VARCHAR2(7 BYTE)                     NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  COULR_TEXT   VARCHAR2(7 BYTE)                     NULL
-);
-
-
-Prompt Table SIE_21_PLUGN_CALND_TYPE;
-CREATE TABLE SIE_21_PLUGN_CALND_TYPE
-(
-  SEQNC             NUMBER(10)                      NULL,
-  CODE              VARCHAR2(23 BYTE)               NULL,
-  NOM               VARCHAR2(60 BYTE)               NULL,
-  DESCR             VARCHAR2(2000 BYTE)             NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  COULR_TEXTE       VARCHAR2(7 BYTE)                NULL,
-  COULR_BORDR       VARCHAR2(7 BYTE)                NULL,
-  COULR_ARIER_PLAN  VARCHAR2(7 BYTE)                NULL,
-  REF_DOMN          NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_21_PLUGN_ITEM_MENU;
-CREATE TABLE SIE_21_PLUGN_ITEM_MENU
-(
-  SEQNC                   NUMBER(10)                NULL,
-  REF_ITEM_MENU           NUMBER(10)                NULL,
-  REF_PLUGN_MENU          NUMBER(10)                NULL,
-  NIV_ITEM                NUMBER(3)                 NULL,
-  ETEND_NOMBR_COLN        NUMBER(3)             DEFAULT 1                         NULL,
-  RANG_ITEM               NUMBER(3)             DEFAULT 1                         NULL,
-  COLN_ITEM               NUMBER(3)             DEFAULT 1                         NULL,
-  DATE_CREAT              DATE                      NULL,
-  UTILS_CREAT             VARCHAR2(123 BYTE)        NULL,
-  DATE_MODFC              DATE                      NULL,
-  UTILS_MODFC             VARCHAR2(123 BYTE)        NULL,
-  DNR_REF_PRODT           NUMBER(10)                NULL,
-  REF_DV_CONTN_ITEM_MENU  NUMBER(10)                NULL,
-  REF_DV_ALIGN            NUMBER(10)                NULL
-);
-
-
-Prompt Table SIE_21_PLUGN_MENU;
-CREATE TABLE SIE_21_PLUGN_MENU
-(
-  SEQNC               NUMBER(10)                    NULL,
-  CODE                VARCHAR2(23 BYTE)             NULL,
-  DATE_CREAT          DATE                          NULL,
-  UTILS_CREAT         VARCHAR2(123 BYTE)            NULL,
-  DATE_MODFC          DATE                          NULL,
-  UTILS_MODFC         VARCHAR2(123 BYTE)            NULL,
-  DNR_REF_PRODT       NUMBER(10)                    NULL,
-  REF_DV_TYPE_MENU    NUMBER(10)                    NULL,
-  LARGR_REGN_MENU     NUMBER(4)                     NULL,
-  HAUTR_REGN_MENU     NUMBER(4)                     NULL,
-  REF_DV_ORIEN_MENU   NUMBER(10)                    NULL,
-  REF_DV_COULR_THEME  NUMBER(10)                    NULL,
-  REF_DV_COULR_PRINC  NUMBER(10)                    NULL,
-  REF_MENU            NUMBER(10)                    NULL,
-  REF_DV_FORMT_MENU   NUMBER(10)                    NULL,
-  REF_PRODT           NUMBER(10)                    NULL
-);
-
-
-Prompt Table SIE_23_APLIC_MODL_RECHR;
-CREATE TABLE SIE_23_APLIC_MODL_RECHR
-(
-  SEQNC                        NUMBER(10)           NULL,
-  REF_MODL_RECHR               NUMBER(10)           NULL,
-  REF_STRUC_APLIC_RECHR        NUMBER(10)           NULL,
-  REF_STRUC_APLIC_LIEN         NUMBER(10)           NULL,
-  NOMBR_MAXIM_RESLT            NUMBER(4)            NULL,
-  UTILS_CREAT                  VARCHAR2(123 BYTE)     NULL,
-  DATE_CREAT                   DATE                 NULL,
-  UTILS_MODFC                  VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                   DATE                 NULL,
-  REF_ATRIB_STRUC_APLIC_AFICH  NUMBER(10)           NULL
-);
-
-
-Prompt Table SIE_23_DETL_APLIC_MODL_RECHR;
-CREATE TABLE SIE_23_DETL_APLIC_MODL_RECHR
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  REF_APLIC_MODL_RECHR   NUMBER(10)                 NULL,
-  REF_ATRIB_STRUC_APLIC  NUMBER(10)                 NULL,
-  REF_PATRN_RECHR        NUMBER(10)                 NULL,
-  ORDRE_EXECT            NUMBER(3)                  NULL,
-  PERTN                  NUMBER(3)                  NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL
-);
-
-
-Prompt Table SIE_23_DETL_RESLT_RECHR;
-CREATE TABLE SIE_23_DETL_RESLT_RECHR
-(
-  SEQNC                      NUMBER(10)             NULL,
-  REF_RECHR                  NUMBER(10)             NULL,
-  REF_ENONC_RECHR            NUMBER(10)             NULL,
-  UTILS_CREAT                VARCHAR2(123 BYTE)     NULL,
-  DATE_CREAT                 DATE                   NULL,
-  UTILS_MODFC                VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                 DATE                   NULL,
-  REF_DETL_APLIC_MODL_RECHR  NUMBER(10)             NULL,
-  DNR_PERTN                  NUMBER(3)              NULL,
-  REF_SEQNC_STRUC_APLIC      NUMBER(10)             NULL,
-  REF_RESLT_RECHR            NUMBER(10)             NULL
-);
-
-
-Prompt Table SIE_23_ENONC_RECHR;
-CREATE TABLE SIE_23_ENONC_RECHR
-(
-  SEQNC        NUMBER(10)                           NULL,
-  REF_RECHR    NUMBER(10)                           NULL,
-  MOT          VARCHAR2(100 BYTE)                   NULL,
-  ORDRE_APART  NUMBER(3)                            NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL
-);
-
-
-Prompt Table SIE_23_MODL_RECHR;
-CREATE TABLE SIE_23_MODL_RECHR
-(
-  SEQNC          NUMBER(10)                         NULL,
-  CODE           VARCHAR2(23 BYTE)                  NULL,
-  REF_DOMN       NUMBER(10)                         NULL,
-  NOM            VARCHAR2(60 BYTE)                  NULL,
-  DESCR          VARCHAR2(4000 BYTE)                NULL,
-  UTILS_CREAT    VARCHAR2(123 BYTE)                 NULL,
-  DATE_CREAT     DATE                               NULL,
-  UTILS_MODFC    VARCHAR2(123 BYTE)                 NULL,
-  DATE_MODFC     DATE                               NULL,
-  REF_PRODT      NUMBER(10)                         NULL,
-  DNR_REF_PRODT  NUMBER(10)                         NULL
-);
-
-
-Prompt Table SIE_23_PATRN_RECHR;
-CREATE TABLE SIE_23_PATRN_RECHR
-(
-  SEQNC              NUMBER(10)                     NULL,
-  CODE               VARCHAR2(23 BYTE)              NULL,
-  NOM                VARCHAR2(60 BYTE)              NULL,
-  DESCR              VARCHAR2(4000 BYTE)            NULL,
-  ENONC_PLSQL_GAUCH  VARCHAR2(200 BYTE)             NULL,
-  ENONC_PLSQL_DROIT  VARCHAR2(200 BYTE)             NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  OPERT              VARCHAR2(23 BYTE)              NULL,
-  REF_PRODT          NUMBER(10)                     NULL,
-  DNR_REF_PRODT      NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_23_RECHR;
-CREATE TABLE SIE_23_RECHR
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_UTILS       NUMBER(10)                        NULL,
-  DATE_EXECT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  REF_MODL_RECHR  NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_23_RESLT_RECHR;
-CREATE TABLE SIE_23_RESLT_RECHR
-(
-  SEQNC                      NUMBER(10)             NULL,
-  REF_RECHR                  NUMBER(10)             NULL,
-  UTILS_CREAT                VARCHAR2(123 BYTE)     NULL,
-  DATE_CREAT                 DATE                   NULL,
-  UTILS_MODFC                VARCHAR2(123 BYTE)     NULL,
-  DATE_MODFC                 DATE                   NULL,
-  DNR_LIBL_STRUC_APLIC_HTML  VARCHAR2(4000 BYTE)     NULL,
-  DNR_LIBL_STRUC_APLIC       VARCHAR2(1000 BYTE)     NULL,
-  DNR_PERTN                  NUMBER(5,2)            NULL,
-  DNR_LIEN                   VARCHAR2(4000 BYTE)     NULL,
-  DNR_DECMP_RESLT            NUMBER(4)              NULL,
-  REF_APLIC_MODL_RECHR       NUMBER(10)             NULL,
-  DNR_REF_STRUC_APLIC        NUMBER(10)             NULL,
-  REF_SEQNC_STRUC_APLIC      NUMBER(10)             NULL
-);
-
-
-Prompt Table SIE_25_CHAMP;
-CREATE TABLE SIE_25_CHAMP
-(
-  SEQNC              NUMBER(10)                     NULL,
-  CODE               VARCHAR2(23 BYTE)              NULL,
-  POSTN_X            NUMBER(10)                     NULL,
-  POSTN_Y            NUMBER(10)                     NULL,
-  ANGLE_ORINT        NUMBER(10)                     NULL,
-  REF_FORMT          NUMBER(10)                     NULL,
-  REF_VERSN_PUBLC    NUMBER(10)                     NULL,
-  REF_DV_TYPE_CHAMP  NUMBER(10)                     NULL,
-  INDIC_MODIF        VARCHAR2(1 BYTE)           DEFAULT 'N'                       NULL,
-  NOM                VARCHAR2(60 BYTE)              NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL
-);
-
-
-Prompt Table SIE_25_CHAMP_PUBLC_TRAVL;
-CREATE TABLE SIE_25_CHAMP_PUBLC_TRAVL
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_CHAMP        NUMBER(10)                       NULL,
-  REF_PUBLC_TRAVL  NUMBER(10)                       NULL,
-  CONTN            VARCHAR2(4000 BYTE)              NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_25_DOMN_TYPE_PUBLC;
-CREATE TABLE SIE_25_DOMN_TYPE_PUBLC
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_DOMN        NUMBER(10)                        NULL,
-  REF_TYPE_PUBLC  NUMBER(10)                        NULL,
-  REF_PUBLC       NUMBER(10)                        NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL
-);
-
-
-Prompt Table SIE_25_ELEMN_CONFG_PUBLC;
-CREATE TABLE SIE_25_ELEMN_CONFG_PUBLC
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_TYPE_PUBLC  NUMBER(10)                        NULL,
-  CODE            VARCHAR2(23 BYTE)                 NULL,
-  NOM             VARCHAR2(60 BYTE)                 NULL,
-  DESCR           VARCHAR2(200 BYTE)                NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  TYPE_DON        VARCHAR2(1 BYTE)                  NULL,
-  DNR_REF_PRODT   NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_25_ENGIN;
-CREATE TABLE SIE_25_ENGIN
-(
-  SEQNC              NUMBER(10)                     NULL,
-  CODE               VARCHAR2(23 BYTE)              NULL,
-  REF_DV_FORMT_SORT  NUMBER(10)                     NULL,
-  URL_SERVL          VARCHAR2(200 BYTE)             NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  URL_SERVL_EXTER    VARCHAR2(200 BYTE)             NULL
-);
-
-
-Prompt Table SIE_25_ENGIN_VERSN_PUBLC;
-CREATE TABLE SIE_25_ENGIN_VERSN_PUBLC
-(
-  SEQNC            NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_VERSN_PUBLC  NUMBER(10)                       NULL,
-  REF_ENGIN        NUMBER(10)                       NULL,
-  IDEN_ACCES       VARCHAR2(60 BYTE)                NULL,
-  PDF_FUSN         BLOB                             NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_25_GROUP_PUBLC;
-CREATE TABLE SIE_25_GROUP_PUBLC
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(23 BYTE)                    NULL,
-  NOM          VARCHAR2(60 BYTE)                    NULL,
-  DESCR        VARCHAR2(4000 BYTE)                  NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL
-);
-
-
-Prompt Table SIE_25_JOURN_TRAVL_EXECT;
-CREATE TABLE SIE_25_JOURN_TRAVL_EXECT
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_DV_TYPE_ECRIT  NUMBER(10)                     NULL,
-  REF_TRAVL          NUMBER(10)                     NULL,
-  REF_PUBLC_TRAVL    NUMBER(10)                     NULL,
-  DATE_JOURN         DATE                           NULL,
-  ENONC              VARCHAR2(4000 BYTE)            NULL
-);
-
-
-Prompt Table SIE_25_OCURN_PARMT_PUBLC_TRAVL;
-CREATE TABLE SIE_25_OCURN_PARMT_PUBLC_TRAVL
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  VALR_DATE              DATE                       NULL,
-  VALR_NUMBR             NUMBER                     NULL,
-  VALR_VARCH             VARCHAR2(4000 BYTE)        NULL,
-  REF_PARMT_PUBLC_TRAVL  NUMBER(10)                 NULL
-);
-
-
-Prompt Table SIE_25_PARMT_PUBLC_TRAVL;
-CREATE TABLE SIE_25_PARMT_PUBLC_TRAVL
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  REF_PUBLC_TRAVL       NUMBER(10)                  NULL,
-  REF_PARMT_TYPE_PUBLC  NUMBER(10)                  NULL,
-  VALR_VARCH            VARCHAR2(4000 BYTE)         NULL,
-  VALR_DATE             DATE                        NULL,
-  VALR_NUMBR            NUMBER                      NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL
-);
-
-
-Prompt Table SIE_25_PARMT_PUBLC_TRAVL_EXECT;
-CREATE TABLE SIE_25_PARMT_PUBLC_TRAVL_EXECT
-(
-  REF_TRAVL_PUBLC  NUMBER(10)                       NULL,
-  VALR_NUMBR1      NUMBER                           NULL,
-  VALR_VARCH1      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE1       DATE                             NULL,
-  VALR_NUMBR2      NUMBER                           NULL,
-  VALR_VARCH2      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE2       DATE                             NULL,
-  VALR_NUMBR3      NUMBER                           NULL,
-  VALR_VARCH3      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE3       DATE                             NULL,
-  VALR_NUMBR4      NUMBER                           NULL,
-  VALR_VARCH4      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE4       DATE                             NULL,
-  VALR_NUMBR5      NUMBER                           NULL,
-  VALR_VARCH5      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE6       DATE                             NULL,
-  VALR_NUMBR7      NUMBER                           NULL,
-  VALR_VARCH7      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE7       DATE                             NULL,
-  VALR_NUMBR8      NUMBER                           NULL,
-  VALR_VARCH8      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE8       DATE                             NULL,
-  VALR_NUMBR9      NUMBER                           NULL,
-  VALR_VARCH9      VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE9       DATE                             NULL,
-  VALR_NUMBR10     NUMBER                           NULL,
-  VALR_VARCH10     VARCHAR2(256 BYTE)               NULL,
-  VALR_DATE10      DATE                             NULL,
-  REF_TRAVL        NUMBER(10)                       NULL,
-  SEQNC            NUMBER(10)                       NULL,
-  VALR_DATE5       DATE                             NULL,
-  VALR_VARCH6      VARCHAR2(256 BYTE)               NULL,
-  VALR_NUMBR6      NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_25_PARMT_TYPE_PUBLC;
-CREATE TABLE SIE_25_PARMT_TYPE_PUBLC
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_TYPE_PUBLC     NUMBER(10)                     NULL,
-  REF_ENGIN          NUMBER(10)                     NULL,
-  CODE               VARCHAR2(23 BYTE)              NULL,
-  NOM                VARCHAR2(60 BYTE)              NULL,
-  DESCR              VARCHAR2(4000 BYTE)            NULL,
-  INDIC_PRESN_APPEL  VARCHAR2(1 BYTE)           DEFAULT 'N'                       NULL,
-  INDIC_FIXE         VARCHAR2(1 BYTE)           DEFAULT 'O'                       NULL,
-  VALR_DEFT          VARCHAR2(200 BYTE)             NULL,
-  TYPE_VALR_DEFT     VARCHAR2(5 BYTE)           DEFAULT 'LITL'                    NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  TYPE_DON           VARCHAR2(1 BYTE)               NULL,
-  ORDRE_PRESN        NUMBER(3)                      NULL,
-  CARDN              VARCHAR2(1 BYTE)               NULL,
-  DNR_REF_PRODT      NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_25_PUBLC;
-CREATE TABLE SIE_25_PUBLC
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_TYPE_PUBLC   NUMBER(10)                       NULL,
-  CODE             VARCHAR2(23 BYTE)                NULL,
-  NOM              VARCHAR2(60 BYTE)                NULL,
-  DESCR            VARCHAR2(200 BYTE)               NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_GROUP_PUBLC  NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_25_PUBLC_TRAVL;
-CREATE TABLE SIE_25_PUBLC_TRAVL
-(
-  SEQNC              NUMBER(10)                     NULL,
-  REF_PUBLC          NUMBER(10)                     NULL,
-  REF_TRAVL          NUMBER(10)                     NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL,
-  REF_STAT           NUMBER(10)                     NULL,
-  NOM                VARCHAR2(200 BYTE)             NULL,
-  INDIC_PARMT_ALIMN  VARCHAR2(1 BYTE)           DEFAULT 'N'                       NULL,
-  REF_VERSN_PUBLC    NUMBER(10)                     NULL
-);
-
-
-Prompt Table SIE_25_TRAVL;
-CREATE TABLE SIE_25_TRAVL
-(
-  SEQNC           NUMBER(10)                        NULL,
-  REF_UTILS       NUMBER(10)                        NULL,
-  INDIC_IMEDT     VARCHAR2(1 BYTE)              DEFAULT 'O'                       NULL,
-  NOM             VARCHAR2(200 BYTE)                NULL,
-  DATE_CREAT      DATE                              NULL,
-  UTILS_CREAT     VARCHAR2(123 BYTE)                NULL,
-  DATE_MODFC      DATE                              NULL,
-  UTILS_MODFC     VARCHAR2(123 BYTE)                NULL,
-  REF_DOMN        NUMBER(10)                        NULL,
-  REF_STAT        NUMBER(10)                        NULL,
-  REF_TYPE_TRAVL  NUMBER(10)                        NULL
-);
-
-
-Prompt Table SIE_25_TYPE_PUBLC;
-CREATE TABLE SIE_25_TYPE_PUBLC
-(
-  SEQNC            NUMBER(10)                       NULL,
-  CODE             VARCHAR2(23 BYTE)                NULL,
-  NOM              VARCHAR2(60 BYTE)                NULL,
-  DESCR            VARCHAR2(200 BYTE)               NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_STRUC_APLIC  NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_25_TYPE_TRAVL;
-CREATE TABLE SIE_25_TYPE_TRAVL
-(
-  SEQNC        NUMBER(10)                           NULL,
-  CODE         VARCHAR2(23 BYTE)                    NULL,
-  NOM          VARCHAR2(60 BYTE)                    NULL,
-  DESCR        VARCHAR2(200 BYTE)                   NULL,
-  DATE_CREAT   DATE                                 NULL,
-  UTILS_CREAT  VARCHAR2(123 BYTE)                   NULL,
-  DATE_MODFC   DATE                                 NULL,
-  UTILS_MODFC  VARCHAR2(123 BYTE)                   NULL,
-  REF_DOMN     NUMBER(10)                           NULL
-);
-
-
-Prompt Table SIE_25_VALR_CHAMP;
-CREATE TABLE SIE_25_VALR_CHAMP
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_CHAMP        NUMBER(10)                       NULL,
-  REF_PUBLC_TRAVL  NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  VALR_NOMBR       NUMBER(10)                       NULL,
-  VALR_DATE        DATE                             NULL,
-  VALR_VARCH       VARCHAR2(400 BYTE)               NULL
-);
-
-
-Prompt Table SIE_25_VALR_ELEMN_CONFG;
-CREATE TABLE SIE_25_VALR_ELEMN_CONFG
-(
-  SEQNC                  NUMBER(10)                 NULL,
-  REF_ELEMN_CONFG_PUBLC  NUMBER(10)                 NULL,
-  DATE_DEBUT_EFECT       DATE                       NULL,
-  DATE_FIN_EFECT         DATE                       NULL,
-  VALR_VARCH             VARCHAR2(4000 BYTE)        NULL,
-  VALR_DATE              DATE                       NULL,
-  VALR_NUMBR             NUMBER                     NULL,
-  DATE_CREAT             DATE                       NULL,
-  UTILS_CREAT            VARCHAR2(123 BYTE)         NULL,
-  DATE_MODFC             DATE                       NULL,
-  UTILS_MODFC            VARCHAR2(123 BYTE)         NULL,
-  REF_DOMN               NUMBER(10)                 NULL
-);
-
-
-Prompt Table SIE_25_VERSN_PUBLC;
-CREATE TABLE SIE_25_VERSN_PUBLC
-(
-  SEQNC             NUMBER(10)                      NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL,
-  DATE_DEBUT_EFECT  DATE                            NULL,
-  DATE_FIN_EFECT    DATE                            NULL,
-  REF_PUBLC         NUMBER(10)                      NULL,
-  CODE              VARCHAR2(23 BYTE)               NULL,
-  NOM               VARCHAR2(60 BYTE)               NULL,
-  DESCR             VARCHAR2(200 BYTE)              NULL,
-  DNR_REF_PRODT     NUMBER(10)                      NULL
-);
-
-
-Prompt Table SIE_29_CONTR;
-CREATE TABLE SIE_29_CONTR
-(
-  SEQNC            NUMBER(10)                       NULL,
-  CODE_CONTR       VARCHAR2(23 BYTE)                NULL,
-  NOM_STRUC_ACCES  VARCHAR2(61 BYTE)                NULL,
-  NOM              VARCHAR2(60 BYTE)                NULL,
-  DESCR            VARCHAR2(4000 BYTE)              NULL,
-  NIV_GRAVT        NUMBER(1)                        NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_PRODT        NUMBER(10)                       NULL,
-  DNR_REF_PRODT    NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_29_RESLT_REQUT_AQ;
-CREATE TABLE SIE_29_RESLT_REQUT_AQ
-(
-  REF_CONTR  NUMBER(10)                             NULL,
-  ID         NUMBER                                 NULL,
-  FLOW_ID    NUMBER                                 NULL,
-  PAGE_ID    NUMBER                                 NULL,
-  NOM_COMPS  VARCHAR2(500 BYTE)                     NULL,
-  NIV_GRAVT  NUMBER(1)                              NULL,
-  NATR       VARCHAR2(500 BYTE)                     NULL
-);
-
-
-Prompt Table SIE_30_AFECT_ITEM;
-CREATE TABLE SIE_30_AFECT_ITEM
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  REF_ITEM_CARNT_PRODT  NUMBER(10)                  NULL,
-  REF_UTILS             NUMBER(10)                  NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL
-);
-
-
-Prompt Table SIE_30_CARNT_APLIC;
-CREATE TABLE SIE_30_CARNT_APLIC
-(
-  SEQNC            NUMBER(10)                       NULL,
-  NOM              VARCHAR2(200 BYTE)               NULL,
-  REF_CARNT_PRODT  NUMBER(10)                       NULL,
-  REF_APLIC        NUMBER(10)                       NULL,
-  REF_UTILS_RESPN  NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  DOCMN_REFRC      VARCHAR2(200 BYTE)               NULL
-);
-
-
-Prompt Table SIE_30_CARNT_PRODT;
-CREATE TABLE SIE_30_CARNT_PRODT
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_PRODT        NUMBER(10)                       NULL,
-  DOCMN_REFRC      VARCHAR2(200 BYTE)               NULL,
-  REF_UTILS_RESPN  NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_30_CARNT_SPRIN;
-CREATE TABLE SIE_30_CARNT_SPRIN
-(
-  SEQNC             NUMBER(10)                      NULL,
-  DESCR             VARCHAR2(4000 BYTE)             NULL,
-  REF_UTILS_RESPN   NUMBER(10)                      NULL,
-  REF_CARNT_PRODT   NUMBER(10)                      NULL,
-  DATE_DEBUT_PREVU  DATE                            NULL,
-  DATE_FIN_PREVU    DATE                            NULL,
-  REF_VERSN         NUMBER(10)                      NULL,
-  DATE_CREAT        DATE                            NULL,
-  UTILS_CREAT       VARCHAR2(123 BYTE)              NULL,
-  DATE_MODFC        DATE                            NULL,
-  UTILS_MODFC       VARCHAR2(123 BYTE)              NULL
-);
-
-
-Prompt Table SIE_30_CAS_UTILS;
-CREATE TABLE SIE_30_CAS_UTILS
-(
-  SEQNC            NUMBER(10)                       NULL,
-  CODE             VARCHAR2(23 BYTE)                NULL,
-  NOM              VARCHAR2(200 BYTE)               NULL,
-  DESCR            VARCHAR2(4000 BYTE)              NULL,
-  DOCMN_REFRC      VARCHAR2(200 BYTE)               NULL,
-  REF_CARNT_PRODT  NUMBER(10)                       NULL,
-  REF_STAT         NUMBER(10)                       NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL,
-  REF_UTILS_RESPN  NUMBER(10)                       NULL
-);
-
-
-Prompt Table SIE_30_EFORT_ITEM;
-CREATE TABLE SIE_30_EFORT_ITEM
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  REF_ITEM_CARNT_SPRIN  NUMBER(10)                  NULL,
-  REF_UTILS             NUMBER(10)                  NULL,
-  COMNT                 VARCHAR2(4000 BYTE)         NULL,
-  DATE_EFORT            DATE                        NULL,
-  VALR                  NUMBER(5,2)                 NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL
-);
-
-
-Prompt Table SIE_30_HISTR_EFORT_RESTN;
-CREATE TABLE SIE_30_HISTR_EFORT_RESTN
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  REF_ITEM_CARNT_SPRIN  NUMBER(10)                  NULL,
-  DATE_HEURE_SAISI      DATE                        NULL,
-  EFORT_RESTN           NUMBER(10,2)                NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL
-);
-
-
-Prompt Table SIE_30_ITEM_CARNT_PRODT;
-CREATE TABLE SIE_30_ITEM_CARNT_PRODT
-(
-  SEQNC              NUMBER(10)                     NULL,
-  NOM                VARCHAR2(200 BYTE)             NULL,
-  DESCR              VARCHAR2(4000 BYTE)            NULL,
-  REF_CARNT_PRODT    NUMBER(10)                     NULL,
-  REF_DV_PRIOR       NUMBER(1)                      NULL,
-  REF_STAT           NUMBER(10)                     NULL,
-  REF_DV_TAIL_RELTV  NUMBER(10)                     NULL,
-  REF_CAS_UTILS      NUMBER(10)                     NULL,
-  DATE_CREAT         DATE                           NULL,
-  UTILS_CREAT        VARCHAR2(123 BYTE)             NULL,
-  DATE_MODFC         DATE                           NULL,
-  UTILS_MODFC        VARCHAR2(123 BYTE)             NULL
-);
-
-
-Prompt Table SIE_30_ITEM_CARNT_SPRIN;
-CREATE TABLE SIE_30_ITEM_CARNT_SPRIN
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  NOM                   VARCHAR2(200 BYTE)          NULL,
-  DESCR                 VARCHAR2(4000 BYTE)         NULL,
-  NUMR_REFRC_DOCMN      NUMBER(3)                   NULL,
-  REF_ITEM_CARNT_PRODT  NUMBER(10)                  NULL,
-  REF_CARNT_SPRIN       NUMBER(10)                  NULL,
-  EFORT_PREVU           NUMBER(10,2)                NULL,
-  EFORT_RESTN           NUMBER(10,2)                NULL,
-  REF_DV_PRIOR          NUMBER(10)                  NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL,
-  REF_SIE_30_PAGE       NUMBER(10)                  NULL
-);
-
-
-Prompt Table SIE_30_PAGE;
-CREATE TABLE SIE_30_PAGE
-(
-  SEQNC            NUMBER(10)                       NULL,
-  REF_SIE_13_PAGE  NUMBER(10)                       NULL,
-  NOM              VARCHAR2(200 BYTE)               NULL,
-  NUMR_APEX        NUMBER                           NULL,
-  DATE_CREAT       DATE                             NULL,
-  UTILS_CREAT      VARCHAR2(123 BYTE)               NULL,
-  DATE_MODFC       DATE                             NULL,
-  UTILS_MODFC      VARCHAR2(123 BYTE)               NULL
-);
-
-
-Prompt Table SIE_30_PAGE_ITEM;
-CREATE TABLE SIE_30_PAGE_ITEM
-(
-  SEQNC                 NUMBER(10)                  NULL,
-  REF_SIE_30_PAGE       NUMBER(10)                  NULL,
-  REF_ITEM_CARNT_PRODT  NUMBER(10)                  NULL,
-  DATE_CREAT            DATE                        NULL,
-  UTILS_CREAT           VARCHAR2(123 BYTE)          NULL,
-  DATE_MODFC            DATE                        NULL,
-  UTILS_MODFC           VARCHAR2(123 BYTE)          NULL
-);
-
-
-Prompt Table TC_SIE_07_SEQNC;
-CREATE GLOBAL TEMPORARY TABLE TC_SIE_07_SEQNC
-(
-  SEQNC  NUMBER(10)                                 NULL
-)
-ON COMMIT DELETE ROWS;
+create global temporary table tc_sie_07_seqnc (seqnc number (10) null)
+on commit delete rows;
