@@ -3032,8 +3032,7 @@ create table sie_25_domn_type_publc
   date_creat                              date not null,
   utils_creat                             varchar2 (123 byte) not null,
   date_modfc                              date null,
-  utils_modfc                             varchar2 (123 byte) null,
-  note_bas_page                           varchar2 (4000 byte) null
+  utils_modfc                             varchar2 (123 byte) null
 );
 
 
